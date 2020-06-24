@@ -3,10 +3,12 @@ package co.mba.strat_risk.data;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import co.mba.strat_risk.data.dao.Modulo1;
+import co.mba.strat_risk.data.dao.Modulo1Dao;
+import co.mba.strat_risk.data.entity.Modulo1;
+
 
 @Database(
-        entities = {},
+        entities = {Modulo1.class},
         version = 1,
         exportSchema = false)
 
@@ -15,5 +17,5 @@ import co.mba.strat_risk.data.dao.Modulo1;
 public abstract class SRDataBase extends RoomDatabase {
 
     // -- Dao --
-    public abstract Modulo1 modulo1();
+    public abstract Modulo1Dao modulo1Dao();
 }
