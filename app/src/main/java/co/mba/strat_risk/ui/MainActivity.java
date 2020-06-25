@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     }
 
     @Override
-    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
+public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
         return dispatchingAndroidInjector;
-    }
-}
+        }
+        }

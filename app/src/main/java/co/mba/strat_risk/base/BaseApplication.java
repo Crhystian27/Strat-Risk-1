@@ -30,6 +30,8 @@ public class BaseApplication extends Application implements HasActivityInjector 
         return dispatchingAndroidInjector;
     }
 
+
+    //TODO REVISAR DAGGER
     private void initDagger() {
         DaggerAppComponent.builder().application(this).build().inject(this);
     }
