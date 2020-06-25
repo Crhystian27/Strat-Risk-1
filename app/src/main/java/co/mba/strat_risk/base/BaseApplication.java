@@ -18,6 +18,7 @@ public class BaseApplication extends Application implements HasActivityInjector 
     //TODO create new Context application Injector
     public Context context;
 
+    //Nuevoas cambios
 
     @Override
     public void onCreate() {

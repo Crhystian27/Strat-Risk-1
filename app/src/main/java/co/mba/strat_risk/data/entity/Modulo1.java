@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "modulo1_table")
 public final class Modulo1 {
+    //Cambio en el modulo
 
     @PrimaryKey
     @ColumnInfo(name = "id")
