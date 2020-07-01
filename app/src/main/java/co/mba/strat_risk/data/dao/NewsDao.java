@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+import java.util.Objects;
 
 import co.mba.strat_risk.data.entity.News;
 
@@ -21,7 +22,7 @@ public interface NewsDao {
 
     //Delete
     @Query("DELETE FROM news_table where id = :idNews")
-    LiveData<News> deleteNews(Integer idNews);
+    void deleteNews(Integer idNews);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNews(News news);

@@ -7,6 +7,7 @@ import android.content.Context;
 import javax.inject.Inject;
 
 
+import co.mba.strat_risk.di.component.DaggerApplicationComponent;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
@@ -34,6 +35,6 @@ public class BaseApplication extends Application implements HasActivityInjector 
 
     //TODO REVISAR DAGGER
     private void initDagger() {
-        DaggerAppComponent.builder().application(this).build().inject(this);
+        DaggerApplicationComponent.builder().application(this).build().inject(this);
     }
 }

@@ -9,6 +9,7 @@ import co.mba.strat_risk.di.module.ActivityModule;
 import co.mba.strat_risk.di.module.DbModule;
 import co.mba.strat_risk.di.module.FragmentModule;
 import co.mba.strat_risk.di.module.ViewModelModule;
+import co.mba.strat_risk.network.ServicesModule;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.support.AndroidSupportInjectionModule;
@@ -19,7 +20,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ViewModelModule.class,
         FragmentModule.class,
         ActivityModule.class,
-        DbModule.class})
+        DbModule.class,
+        ServicesModule.class})
 
 public interface ApplicationComponent {
 
@@ -27,6 +29,7 @@ public interface ApplicationComponent {
     interface Builder {
         @BindsInstance
         Builder application(Application application);
+
         ApplicationComponent build();
     }
 

@@ -53,8 +53,8 @@ public class Repository {
         return newsDao.loadNewsStatus(idStatus);
     }
 
-    public LiveData<News> deleteNew(Integer id) {
-        return newsDao.deleteNews(id);
+    public void deleteNew(Integer id) {
+        executor.execute(() -> newsDao.deleteNews(id));
     }
 
 
@@ -63,6 +63,8 @@ public class Repository {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(news -> {
+
+                    //Show News in message Build Monitor
                     for (int i = 0; i < news.size(); i++) {
                         Log.e(TAG, "message" + news.get(i));
                     }

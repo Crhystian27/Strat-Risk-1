@@ -1,7 +1,6 @@
 package co.mba.strat_risk.ui.opportunity;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
