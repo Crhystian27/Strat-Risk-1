@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="co.mba.strat_risk.ui.home.HomeFragment"
+        android:name="co.mba.strat_risk.ui.news.NewsFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="co.mba.strat_risk.ui.dashboard.DashboardFragment"
+        android:name="co.mba.strat_risk.ui.interesting.InterestingFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="co.mba.strat_risk.ui.notifications.NotificationsFragment"
+        android:name="co.mba.strat_risk.ui.risk.RiskFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" >
         <action

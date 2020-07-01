@@ -1,8 +1,9 @@
 package co.mba.strat_risk.di.module;
 
-import co.mba.strat_risk.ui.dashboard.DashboardFragment;
-import co.mba.strat_risk.ui.home.HomeFragment;
-import co.mba.strat_risk.ui.notifications.NotificationsFragment;
+import co.mba.strat_risk.ui.interesting.InterestingFragment;
+import co.mba.strat_risk.ui.news.NewsFragment;
+import co.mba.strat_risk.ui.opportunity.OpportunityFragment;
+import co.mba.strat_risk.ui.risk.RiskFragment;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -10,11 +11,14 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class FragmentModule {
 
     @ContributesAndroidInjector
-    abstract DashboardFragment contributeDashboardFragment();
+    abstract InterestingFragment contributeDashboardFragment();
 
     @ContributesAndroidInjector
-    abstract HomeFragment contributeHomeFragment();
+    abstract NewsFragment contributeHomeFragment();
 
     @ContributesAndroidInjector
-    abstract NotificationsFragment contributeNotificationsFragment();
+    abstract RiskFragment contributeNotificationsFragment();
+
+    @ContributesAndroidInjector
+    abstract OpportunityFragment contributeOpportunityFragment();
 }
