@@ -11,6 +11,7 @@ import co.mba.strat_risk.di.component.DaggerApplicationComponent;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
+
 public class BaseApplication extends Application implements HasActivityInjector {
 
     @Inject

@@ -12,6 +12,7 @@ import co.mba.strat_risk.di.module.ViewModelModule;
 import co.mba.strat_risk.network.ServicesModule;
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
@@ -23,7 +24,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         DbModule.class,
         ServicesModule.class})
 
-public interface ApplicationComponent {
+public interface ApplicationComponent extends AndroidInjector<BaseApplication> {
 
     @Component.Builder
     interface Builder {

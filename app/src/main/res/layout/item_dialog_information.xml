@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_content_dialog_alert"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/content_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_dialog_message"
+        android:layout_below="@+id/icon_dialog_message"
+        android:layout_marginTop="-40dp"
+        android:paddingTop="40dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/txt_dialog_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dialog_alert_text"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+        <LinearLayout
+            android:id="@+id/content_controlls"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="right"
+            >
+
+            <TextView
+                android:id="@+id/txt_dialog_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="btn_accept"
+                android:textColor="@color/textWhite"
+                android:background="@drawable/background_button_accent"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/icon_dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp">
+
+        <co.mba.strat_risk.widgets.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/backgroundWhite"
+            />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_rss"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+</RelativeLayout>
