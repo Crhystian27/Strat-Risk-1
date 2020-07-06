@@ -1,7 +1,8 @@
 package co.mba.strat_risk.ui;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.network.InternetConnection;
+import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.DialogInformation;
 import dagger.android.support.DaggerAppCompatActivity;
@@ -69,7 +71,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         super.onResume();
 
         if (InternetConnection.isConnected(this) != 0 && !DialogInformation.isShowing) {
-            DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection),null);
+            DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection), null);
         }
 
         //Agregar la actividad actual a la lista
@@ -91,6 +93,20 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (!pressMenuItem) {
+            switch (item.getItemId()) {
+                case INFORMATION_ID:
+                    pressMenuItem = true;
+                    Utilities.OpenSendEmail(BaseActivity.this);
+                    new Handler().postDelayed(()-> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
+                    break;
+                case  FAQ_ID:
+                    pressMenuItem = true;
+                    //Log.e(getClass())
+            }
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
