@@ -22,9 +22,7 @@ import co.mba.strat_risk.data.dto.NewsDTO;
 
 public class NewsFragment extends BaseFragment {
 
-    private NewsAdapter adapter;
     private RecyclerView recyclerView;
-    private NewsViewModel viewModel;
     private LinearLayout empty;
 
 
@@ -35,22 +33,24 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
-    }
-
-
-    private void unitUI(){
-        ((BaseActivity)getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
-        ((BaseActivity)getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
-
+        unitUI();
+        recyclerView = view.findViewById(R.id.recycler_news);
 
     }
 
-    private void setRecyclerView(List<NewsDTO> ls){
-        Collections.sort(ls , (o1,o2) -> o1.getDate().compareTo(o2.getDate()));
+
+    private void unitUI() {
+        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
+        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        NewsViewModel viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
+        viewModel.initNews(getContext()).observe(getBaseActivity(), this::setRecyclerView);
+    }
+
+    private void setRecyclerView(List<NewsDTO> ls) {
+        Collections.sort(ls, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new NewsAdapter(getBaseActivity(),ls,empty);
+        NewsAdapter adapter = new NewsAdapter(getBaseActivity(), ls, empty);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();
