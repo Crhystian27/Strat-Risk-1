@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import co.mba.strat_risk.di.key.ViewModelKey;
-import co.mba.strat_risk.ui.viewmodel.MainActivityViewModel;
+
+import co.mba.strat_risk.ui.MainActivityViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;

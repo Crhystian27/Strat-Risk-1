@@ -3,7 +3,7 @@ package co.mba.strat_risk.ui;
 import android.os.Bundle;
 import android.view.Menu;
 
-
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -11,12 +11,13 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
 import co.mba.strat_risk.R;
 
 
 public class MainActivity extends BaseActivity {
 
+
+    MainActivityViewModel viewModel;
     BottomNavigationView navigationView;
 
 
@@ -37,17 +38,20 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initUI() {
+        //Instance ViewModel
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        //TODO useViewModel
+
+
         navigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_news, R.id.navigation_opportunity, R.id.navigation_interesting, R.id.navigation_risk)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
     }
 
     @Override
