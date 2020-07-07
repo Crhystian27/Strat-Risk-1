@@ -2,8 +2,10 @@ package co.mba.strat_risk.data.repository;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -12,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import co.mba.strat_risk.data.dao.NewsDao;
+import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
@@ -58,7 +61,7 @@ public class Repository {
     }
 
 
-    public void getCurrentNews(Context context) {
+    public MutableLiveData<List<NewsDTO>> getCurrentNews(Context context, MutableLiveData<List<NewsDTO>> ls) {
         compositeDisposable.add(apiService.getNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,9 +71,15 @@ public class Repository {
                     for (int i = 0; i < news.size(); i++) {
                         Log.e(TAG, "message" + news.get(i));
                     }
+                    ls.setValue(news);
                 }, throwable -> {
                     String message = throwable.getMessage();
                     Log.e(TAG, message);
+                    if("HTTP 400 ".equals(throwable.getMessage())){
+                        Toast.makeText(context ,"Not News", Toast.LENGTH_LONG).show();
+                    }
                 }));
+
+        return ls;
     }
 }

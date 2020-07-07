@@ -13,18 +13,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseFragment;
 
-public class OpportunityFragment extends Fragment {
+public class OpportunityFragment extends BaseFragment {
 
     private OpportunityViewModel mViewModel;
 
-    public static OpportunityFragment newInstance() {
-        return new OpportunityFragment();
+
+    @Override
+    protected int layoutRes() {
+        return R.layout.opportunity_fragment;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mViewModel = new ViewModelProvider(this).get(OpportunityViewModel.class);
         View view = inflater.inflate(R.layout.opportunity_fragment, container, false);
