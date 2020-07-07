@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <string name="app_name">MBA Strat -Risk</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="title_news">News</string>
+    <string name="title_opportunity">Opportunity</string>
+    <string name="title_interesting">Interesting</string>
+    <string name="title_risk">Risk</string>
 
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">There are no email clients installed.</string>
     <string name="btn_contact">Contact</string>

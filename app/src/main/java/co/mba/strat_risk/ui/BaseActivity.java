@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -24,17 +25,17 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
 
 
     private Toolbar toolbar;
-    private final int FAQ_ID = 1;
-    private final int INFORMATION_ID = 2;
+    private final int FAQ_ID = 0;
+    private final int INFORMATION_ID = 1;
 
     @LayoutRes
     protected abstract int layoutRes();
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutRes());
+        setToolbar(null);
     }
 
     public void setToolbar(@Nullable Toolbar toolbar) {
@@ -50,6 +51,12 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         return toolbar;
     }
 
+    /**
+     * Set Support ActionBar
+     *
+     * @param displayHome  si es true indica que regresa un nivel en la UI
+     * @param showIconHome muestra el icono en el toolbar
+     */
     public void setSupportActionBar(boolean displayHome, boolean showIconHome) {
         if (toolbar != null) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(displayHome);
@@ -102,7 +109,10 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
                     break;
                 case  FAQ_ID:
                     pressMenuItem = true;
-                    //Log.e(getClass())
+                    Log.e(getClass().getSimpleName(),getResources().getString(R.string.base_faq));
+                    Toast.makeText(this, getResources().getString(R.string.base_faq), Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(()-> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
+                    break;
             }
 
         }

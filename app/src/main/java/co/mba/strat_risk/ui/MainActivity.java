@@ -1,10 +1,9 @@
 package co.mba.strat_risk.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -12,28 +11,33 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.ui.viewmodel.MainActivityViewModel;
-import dagger.android.AndroidInjection;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 
 
-public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public class MainActivity extends BaseActivity {
 
-    @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+    BottomNavigationView navigationView;
+
+
+    @Override
+    protected int toolbarId() {
+        return 0;
+    }
+
+    @Override
+    protected int layoutRes() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.configDagger();
-        this.configViewModel();
+        initUI();
+    }
 
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+    private void initUI() {
+        navigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -41,21 +45,13 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
+        NavigationUI.setupWithNavController(navigationView, navController);
 
-        //TODO
-    }
 
-    private void configDagger() {
-        AndroidInjection.inject(this);
-    }
-
-    private void configViewModel() {
-        MainActivityViewModel model = new ViewModelProvider(this).get(MainActivityViewModel.class);
     }
 
     @Override
-public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
-        }
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+}
