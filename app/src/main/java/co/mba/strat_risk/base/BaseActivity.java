@@ -1,4 +1,4 @@
-package co.mba.strat_risk.ui;
+package co.mba.strat_risk.base;
 
 import android.os.Bundle;
 import android.os.Handler;

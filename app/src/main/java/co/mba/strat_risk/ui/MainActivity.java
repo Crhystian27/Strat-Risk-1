@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseActivity;
 
 
 public class MainActivity extends BaseActivity {
