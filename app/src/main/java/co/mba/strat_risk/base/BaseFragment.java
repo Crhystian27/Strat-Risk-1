@@ -20,12 +20,10 @@ public abstract class BaseFragment extends DaggerFragment {
     @LayoutRes
     protected abstract int layoutRes();
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(layoutRes(), container, false);
-        return view;
+        return inflater.inflate(layoutRes(), container, false);
     }
 
     @Override

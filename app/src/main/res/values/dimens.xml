@@ -3,4 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_default_elevation">10dp</dimen>
+    <dimen name="custom_spacing">8dp</dimen>
+    <dimen name="custom_spacing2">4dp</dimen>
+    <dimen name="custom_spacing3">78dp</dimen>
+    <dimen name="custom_cornerRadius">15dp</dimen>
 </resources>

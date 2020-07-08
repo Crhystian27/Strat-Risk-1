@@ -48,19 +48,16 @@ public class Repository {
         this.interceptor = interceptor;
     }
 
-    /**
-     * @param idStatus
-     * @return all list of the news saved
-     */
+
+
+
     public LiveData<List<News>> getDBListNews(Integer idStatus) {
         return newsDao.loadNewsStatus(idStatus);
     }
 
-    public void deleteNew(Integer id) {
-        executor.execute(() -> newsDao.deleteNews(id));
-    }
 
 
+    //Load news list
     public MutableLiveData<List<NewsDTO>> getCurrentNews(Context context, MutableLiveData<List<NewsDTO>> ls) {
         compositeDisposable.add(apiService.getNews()
                 .subscribeOn(Schedulers.io())
@@ -71,7 +68,9 @@ public class Repository {
                     for (int i = 0; i < news.size(); i++) {
                         Log.e(TAG, "message" + news.get(i));
                     }
+
                     ls.setValue(news);
+
                 }, throwable -> {
                     String message = throwable.getMessage();
                     Log.e(TAG, message);
@@ -79,7 +78,13 @@ public class Repository {
                         Toast.makeText(context ,"Not News", Toast.LENGTH_LONG).show();
                     }
                 }));
-
         return ls;
     }
+
+
+    //TODO DELETES
+    public void deleteNew(Integer id) {
+        executor.execute(() -> newsDao.deleteNews(id));
+    }
+
 }

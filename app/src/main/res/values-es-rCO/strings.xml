@@ -16,6 +16,7 @@
 
     <string name="base_info">Info</string>
     <string name="base_faq">Faq</string>
+    <string name="empty_layout">Vacio</string>
 
 
     <string name="dialog_no_internet_connection">Sin conexión a internet</string>

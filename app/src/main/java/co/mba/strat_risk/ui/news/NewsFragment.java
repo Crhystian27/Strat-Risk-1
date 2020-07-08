@@ -3,6 +3,8 @@ package co.mba.strat_risk.ui.news;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +25,7 @@ import co.mba.strat_risk.data.dto.NewsDTO;
 public class NewsFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
-    private LinearLayout empty;
+    private RelativeLayout empty;
 
 
     @Override
@@ -35,9 +37,8 @@ public class NewsFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         unitUI();
         recyclerView = view.findViewById(R.id.recycler_news);
-
+        empty = view.findViewById(R.id.empty_relative);
     }
-
 
     private void unitUI() {
         ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
