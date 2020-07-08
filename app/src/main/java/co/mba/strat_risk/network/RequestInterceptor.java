@@ -21,7 +21,6 @@ public class RequestInterceptor implements Interceptor {
     public RequestInterceptor() {
     }
 
-
     public void setInterceptor(String url) {
         HttpUrl httpUrl = HttpUrl.parse(url);
         if (httpUrl == null)

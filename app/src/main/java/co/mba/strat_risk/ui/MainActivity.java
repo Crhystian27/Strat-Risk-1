@@ -3,7 +3,6 @@ package co.mba.strat_risk.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -77,6 +76,7 @@ public class MainActivity extends BaseActivity {
 
     private void counterNews(Context context, Integer idStatus) {
         viewModel.getNews(idStatus).observe(this, news -> {
+            String a = String.valueOf(news.size());
 
         });
         viewModel.getNewsDTO(context).observe(this, newsDTOS -> {

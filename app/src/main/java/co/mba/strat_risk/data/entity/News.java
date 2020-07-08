@@ -26,7 +26,8 @@ public final class News {
     @ColumnInfo(name = "publishedAt")
     private String publishedAt;
 
-    // -1(risk) - 0 (Interesting) - 1 (opportunity)
+    //0
+    // 3(risk) - 2(Interesting) - 1(opportunity)
     @ColumnInfo(name = "status")
     private Integer status;
 
