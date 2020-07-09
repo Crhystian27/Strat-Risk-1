@@ -9,7 +9,7 @@
         android:id="@+id/navigation_news"
         android:name="co.mba.strat_risk.ui.news.NewsFragment"
         android:label="@string/title_news"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_navigation_news_to_navigation_opportunity"
             app:destination="@id/navigation_opportunity" />
@@ -19,7 +19,7 @@
         android:id="@+id/navigation_interesting"
         android:name="co.mba.strat_risk.ui.interesting.InterestingFragment"
         android:label="@string/title_interesting"
-        tools:layout="@layout/fragment_dashboard">
+        tools:layout="@layout/fragment_interesting">
         <action
             android:id="@+id/action_navigation_interesting_to_navigation_risk"
             app:destination="@id/navigation_risk" />
@@ -38,7 +38,7 @@
         android:id="@+id/navigation_risk"
         android:name="co.mba.strat_risk.ui.risk.RiskFragment"
         android:label="@string/title_risk"
-        tools:layout="@layout/fragment_notifications">
+        tools:layout="@layout/fragment_risk">
         <action
             android:id="@+id/action_navigation_risk_to_navigation_news"
             app:destination="@id/navigation_news" />

@@ -15,19 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.data.dto.NewsDTO;
+import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.util.Utilities;
 
-
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class RiskAdapter extends RecyclerView.Adapter<RiskAdapter.ViewHolder> {
 
     private Context context;
-    private List<? extends NewsDTO> dtoList;
-    private List<? extends NewsDTO> filteredList;
+    private List<? extends News> dtoList;
+    private List<? extends News> filteredList;
     private RelativeLayout empty;
     private Dialog dialog;
 
-    public NewsAdapter(Context context, List<? extends NewsDTO> dtoList, RelativeLayout empty) {
+    public RiskAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty) {
         this.context = context;
         this.dtoList = dtoList;
         this.filteredList = dtoList;
@@ -36,24 +35,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false);
         return new ViewHolder(view, context, dtoList);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        String param1 = dtoList.get(position).getId().toString().trim();
-        String param2 = dtoList.get(position).getDate().trim();
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String param1 = dtoList.get(position).getTitle().trim();
+        String param2 = dtoList.get(position).getDescription().trim();
 
-        //TODO LOAD FROM INTERNET WITH GLIDE
+        //TODO LOAD FROM INTERNET WITH GLIDE Local
         holder.param0.setImageResource(R.drawable.ic_rss);
         Utilities.getBitmap(context, holder.param0);
 
         holder.param1.setText(param1);
         holder.param2.setText(param2);
-
-
     }
 
     @Override
@@ -69,11 +66,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private Context context;
-        private List<? extends NewsDTO> dtoList;
+        private List<? extends News> dtoList;
         private TextView param1, param2, param3, param4;
         private ImageView param0;
 
-        public ViewHolder(@NonNull View itemView, Context context, List<? extends NewsDTO> dtoList) {
+        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList) {
             super(itemView);
             this.context = context;
             this.dtoList = dtoList;
@@ -82,7 +79,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             param1 = itemView.findViewById(R.id.row_title);
             param2 = itemView.findViewById(R.id.row_body);
         }
-
 
         @Override
         public void onClick(View v) {

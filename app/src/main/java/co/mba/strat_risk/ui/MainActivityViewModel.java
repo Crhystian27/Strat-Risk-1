@@ -32,20 +32,22 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<List<NewsDTO>> getNewsDTO(Context context) {
         if (this.newsDTOLiveData != null) {
             Log.e(TAG, newsDTOLiveData.toString());
+            return null;
         } else {
             newsDTOLiveData = new MutableLiveData<>();
             newsDTOLiveData = repository.getCurrentNews(context, newsDTOLiveData);
+            return this.newsDTOLiveData;
         }
-        return this.newsDTOLiveData;
     }
 
     //Local
     public LiveData<List<News>> getNews(Integer idStatus) {
         if (this.newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());
+            return null;
         } else {
             newsLiveData = repository.getDBListNews(idStatus);
+            return this.newsLiveData;
         }
-        return this.newsLiveData;
     }
 }

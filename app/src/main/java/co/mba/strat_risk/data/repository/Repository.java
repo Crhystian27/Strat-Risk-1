@@ -48,14 +48,10 @@ public class Repository {
         this.interceptor = interceptor;
     }
 
-
-
-
+    //Load opportunity, interesting and risk
     public LiveData<List<News>> getDBListNews(Integer idStatus) {
         return newsDao.loadNewsStatus(idStatus);
     }
-
-
 
     //Load news list
     public MutableLiveData<List<NewsDTO>> getCurrentNews(Context context, MutableLiveData<List<NewsDTO>> ls) {

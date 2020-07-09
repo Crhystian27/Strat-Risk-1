@@ -2,9 +2,7 @@ package co.mba.strat_risk.ui.news;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,7 +28,7 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     protected int layoutRes() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_news;
     }
 
     @Override
@@ -43,6 +41,7 @@ public class NewsFragment extends BaseFragment {
     private void unitUI() {
         ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+
         NewsViewModel viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
         viewModel.initNews(getContext()).observe(getBaseActivity(), this::setRecyclerView);
     }
