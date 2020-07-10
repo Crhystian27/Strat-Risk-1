@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.Objects;
 
+
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.util.Constants;
@@ -22,7 +23,6 @@ import co.mba.strat_risk.widgets.DialogInformation;
 import dagger.android.support.DaggerAppCompatActivity;
 
 public abstract class BaseActivity extends DaggerAppCompatActivity {
-
 
     private Toolbar toolbar;
     private final int FAQ_ID = 0;
@@ -105,13 +105,13 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
                 case INFORMATION_ID:
                     pressMenuItem = true;
                     Utilities.OpenSendEmail(BaseActivity.this);
-                    new Handler().postDelayed(()-> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
+                    new Handler().postDelayed(() -> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
                     break;
-                case  FAQ_ID:
+                case FAQ_ID:
                     pressMenuItem = true;
-                    Log.e(getClass().getSimpleName(),getResources().getString(R.string.base_faq));
+                    Log.e(getClass().getSimpleName(), getResources().getString(R.string.base_faq));
                     Toast.makeText(this, getResources().getString(R.string.base_faq), Toast.LENGTH_SHORT).show();
-                    new Handler().postDelayed(()-> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
+                    new Handler().postDelayed(() -> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
                     break;
             }
 

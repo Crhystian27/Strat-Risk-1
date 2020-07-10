@@ -43,8 +43,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        String param1 = dtoList.get(position).getId().toString().trim();
-        String param2 = dtoList.get(position).getDate().trim();
+        //TODO PROYECTO CARRITO DE COTIZACION -- PARA VARIAS POLIZAS.
+        //TODO COTIZAR AUTOS EN TODAS LAS COMPAÑIAS.
+
+        //TODO DIAGRAMA DE FLUJO PARA LOS SEGUROS. -AUTOMATIZAR
+        String param1 = dtoList.get(position).getTitle().trim();
+        String param2 = dtoList.get(position).getDescription().trim();
+        //String param3 = dtoList.get(position).getName().trim();
 
         //TODO LOAD FROM INTERNET WITH GLIDE
         holder.param0.setImageResource(R.drawable.ic_rss);
@@ -52,6 +57,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         holder.param1.setText(param1);
         holder.param2.setText(param2);
+        //holder.param3.setText(param3);
 
 
     }
@@ -82,7 +88,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             param1 = itemView.findViewById(R.id.row_title);
             param2 = itemView.findViewById(R.id.row_body);
         }
-
 
         @Override
         public void onClick(View v) {

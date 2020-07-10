@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
@@ -16,6 +18,7 @@ public class OpportunityViewModel extends ViewModel {
     private static final String TAG = "Opportunity_FV";
     private Repository repository;
 
+    @Inject
     public OpportunityViewModel(Repository repository) {
         this.repository = repository;
     }
@@ -25,7 +28,7 @@ public class OpportunityViewModel extends ViewModel {
             Log.e(TAG, opportunityLiveData.toString());
             return null;
         } else {
-            opportunityLiveData = repository.getDBListNews(idStatus);
+            //opportunityLiveData = repository.getDBListNews(idStatus);
             return this.opportunityLiveData;
         }
     }

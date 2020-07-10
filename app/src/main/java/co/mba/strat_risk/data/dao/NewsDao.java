@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 import co.mba.strat_risk.data.entity.News;
+import dagger.Provides;
 
 
 @Dao

@@ -1,20 +1,44 @@
 package co.mba.strat_risk.base;
 
-import android.app.Activity;
-import android.app.Application;
+import androidx.multidex.MultiDex;
+
 import android.content.Context;
 
-import javax.inject.Inject;
-
-
+import co.mba.strat_risk.di.component.ApplicationComponent;
 import co.mba.strat_risk.di.component.DaggerApplicationComponent;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
+import dagger.android.AndroidInjector;
+import dagger.android.support.DaggerApplication;
 
 
-public class BaseApplication extends Application implements HasActivityInjector {
+public class BaseApplication extends DaggerApplication {
 
-    @Inject
+    private static BaseApplication instance;
+    private ApplicationComponent component;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        component = DaggerApplicationComponent.builder().application(this).build();
+        component.inject(this);
+        return component;
+    }
+
+    public static Context getAppContext() {
+        return instance;
+    }
+
+    /*@Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     //TODO create new Context application Injector
@@ -37,5 +61,5 @@ public class BaseApplication extends Application implements HasActivityInjector 
     //TODO REVISAR DAGGER
     private void initDagger() {
         DaggerApplicationComponent.builder().application(this).build().inject(this);
-    }
+    }*/
 }

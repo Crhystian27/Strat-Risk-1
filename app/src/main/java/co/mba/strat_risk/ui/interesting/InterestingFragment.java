@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
 import java.util.List;
 
+
+import javax.inject.Inject;
+
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.InterestingAdapter;
 import co.mba.strat_risk.base.BaseActivity;
@@ -24,6 +27,7 @@ import co.mba.strat_risk.util.Constants;
 public class InterestingFragment extends BaseFragment {
 
 
+    InterestingViewModel viewModel;
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 
@@ -46,11 +50,12 @@ public class InterestingFragment extends BaseFragment {
         ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_interesting));
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        InterestingViewModel viewModel = new ViewModelProvider(this).get(InterestingViewModel.class);
+        viewModel = new ViewModelProvider(this).get(InterestingViewModel.class);
         viewModel.initInteresting(Constants.INTERESTING_STATUS).observe(getBaseActivity(), this::setRecyclerView);
 
     }
-    private void setRecyclerView(List<News> ls){
+
+    private void setRecyclerView(List<News> ls) {
         Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

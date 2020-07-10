@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_news">
+    app:startDestination="@id/navigation_news">
 
     <fragment
         android:id="@+id/navigation_news"
@@ -28,7 +28,8 @@
     <fragment
         android:id="@+id/navigation_opportunity"
         android:name="co.mba.strat_risk.ui.opportunity.OpportunityFragment"
-        android:label="@string/title_opportunity">
+        android:label="@string/title_opportunity"
+        tools:layout="@layout/fragment_opportunity">
         <action
             android:id="@+id/action_navigation_opportunity_to_navigation_interesting"
             app:destination="@id/navigation_interesting" />

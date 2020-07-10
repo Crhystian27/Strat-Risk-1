@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.InterestingAdapter;
 import co.mba.strat_risk.adapter.RiskAdapter;
@@ -28,6 +30,9 @@ import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.util.Constants;
 
 public class RiskFragment extends BaseFragment {
+
+
+    RiskViewModel viewModel;
 
     private RecyclerView recyclerView;
     private RelativeLayout empty;
@@ -50,7 +55,7 @@ public class RiskFragment extends BaseFragment {
         ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        RiskViewModel viewModel = new ViewModelProvider(this).get(RiskViewModel.class);
+        viewModel = new ViewModelProvider(this).get(RiskViewModel.class);
         viewModel.initRisk(Constants.RISK_STATUS).observe(getBaseActivity(), this::setRecyclerView);
     }
 

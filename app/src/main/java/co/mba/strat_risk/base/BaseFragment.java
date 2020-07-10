@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
 public abstract class BaseFragment extends DaggerFragment {
@@ -19,6 +20,11 @@ public abstract class BaseFragment extends DaggerFragment {
 
     @LayoutRes
     protected abstract int layoutRes();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override

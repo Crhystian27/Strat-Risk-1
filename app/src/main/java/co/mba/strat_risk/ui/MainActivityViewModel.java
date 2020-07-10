@@ -35,7 +35,7 @@ public class MainActivityViewModel extends ViewModel {
             return null;
         } else {
             newsDTOLiveData = new MutableLiveData<>();
-            newsDTOLiveData = repository.getCurrentNews(context, newsDTOLiveData);
+            //newsDTOLiveData = repository.getCurrentNews(context, newsDTOLiveData);
             return this.newsDTOLiveData;
         }
     }
@@ -46,7 +46,7 @@ public class MainActivityViewModel extends ViewModel {
             Log.e(TAG, newsLiveData.toString());
             return null;
         } else {
-            newsLiveData = repository.getDBListNews(idStatus);
+            //newsLiveData = repository.getDBListNews(idStatus);
             return this.newsLiveData;
         }
     }

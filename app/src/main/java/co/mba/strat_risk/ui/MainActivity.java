@@ -12,12 +12,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
+import co.mba.strat_risk.util.Constants;
 
 
 public class MainActivity extends BaseActivity {
-
 
     MainActivityViewModel viewModel;
     BottomNavigationView bottomNavigationView;
@@ -36,7 +38,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        //viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_news, R.id.navigation_opportunity, R.id.navigation_interesting, R.id.navigation_risk)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
         initUI();
         setSupportActionBar(true, true);
     }
@@ -45,12 +55,7 @@ public class MainActivity extends BaseActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_news, R.id.navigation_opportunity, R.id.navigation_interesting, R.id.navigation_risk)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
@@ -62,19 +67,19 @@ public class MainActivity extends BaseActivity {
 
                 return true;
             case R.id.navigation_opportunity:
-                counterNews(this, 1);
+                //counterNews(this, Constants.OPPORTUNITY_STATUS);
                 return true;
             case R.id.navigation_interesting:
-                counterNews(this, 2);
+                //counterNews(this, Constants.INTERESTING_STATUS);
                 return true;
             case R.id.navigation_risk:
-                counterNews(this, 3);
+                //counterNews(this, Constants.RISK_STATUS);
                 return true;
         }
         return false;
     };
 
-    private void counterNews(Context context, Integer idStatus) {
+    /*private void counterNews(Context context, Integer idStatus) {
         viewModel.getNews(idStatus).observe(this, news -> {
             String a = String.valueOf(news.size());
 
@@ -82,7 +87,7 @@ public class MainActivity extends BaseActivity {
         viewModel.getNewsDTO(context).observe(this, newsDTOS -> {
 
         });
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

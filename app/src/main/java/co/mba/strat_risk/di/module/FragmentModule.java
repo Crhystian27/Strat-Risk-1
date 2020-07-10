@@ -10,6 +10,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class FragmentModule {
 
+
     @ContributesAndroidInjector
     abstract InterestingFragment contributeDashboardFragment();
 
@@ -21,4 +22,5 @@ public abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract OpportunityFragment contributeOpportunityFragment();
+
 }

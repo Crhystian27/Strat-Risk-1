@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
@@ -17,6 +19,7 @@ public class InterestingViewModel extends ViewModel {
     private static final String TAG = "Interesting_FV";
     private Repository repository;
 
+    @Inject
     public InterestingViewModel(Repository repository) {
         this.repository = repository;
     }
@@ -26,7 +29,7 @@ public class InterestingViewModel extends ViewModel {
             Log.e(TAG, interestingLiveData.toString());
             return null;
         } else {
-            interestingLiveData = repository.getDBListNews(idStatus);
+            //interestingLiveData = repository.getDBListNews(idStatus);
             return this.interestingLiveData;
         }
     }

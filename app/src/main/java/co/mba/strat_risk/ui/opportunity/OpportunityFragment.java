@@ -16,16 +16,19 @@ import android.widget.RelativeLayout;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.OpportunityAdapter;
-import co.mba.strat_risk.adapter.RiskAdapter;
 import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.ui.interesting.InterestingViewModel;
 import co.mba.strat_risk.util.Constants;
 
 public class OpportunityFragment extends BaseFragment {
+
+
+    OpportunityViewModel viewModel;
 
     private RecyclerView recyclerView;
     private RelativeLayout empty;
@@ -48,7 +51,7 @@ public class OpportunityFragment extends BaseFragment {
         ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_opportunity));
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        OpportunityViewModel viewModel = new ViewModelProvider(this).get(OpportunityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(OpportunityViewModel.class);
         viewModel.initOpportunity(Constants.OPPORTUNITY_STATUS).observe(getBaseActivity(), this::setRecyclerView);
     }
 
@@ -61,6 +64,4 @@ public class OpportunityFragment extends BaseFragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();
     }
-
-
 }

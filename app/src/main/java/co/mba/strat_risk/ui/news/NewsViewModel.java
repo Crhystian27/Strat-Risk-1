@@ -13,26 +13,47 @@ import javax.inject.Inject;
 
 import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.repository.Repository;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableSingleObserver;
 
 public class NewsViewModel extends ViewModel {
 
-    private MutableLiveData<List<NewsDTO>> newsLiveData;
+    private CompositeDisposable disposable;
+    private MutableLiveData<List<NewsDTO>> newsLiveData = new MutableLiveData<>();
     private static final String TAG = "News_FV";
     private Repository repository;
 
     @Inject
     public NewsViewModel(Repository repository) {
         this.repository = repository;
+        disposable = new CompositeDisposable();
     }
 
-    public LiveData<List<NewsDTO>> initNews(Context context) {
-        if (this.newsLiveData != null) {
-            Log.e(TAG, newsLiveData.toString());
-            return null;
-        } else {
-            newsLiveData = new MutableLiveData<>();
-            newsLiveData = repository.getCurrentNews(context, newsLiveData);
-            return newsLiveData;
+    public LiveData<List<NewsDTO>> getNews() {
+        return this.newsLiveData;
+    }
+
+    public void initNews() {
+        disposable.add(repository.getCurrentNews2().subscribeWith(new DisposableSingleObserver<List<NewsDTO>>() {
+            @Override
+            public void onSuccess(List<NewsDTO> newsDTOS) {
+                newsLiveData.setValue(newsDTOS);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(TAG, " - " + e.getMessage());
+                newsLiveData.setValue(null);
+            }
+        }));
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        if (disposable != null) {
+            disposable.clear();
+            disposable = null;
         }
     }
 }
