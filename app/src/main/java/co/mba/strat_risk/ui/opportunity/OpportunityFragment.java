@@ -48,14 +48,14 @@ public class OpportunityFragment extends BaseFragment {
     }
 
     private void unitUI() {
-        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_opportunity));
-        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_opportunity));
+        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        viewModel = new ViewModelProvider(this).get(OpportunityViewModel.class);
-        viewModel.initOpportunity(Constants.OPPORTUNITY_STATUS).observe(getBaseActivity(), this::setRecyclerView);
+        //viewModel = new ViewModelProvider(this).get(OpportunityViewModel.class);
+        //viewModel.initOpportunity(Constants.OPPORTUNITY_STATUS).observe(getBaseActivity(), this::setRecyclerView);
     }
 
-    private void setRecyclerView(List<News> ls) {
+    /*private void setRecyclerView(List<News> ls) {
         Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,5 +63,5 @@ public class OpportunityFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();
-    }
+    }*/
 }

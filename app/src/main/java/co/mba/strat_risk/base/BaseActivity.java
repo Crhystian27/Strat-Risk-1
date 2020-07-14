@@ -78,7 +78,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         super.onResume();
 
         if (InternetConnection.isConnected(this) != 0 && !DialogInformation.isShowing) {
-            DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection), null);
+            //DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection), null);
         }
 
         //Agregar la actividad actual a la lista

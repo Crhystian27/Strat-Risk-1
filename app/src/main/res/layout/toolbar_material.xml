@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/backgroundWhite"
     android:minHeight="?attr/actionBarSize"
-    android:theme="?attr/actionBarTheme"
+    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
     app:contentInsetStartWithNavigation="0dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

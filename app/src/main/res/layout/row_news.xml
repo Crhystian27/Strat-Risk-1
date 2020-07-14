@@ -12,6 +12,7 @@
     app:cardCornerRadius="@dimen/custom_cornerRadius"
     app:cardElevation="@dimen/custom_spacing2">
 
+    <!--
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="@dimen/custom_cornerRadius"
         app:cardElevation="@dimen/custom_spacing2">
+        -->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,14 +67,14 @@
                     android:text="@string/row_body"
                     android:textColor="@android:color/darker_gray" />
 
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginEnd="@dimen/custom_spacing2"
                     android:background="@drawable/side_nav_bar" />
             </LinearLayout>
 
+            <!--
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,22 +111,19 @@
                         android:background="@drawable/ic_background_risk"
                         android:visibility="gone" />
                 </LinearLayout>
+                -->
 
-                <RelativeLayout
-                    android:id="@+id/icon_container"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:orientation="vertical">
+
 
                     <!-- Change color background
                        android:tint="@color/colorPrimaryDark"
                        -->
                     <ImageView
                         android:id="@+id/pic"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/ic_rss"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_rss"
                         tools:ignore="ContentDescription" />
 
                     <!--
@@ -143,7 +142,7 @@
                     -->
 
                 </RelativeLayout>
-            </RelativeLayout>
-        </RelativeLayout>
     </androidx.cardview.widget.CardView>
+<!--
 </androidx.cardview.widget.CardView>
+-->

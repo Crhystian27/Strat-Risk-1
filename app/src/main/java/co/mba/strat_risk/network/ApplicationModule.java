@@ -1,7 +1,5 @@
 package co.mba.strat_risk.network;
 
-import androidx.room.Dao;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -9,18 +7,14 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
+import co.mba.strat_risk.data.SRDataBase;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.repository.Repository;
 import co.mba.strat_risk.util.Constants;
 import dagger.Module;
 import dagger.Provides;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -39,34 +33,20 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    GsonConverterFactory provideGsonConverterFactory(Gson gson) {
-        return GsonConverterFactory.create(gson);
+    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, InternetConnection connection, RequestInterceptor interceptor) {
+        return new Repository(apiService, executor, newsDao, connection, interceptor);
     }
 
     @Provides
     @Singleton
-    RxJava2CallAdapterFactory provideRxJava2CallAdapterFactory() {
-        return RxJava2CallAdapterFactory.create();
+    NewsDao provideNewsDao(SRDataBase dataBase){
+        return dataBase.newsDao();
     }
 
     @Provides
     @Singleton
     Executor providesExecutor() {
         return Executors.newSingleThreadExecutor();
-    }
-
-    @Singleton
-    @Provides
-    @Named("schedulerIO")
-    static Scheduler provideSchedulerIO() {
-        return Schedulers.io();
-    }
-
-    @Singleton
-    @Provides
-    @Named("androidScheduler")
-    static Scheduler provideAndroidScheduler() {
-        return AndroidSchedulers.mainThread();
     }
 
     @Provides
@@ -81,27 +61,27 @@ public class ApplicationModule {
         return new InternetConnection();
     }
 
-
     @Provides
     @Singleton
     OkHttpClient providesOkHttpClient(RequestInterceptor requestInterceptor) {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(requestInterceptor);
+        builder.addInterceptor(requestInterceptor);
         builder.addNetworkInterceptor(loggingInterceptor);
         builder.connectTimeout(Constants.REQUEST_TIMEOUT, TimeUnit.SECONDS);
-        builder.addInterceptor(requestInterceptor);
         return builder.cache(null).build();
     }
 
     @Provides
     @Singleton
-    static Retrofit providesRetrofit(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory, RxJava2CallAdapterFactory rxJava2CallAdapterFactory) {
+    static Retrofit providesRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
-                .addConverterFactory(gsonConverterFactory)
-                .addCallAdapterFactory(rxJava2CallAdapterFactory)
-                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .build();
     }
 

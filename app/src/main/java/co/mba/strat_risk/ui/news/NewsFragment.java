@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,14 +19,15 @@ import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.NewsAdapter;
-import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.dto.NewsDTO;
 
 public class NewsFragment extends BaseFragment {
 
-    NewsViewModel viewModel;
+    @Inject
+    ViewModelProvider.Factory factory;
 
+    private NewsViewModel viewModel;
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 
@@ -37,17 +39,16 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        unitUI();
+        viewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsViewModel.class);
+        viewModel.fetchNewsDTO(getBaseActivity()).observe(getBaseActivity(), this::setRecyclerView);
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);
     }
 
     private void unitUI() {
-        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
-        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
+        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
-        viewModel.initNews();
     }
 
     private void setRecyclerView(List<NewsDTO> ls) {

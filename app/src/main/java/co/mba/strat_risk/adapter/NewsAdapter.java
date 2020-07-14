@@ -47,8 +47,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         //TODO COTIZAR AUTOS EN TODAS LAS COMPAÑIAS.
 
         //TODO DIAGRAMA DE FLUJO PARA LOS SEGUROS. -AUTOMATIZAR
-        String param1 = dtoList.get(position).getTitle().trim();
-        String param2 = dtoList.get(position).getDescription().trim();
+        String param1 = dtoList.get(position).getTitle();
+        String param2 = dtoList.get(position).getDescription();
         //String param3 = dtoList.get(position).getName().trim();
 
         //TODO LOAD FROM INTERNET WITH GLIDE

@@ -38,7 +38,7 @@ public class InterestingFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        unitUI();
+        //unitUI();
 
         //TODO IMPLEMENT TITLE
         recyclerView = view.findViewById(R.id.recycler_interesting);
@@ -47,15 +47,15 @@ public class InterestingFragment extends BaseFragment {
     }
 
     private void unitUI() {
-        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_interesting));
-        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_interesting));
+        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        viewModel = new ViewModelProvider(this).get(InterestingViewModel.class);
-        viewModel.initInteresting(Constants.INTERESTING_STATUS).observe(getBaseActivity(), this::setRecyclerView);
+        //viewModel = new ViewModelProvider(this).get(InterestingViewModel.class);
+        //viewModel.initInteresting(Constants.INTERESTING_STATUS).observe(getBaseActivity(), this::setRecyclerView);
 
     }
 
-    private void setRecyclerView(List<News> ls) {
+    /*private void setRecyclerView(List<News> ls) {
         Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,5 +63,5 @@ public class InterestingFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();
-    }
+    }*/
 }

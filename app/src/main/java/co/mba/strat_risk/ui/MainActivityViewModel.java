@@ -29,7 +29,7 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     //Internet
-    public LiveData<List<NewsDTO>> getNewsDTO(Context context) {
+    /*public LiveData<List<NewsDTO>> getNewsDTO(Context context) {
         if (this.newsDTOLiveData != null) {
             Log.e(TAG, newsDTOLiveData.toString());
             return null;
@@ -49,5 +49,5 @@ public class MainActivityViewModel extends ViewModel {
             //newsLiveData = repository.getDBListNews(idStatus);
             return this.newsLiveData;
         }
-    }
+    }*/
 }

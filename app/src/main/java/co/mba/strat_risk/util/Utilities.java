@@ -16,12 +16,16 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseFragment;
 
 public class Utilities {
 
@@ -42,6 +46,26 @@ public class Utilities {
 
     public static int activitiesInQueue() {
         return runningActivities.size();
+    }
+
+    public static String bundleString(FragmentActivity context, String key){
+        return (context.getIntent().getExtras() != null) ? context.getIntent().getExtras().getString(key) : "";
+    }
+
+
+    public static void loadFragment(FragmentActivity context, BaseFragment fragment, String TAG){
+        FragmentManager manager = context.getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.addToBackStack(TAG);
+        transaction.commit();
+
+    }
+
+    public static String getTagFragment(FragmentActivity context){
+        int index = context.getSupportFragmentManager().getBackStackEntryCount() - 1;
+        FragmentManager.BackStackEntry backEntry = context.getSupportFragmentManager().getBackStackEntryAt(index);
+        return backEntry.getName();
     }
 
     public static void OpenSendEmail(Context context) {

@@ -23,7 +23,7 @@ public class OpportunityViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<List<News>> initOpportunity(Integer idStatus) {
+    /*public LiveData<List<News>> initOpportunity(Integer idStatus) {
         if (this.opportunityLiveData != null) {
             Log.e(TAG, opportunityLiveData.toString());
             return null;
@@ -31,5 +31,5 @@ public class OpportunityViewModel extends ViewModel {
             //opportunityLiveData = repository.getDBListNews(idStatus);
             return this.opportunityLiveData;
         }
-    }
+    }*/
 }

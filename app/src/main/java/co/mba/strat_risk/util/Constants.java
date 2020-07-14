@@ -8,6 +8,9 @@ public class Constants {
 
     public static final String[] EXTRA_EMAIL = {"cristian.soto@mbariesgos.com", "juan.olaya@mbariesgos.com"};
     public static final int DELAY_BUTTON_PREES = 400;
-    public static final String BASE_URL = "https://newsapi.org/";
-    public static final int REQUEST_TIMEOUT = 10;
+    public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    public static final int REQUEST_TIMEOUT = 5;
+
+    public static final String TAG_HOME = "Tag_Home";
+    public static final String TAG_FRAGMENT = "Tag_Fragment";
 }

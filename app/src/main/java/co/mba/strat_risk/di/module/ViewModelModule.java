@@ -6,6 +6,11 @@ import androidx.lifecycle.ViewModelProvider;
 import co.mba.strat_risk.di.key.ViewModelKey;
 
 import co.mba.strat_risk.ui.MainActivityViewModel;
+import co.mba.strat_risk.ui.interesting.InterestingViewModel;
+import co.mba.strat_risk.ui.news.NewsViewModel;
+import co.mba.strat_risk.ui.opportunity.OpportunityViewModel;
+import co.mba.strat_risk.ui.risk.RiskViewModel;
+import co.mba.strat_risk.util.ViewModelFactory;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
@@ -16,7 +21,29 @@ public abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainActivityViewModel.class)
-    abstract ViewModel bindMainActivityViewModel(MainActivityViewModel viewModel);
+    abstract ViewModel bindMainActivityViewModel(MainActivityViewModel mainActivityViewModel);
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(InterestingViewModel.class)
+    abstract ViewModel bindInterestingViewModel(InterestingViewModel interestingViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsViewModel.class)
+    abstract ViewModel bindNewsViewModel(NewsViewModel newsViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(OpportunityViewModel.class)
+    abstract ViewModel bindOpportunityViewModel(OpportunityViewModel opportunityViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RiskViewModel.class)
+    abstract ViewModel bindRiskViewModel(RiskViewModel riskViewModel);
+
+    @Binds
+    abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);
 
 }

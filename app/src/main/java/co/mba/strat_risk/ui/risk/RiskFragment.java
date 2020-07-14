@@ -52,14 +52,14 @@ public class RiskFragment extends BaseFragment {
     }
 
     private void unitUI() {
-        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
-        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
+        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
 
-        viewModel = new ViewModelProvider(this).get(RiskViewModel.class);
-        viewModel.initRisk(Constants.RISK_STATUS).observe(getBaseActivity(), this::setRecyclerView);
+        //viewModel = new ViewModelProvider(this).get(RiskViewModel.class);
+        //viewModel.initRisk(Constants.RISK_STATUS).observe(getBaseActivity(), this::setRecyclerView);
     }
 
-    private void setRecyclerView(List<News> ls) {
+    /*private void setRecyclerView(List<News> ls) {
         Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -67,6 +67,6 @@ public class RiskFragment extends BaseFragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();
-    }
+    }*/
 
 }
