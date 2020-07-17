@@ -62,26 +62,26 @@ public class MainActivity extends BaseActivity {
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        Utilities.loadFragment(MainActivity.this, new NewsFragment(), Constants.TAG_HOME);
+        Utilities.loadFragment(MainActivity.this, new NewsFragment());
 
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
-                Utilities.loadFragment(MainActivity.this, new NewsFragment(), Constants.TAG_HOME);
+                Utilities.loadFragment(MainActivity.this, new NewsFragment());
                 break;
             case R.id.navigation_opportunity:
                 //counterNews(this, Constants.OPPORTUNITY_STATUS);
-                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), Constants.TAG_HOME);
+                Utilities.loadFragment(MainActivity.this, new OpportunityFragment());
                 break;
             case R.id.navigation_interesting:
                 //counterNews(this, Constants.INTERESTING_STATUS);
-                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), Constants.TAG_HOME);
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment());
                 return true;
             case R.id.navigation_risk:
                 //counterNews(this, Constants.RISK_STATUS);
-                Utilities.loadFragment(MainActivity.this, new RiskFragment(), Constants.TAG_HOME);
+                Utilities.loadFragment(MainActivity.this, new RiskFragment());
                 return true;
         }
         return true;

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +19,7 @@ import javax.inject.Inject;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.NewsAdapter;
 import co.mba.strat_risk.base.BaseFragment;
+import co.mba.strat_risk.data.dto.ArticlesDTO;
 import co.mba.strat_risk.data.dto.NewsDTO;
 
 public class NewsFragment extends BaseFragment {
@@ -39,8 +39,8 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsViewModel.class);
-        viewModel.fetchNewsDTO(getBaseActivity()).observe(getBaseActivity(), this::setRecyclerView);
+        viewModel = ViewModelProviders.of(this, factory).get(NewsViewModel.class);
+        viewModel.fetchNewsDTO(getActivity()).observe(getViewLifecycleOwner(), this::setRecyclerView);
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);
     }
@@ -51,11 +51,12 @@ public class NewsFragment extends BaseFragment {
 
     }
 
-    private void setRecyclerView(List<NewsDTO> ls) {
-        Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
+    private void setRecyclerView(NewsDTO ls) {
+        //Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
         recyclerView.setHasFixedSize(true);
+        List<ArticlesDTO> list = ls.getArticles();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        NewsAdapter adapter = new NewsAdapter(getBaseActivity(), ls, empty);
+        NewsAdapter adapter = new NewsAdapter(getContext(), list, empty);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter.notifyDataSetChanged();

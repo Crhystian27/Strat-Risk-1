@@ -17,7 +17,7 @@ import co.mba.strat_risk.data.repository.Repository;
 
 public class NewsViewModel extends ViewModel {
 
-    private MutableLiveData<List<NewsDTO>> newsLiveData;
+    private MutableLiveData<NewsDTO> newsLiveData;
     private static final String TAG = "News_FV";
     private Repository repository;
 
@@ -26,31 +26,10 @@ public class NewsViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    /*public LiveData<List<NewsDTO>> getNews() {
-        return this.newsLiveData;
-    }*/
-
-    /*public void fetchNews() {
-        disposable.add(repository.getCurrentNews().subscribeWith(new DisposableSingleObserver<List<NewsDTO>>() {
-            @Override
-            public void onSuccess(List<NewsDTO> newsDTOS) {
-                newsLiveData.setValue(newsDTOS);
-                Gson gson = new Gson();
-                String stringJson = gson.toJson(newsDTOS);
-                System.out.println("Json -> " + stringJson);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                newsLiveData.setValue(null);
-                System.out.println("Error" + e.getMessage());
-            }
-        }));
-    }*/
-
-    public LiveData<List<NewsDTO>> fetchNewsDTO(Context context) {
+    public LiveData<NewsDTO> fetchNewsDTO(Context context) {
         if (this.newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());
+            return null;
         } else {
             newsLiveData = new MutableLiveData<>();
             newsLiveData = repository.getCurrentNews(context, newsLiveData);

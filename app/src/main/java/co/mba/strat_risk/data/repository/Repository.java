@@ -54,26 +54,20 @@ public class Repository {
 
 
     //Load news list
-    public MutableLiveData<List<NewsDTO>> getCurrentNews(Context context, MutableLiveData<List<NewsDTO>> ls) {
-        executor.execute(() -> {
-            compositeDisposable.add(apiService.getNews()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(news -> {
-
-                        //Show News in message Build Monitor
-                        for (int i = 0; i < news.size(); i++) {
-                            Log.e(TAG, "message" + news.get(i));
-                        }
-                        ls.setValue(news);
-
-                    }, throwable -> {
-                        Log.e(TAG, " " + throwable.getMessage());
-                        if ("HTTP 400 ".equals(throwable.getMessage())) {
-                            Toast.makeText(context, "Not News", Toast.LENGTH_LONG).show();
-                        }
-                    }));
-        });
+    public MutableLiveData<NewsDTO> getCurrentNews(Context context, MutableLiveData<NewsDTO> ls) {
+        //Show News in message Build Monitor
+        /*for (int i = 0; i < news.size(); i++) {
+                        Log.e(TAG, "message" + news.get(i).toString());
+                    }*/
+        compositeDisposable.add(apiService.getNews()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(ls::setValue, throwable -> {
+                    Log.e(TAG, "getCurrentsNews" + throwable.getMessage());
+                    /*if ("HTTP 400 ".equals(throwable.getMessage())) {
+                        //Toast.makeText(context, "Not News", Toast.LENGTH_LONG).show();
+                    }*/
+                }));
         return ls;
     }
 

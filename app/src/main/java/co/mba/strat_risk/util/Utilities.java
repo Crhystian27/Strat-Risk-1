@@ -53,11 +53,10 @@ public class Utilities {
     }
 
 
-    public static void loadFragment(FragmentActivity context, BaseFragment fragment, String TAG){
+    public static void loadFragment(FragmentActivity context, BaseFragment fragment){
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.nav_host_fragment, fragment);
-        transaction.addToBackStack(TAG);
         transaction.commit();
 
     }

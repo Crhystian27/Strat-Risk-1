@@ -81,7 +81,8 @@ public class ApplicationModule {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://jsonplaceholder.typicode.com/")
+                //.baseUrl("https://jsonplaceholder.typicode.com/")
+                .baseUrl("https://newsapi.org/v2/")
                 .build();
     }
 
