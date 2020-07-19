@@ -43,6 +43,7 @@ public class NewsFragment extends BaseFragment {
         viewModel.fetchNewsDTO(getActivity()).observe(getViewLifecycleOwner(), this::setRecyclerView);
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);
+
     }
 
     private void unitUI() {
