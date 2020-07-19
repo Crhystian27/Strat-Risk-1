@@ -23,6 +23,7 @@ import java.util.List;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dto.ArticlesDTO;
+import co.mba.strat_risk.ui.news_detail.NewsDetailActivity;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -118,11 +119,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public void onClick(View v) {
             int position =getAdapterPosition();
             ArticlesDTO dto = this.dtoList.get(position);
-            Intent intent = new Intent(context, NewsDetail.class);
+            Intent intent = new Intent(context, NewsDetailActivity.class);
             intent.putExtra(Constants.EXTRA_NEWS,new Gson().toJson(dto));
             context.startActivity(intent);
-
-            //TODO IMPLEMENT NEW Activity
 
         }
 
