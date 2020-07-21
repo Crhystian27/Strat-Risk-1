@@ -13,7 +13,7 @@ import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
-public class MainActivityViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private static final String TAG = "Main_AV";
 
@@ -22,7 +22,7 @@ public class MainActivityViewModel extends ViewModel {
     private Repository repository;
 
     @Inject
-    public MainActivityViewModel(Repository repository) {
+    public MainViewModel(Repository repository) {
         this.repository = repository;
     }
 

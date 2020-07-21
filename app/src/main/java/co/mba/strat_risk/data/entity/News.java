@@ -3,31 +3,29 @@ package co.mba.strat_risk.data.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "news_table")
+@Entity(tableName = "news_table", indices = {@Index(value = "id", unique = true)})
 public final class News {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private Integer id;
-    @ColumnInfo(name = "name")
-    private String name;
-
-
     @ColumnInfo(name = "title")
     private String title;
     @ColumnInfo(name = "description")
     private String description;
-    @ColumnInfo(name = "content")
-    private String content;
+    @ColumnInfo(name = "author")
+    private String author;
+    @ColumnInfo(name = "url")
+    private String url;
     @ColumnInfo(name = "urlToImage")
     private String urlToImage;
     @ColumnInfo(name = "publishedAt")
     private String publishedAt;
 
-    //0
-    // 3(risk) - 2(Interesting) - 1(opportunity)
+    // 3(risk) - 2(Interesting) - 1(opportunity) // 0 local
     @ColumnInfo(name = "status")
     private Integer status;
 
@@ -35,12 +33,11 @@ public final class News {
     public News() {
     }
 
-    public News(Integer id, String name, String title, String description, String content, String urlToImage, String publishedAt, Integer status) {
-        this.id = id;
-        this.name = name;
+    public News(String title, String description, String author, String url, String urlToImage, String publishedAt, Integer status) {
         this.title = title;
         this.description = description;
-        this.content = content;
+        this.author = author;
+        this.url = url;
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.status = status;
@@ -52,14 +49,6 @@ public final class News {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTitle() {
@@ -78,12 +67,20 @@ public final class News {
         this.description = description;
     }
 
-    public String getContent() {
-        return content;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getUrlToImage() {
@@ -108,5 +105,19 @@ public final class News {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", author='" + author + '\'' +
+                ", url='" + url + '\'' +
+                ", urlToImage='" + urlToImage + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

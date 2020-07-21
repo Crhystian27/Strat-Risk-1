@@ -18,7 +18,6 @@ import co.mba.strat_risk.ui.interesting.InterestingFragment;
 import co.mba.strat_risk.ui.news.NewsFragment;
 import co.mba.strat_risk.ui.opportunity.OpportunityFragment;
 import co.mba.strat_risk.ui.risk.RiskFragment;
-import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
 
@@ -26,7 +25,7 @@ public class MainActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory factory;
-    MainActivityViewModel viewModel;
+    MainViewModel viewModel;
     BottomNavigationView bottomNavigationView;
 
 
@@ -43,7 +42,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainViewModel.class);
 
         /*AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_news, R.id.navigation_opportunity, R.id.navigation_interesting, R.id.navigation_risk)
@@ -62,27 +61,27 @@ public class MainActivity extends BaseActivity {
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        Utilities.loadFragment(MainActivity.this, new NewsFragment());
+        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment);
 
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
-                Utilities.loadFragment(MainActivity.this, new NewsFragment());
+                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment);
                 break;
             case R.id.navigation_opportunity:
                 //counterNews(this, Constants.OPPORTUNITY_STATUS);
-                Utilities.loadFragment(MainActivity.this, new OpportunityFragment());
+                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment);
                 break;
             case R.id.navigation_interesting:
                 //counterNews(this, Constants.INTERESTING_STATUS);
-                Utilities.loadFragment(MainActivity.this, new InterestingFragment());
-                return true;
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment);
+                break;
             case R.id.navigation_risk:
                 //counterNews(this, Constants.RISK_STATUS);
-                Utilities.loadFragment(MainActivity.this, new RiskFragment());
-                return true;
+                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment);
+                break;
         }
         return true;
     };

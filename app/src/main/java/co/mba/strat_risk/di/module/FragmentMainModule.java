@@ -8,17 +8,17 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class FragmentModule {
+public abstract class FragmentMainModule {
 
 
     @ContributesAndroidInjector
-    abstract InterestingFragment contributeDashboardFragment();
+    abstract InterestingFragment contributeInterestingFragment ();
 
     @ContributesAndroidInjector
-    abstract NewsFragment contributeHomeFragment();
+    abstract NewsFragment contributeNewsFragment();
 
     @ContributesAndroidInjector
-    abstract RiskFragment contributeNotificationsFragment();
+    abstract RiskFragment contributeRiskFragment();
 
     @ContributesAndroidInjector
     abstract OpportunityFragment contributeOpportunityFragment();

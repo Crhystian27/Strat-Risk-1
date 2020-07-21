@@ -4,13 +4,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +23,7 @@ import java.util.List;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dto.ArticlesDTO;
-import co.mba.strat_risk.ui.news_detail.NewsDetailActivity;
+import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -36,7 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private RelativeLayout empty;
     private Dialog dialog;
 
-    public NewsAdapter(Context context, List<? extends ArticlesDTO> dtoList, RelativeLayout empty, Dialog dialog) {
+    public NewsAdapter(Context context, List<? extends ArticlesDTO> dtoList, RelativeLayout empty) {
         this.context = context;
         this.dtoList = dtoList;
         this.dialog = dialog;
@@ -48,7 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false);
-        return new ViewHolder(view, context, dtoList,dialog);
+        return new ViewHolder(view, context, dtoList, dialog);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return dtoList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         private Context context;
         private List<? extends ArticlesDTO> dtoList;
@@ -117,22 +117,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         @Override
         public void onClick(View v) {
-            int position =getAdapterPosition();
+            int position = getAdapterPosition();
             ArticlesDTO dto = this.dtoList.get(position);
             Intent intent = new Intent(context, NewsDetailActivity.class);
-            intent.putExtra(Constants.EXTRA_NEWS,new Gson().toJson(dto));
+            intent.putExtra(Constants.EXTRA_NEWS, new Gson().toJson(dto));
             context.startActivity(intent);
 
         }
 
         @Override
         public boolean onLongClick(View v) {
-          int position  = getAdapterPosition();
-          ArticlesDTO dto = this.dtoList.get(position);
+            int position = getAdapterPosition();
+            ArticlesDTO dto = this.dtoList.get(position);
 
-
-
-
+            Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
 
 
             return false;

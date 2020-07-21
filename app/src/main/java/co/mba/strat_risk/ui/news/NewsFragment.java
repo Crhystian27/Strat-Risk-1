@@ -43,14 +43,8 @@ public class NewsFragment extends BaseFragment {
         viewModel.fetchNewsDTO(getActivity()).observe(getViewLifecycleOwner(), this::setRecyclerView);
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);
-
     }
 
-    private void unitUI() {
-        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
-        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
-
-    }
 
     private void setRecyclerView(NewsDTO ls) {
         //Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));

@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import co.mba.strat_risk.di.key.ViewModelKey;
 
-import co.mba.strat_risk.ui.MainActivityViewModel;
+import co.mba.strat_risk.ui.MainViewModel;
+import co.mba.strat_risk.ui.NewsDetailViewModel;
 import co.mba.strat_risk.ui.interesting.InterestingViewModel;
 import co.mba.strat_risk.ui.news.NewsViewModel;
 import co.mba.strat_risk.ui.opportunity.OpportunityViewModel;
@@ -20,8 +21,13 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MainActivityViewModel.class)
-    abstract ViewModel bindMainActivityViewModel(MainActivityViewModel mainActivityViewModel);
+    @ViewModelKey(MainViewModel.class)
+    abstract ViewModel bindMainViewModel(MainViewModel mainViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsDetailViewModel.class)
+    abstract ViewModel bindNewsDetailViewModel(NewsDetailViewModel newsDetailViewModel);
 
     @Binds
     @IntoMap

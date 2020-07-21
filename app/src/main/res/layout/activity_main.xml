@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_main"
         layout="@layout/toolbar_material"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
@@ -17,7 +17,7 @@
         android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar" />
+        android:layout_below="@id/toolbar_main" />
 
     <TextView
         android:id="@+id/title_fragment"

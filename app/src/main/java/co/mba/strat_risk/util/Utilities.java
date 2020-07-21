@@ -25,7 +25,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
+import co.mba.strat_risk.ui.MainActivity;
 
 public class Utilities {
 
@@ -48,24 +50,37 @@ public class Utilities {
         return runningActivities.size();
     }
 
-    public static String bundleString(FragmentActivity context, String key){
-        return (context.getIntent().getExtras() != null) ? context.getIntent().getExtras().getString(key) : "";
-    }
 
 
-    public static void loadFragment(FragmentActivity context, BaseFragment fragment){
+    /**
+     * Verifica si hay actividades en cola y cierra la actividad actual,
+     * de no haber actividades en cola envia a la actividad principal MainActivity.class
+     *
+     * @param context - actividad actual
+     */
+    /*public static void closeActivity(BaseActivity context){
+        if (activitiesInQueue() > 1){
+            context.finish();
+        } else {
+            ChangeActivity.animLeftRight(context, MainActivity.class);
+        }
+    }*/
+
+
+    //TODO ENVIAR UN BUNDLE AL FRAGMENT
+    public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value){
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, fragment);
+        transaction.replace(value, fragment);
         transaction.commit();
 
     }
 
-    public static String getTagFragment(FragmentActivity context){
+    /*public static String getTagFragment(FragmentActivity context){
         int index = context.getSupportFragmentManager().getBackStackEntryCount() - 1;
         FragmentManager.BackStackEntry backEntry = context.getSupportFragmentManager().getBackStackEntryAt(index);
         return backEntry.getName();
-    }
+    }*/
 
     public static void OpenSendEmail(Context context) {
         Intent i = new Intent(Intent.ACTION_SENDTO);

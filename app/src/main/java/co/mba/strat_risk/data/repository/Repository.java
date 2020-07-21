@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -13,10 +14,13 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import co.mba.strat_risk.data.dao.NewsDao;
+import co.mba.strat_risk.data.dto.ArticlesDTO;
 import co.mba.strat_risk.data.dto.NewsDTO;
+import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.network.RequestInterceptor;
+import co.mba.strat_risk.util.Constants;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -39,7 +43,7 @@ public class Repository {
     private RequestInterceptor interceptor;
 
     @Inject
-    public Repository(ApiService apiService,Executor executor, NewsDao newsDao, InternetConnection connection, RequestInterceptor interceptor) {
+    public Repository(ApiService apiService, Executor executor, NewsDao newsDao, InternetConnection connection, RequestInterceptor interceptor) {
         this.apiService = apiService;
         this.executor = executor;
         this.newsDao = newsDao;
@@ -55,20 +59,28 @@ public class Repository {
 
     //Load news list
     public MutableLiveData<NewsDTO> getCurrentNews(Context context, MutableLiveData<NewsDTO> ls) {
-        //Show News in message Build Monitor
-        /*for (int i = 0; i < news.size(); i++) {
-                        Log.e(TAG, "message" + news.get(i).toString());
-                    }*/
-        compositeDisposable.add(apiService.getNews()
+        executor.execute(() -> compositeDisposable.add(apiService.getNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(ls::setValue, throwable -> {
+                .subscribe(newsDTO -> {
+                    ls.setValue(newsDTO);
+                    addItems(newsDTO);
+                }, throwable -> {
                     Log.e(TAG, "getCurrentsNews" + throwable.getMessage());
-                    /*if ("HTTP 400 ".equals(throwable.getMessage())) {
-                        //Toast.makeText(context, "Not News", Toast.LENGTH_LONG).show();
-                    }*/
-                }));
+                })));
+
         return ls;
+    }
+
+    private void addItems(NewsDTO news) {
+        List<ArticlesDTO> articlesDTO = news.getArticles();
+        for (int i = 0; i < articlesDTO.size(); i++) {
+            newsDao.insertNews(new News(articlesDTO.get(i).getTitle(),
+                    articlesDTO.get(i).getDescription(), articlesDTO.get(i).getAuthor(),
+                    articlesDTO.get(i).getUrl(), articlesDTO.get(i).getUrlToImage(),
+                    articlesDTO.get(i).getPublishedAt(), Constants.LOCAL_STATUS));
+            Log.e(TAG, articlesDTO.get(i).toString());
+        }
     }
 
 

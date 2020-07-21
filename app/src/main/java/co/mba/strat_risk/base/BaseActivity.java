@@ -77,6 +77,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        //TODO: SHOW DIALOG SI NO ESTA CONECTADO A INTERNET Y CARGAR LO QUE HAYA LOCAL
         if (InternetConnection.isConnected(this) != 0 && !DialogInformation.isShowing) {
             //DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection), null);
         }
