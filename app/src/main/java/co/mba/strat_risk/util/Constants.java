@@ -7,6 +7,15 @@ public class Constants {
     public static final Integer RISK_STATUS = 3;
     public static final Integer LOCAL_STATUS = 0;
 
+    public static final String ACCESS_TOKEN ="access_token";
+
+    public static final String PREFERENCE_USER= "User";
+    public static final String KEY_USER= "Key_User";
+
+    public static final String PREFERENCE_AUTHORIZATION= "Authorization";
+    public static final String KEY_AUTHORIZATION="Key_Authorization";
+
+
     public static final String EXTRA_NEWS = "extra_news";
 
     public static final String[] EXTRA_EMAIL = {"cristian.soto@mbariesgos.com", "juan.olaya@mbariesgos.com"};
