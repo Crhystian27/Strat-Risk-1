@@ -15,14 +15,14 @@ import javax.inject.Inject;
 import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.repository.Repository;
 
-public class NewsViewModel extends ViewModel {
+public class NewsFragmentViewModel extends ViewModel {
 
     private MutableLiveData<NewsDTO> newsLiveData;
     private static final String TAG = "News_FV";
     private Repository repository;
 
     @Inject
-    public NewsViewModel(Repository repository) {
+    public NewsFragmentViewModel(Repository repository) {
         this.repository = repository;
     }
 

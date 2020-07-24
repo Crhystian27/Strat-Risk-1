@@ -13,14 +13,14 @@ import javax.inject.Inject;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
-public class RiskViewModel extends ViewModel {
+public class RiskFragmentViewModel extends ViewModel {
 
     private LiveData<List<News>> riskLiveData;
     private static final String TAG = "Risk_FV";
     private Repository repository;
 
     @Inject
-    public RiskViewModel(Repository repository) {
+    public RiskFragmentViewModel(Repository repository) {
         this.repository = repository;
     }
 

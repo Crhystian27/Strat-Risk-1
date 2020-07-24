@@ -1,12 +1,13 @@
 package co.mba.strat_risk.di.module;
 
-import co.mba.strat_risk.ui.detail.DetailFragment;
+import co.mba.strat_risk.ui.login.LoginFragment;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class FragmentDetailModule {
+public abstract class FragmentLoginModule {
 
     @ContributesAndroidInjector
-    abstract DetailFragment contributeDetailFragment();
+    abstract LoginFragment contributeLoginFragment();
+
 }

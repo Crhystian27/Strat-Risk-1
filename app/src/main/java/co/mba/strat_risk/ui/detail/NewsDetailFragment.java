@@ -1,7 +1,6 @@
 package co.mba.strat_risk.ui.detail;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -15,11 +14,11 @@ import javax.inject.Inject;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseFragment;
 
-public class DetailFragment extends BaseFragment {
+public class NewsDetailFragment extends BaseFragment {
 
     @Inject
     ViewModelProvider.Factory factory;
-    private DetailViewModel viewModel;
+    private NewsDetailFragmentViewModel viewModel;
     private TextView textView;
 
 

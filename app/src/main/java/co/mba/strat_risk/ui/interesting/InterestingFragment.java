@@ -6,28 +6,16 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
-import java.util.List;
-
-
-import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.adapter.InterestingAdapter;
-import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
-import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.util.Constants;
 
 public class InterestingFragment extends BaseFragment {
 
 
-    InterestingViewModel viewModel;
+    InterestingFragmentViewModel viewModel;
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 

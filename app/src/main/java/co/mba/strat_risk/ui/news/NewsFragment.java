@@ -27,7 +27,7 @@ public class NewsFragment extends BaseFragment {
     @Inject
     ViewModelProvider.Factory factory;
 
-    private NewsViewModel viewModel;
+    private NewsFragmentViewModel viewModel;
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 
@@ -39,7 +39,7 @@ public class NewsFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel = ViewModelProviders.of(this, factory).get(NewsViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(NewsFragmentViewModel.class);
         viewModel.fetchNewsDTO(getActivity()).observe(getViewLifecycleOwner(), this::setRecyclerView);
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);

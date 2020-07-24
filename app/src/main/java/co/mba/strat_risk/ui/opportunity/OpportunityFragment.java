@@ -5,30 +5,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.adapter.OpportunityAdapter;
-import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
-import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.util.Constants;
 
 public class OpportunityFragment extends BaseFragment {
 
 
-    OpportunityViewModel viewModel;
+    OpportunityFragmentViewModel viewModel;
 
     private RecyclerView recyclerView;
     private RelativeLayout empty;

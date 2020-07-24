@@ -12,7 +12,8 @@ import javax.inject.Inject;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.data.dto.ArticlesDTO;
-import co.mba.strat_risk.ui.detail.DetailFragment;
+
+import co.mba.strat_risk.ui.detail.NewsDetailFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -48,7 +49,7 @@ public class NewsDetailActivity extends BaseActivity {
 
 
     private void initUI() {
-        Utilities.loadFragment(NewsDetailActivity.this, new DetailFragment(), R.id.news_detail_fragment);
+        Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment);
 
     }
 

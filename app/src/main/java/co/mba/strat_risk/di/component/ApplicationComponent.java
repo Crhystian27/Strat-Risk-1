@@ -7,8 +7,9 @@ import javax.inject.Singleton;
 import co.mba.strat_risk.base.BaseApplication;
 import co.mba.strat_risk.di.module.ActivityModule;
 import co.mba.strat_risk.di.module.DbModule;
-import co.mba.strat_risk.di.module.FragmentDetailModule;
+import co.mba.strat_risk.di.module.FragmentLoginModule;
 import co.mba.strat_risk.di.module.FragmentMainModule;
+import co.mba.strat_risk.di.module.FragmentNewsDetailModule;
 import co.mba.strat_risk.di.module.ViewModelModule;
 import co.mba.strat_risk.network.ApplicationModule;
 import dagger.BindsInstance;
@@ -22,7 +23,8 @@ import dagger.android.support.DaggerApplication;
         DbModule.class,
         ActivityModule.class,
         FragmentMainModule.class,
-        FragmentDetailModule.class,
+        FragmentNewsDetailModule.class,
+        FragmentLoginModule.class,
         AndroidSupportInjectionModule.class,
         ViewModelModule.class,
         ApplicationModule.class})

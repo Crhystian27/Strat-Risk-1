@@ -24,5 +24,10 @@
     <string name="base_faq">Faq</string>
     <string name="empty_layout">Vacio</string>
 
+    <string name="string_username">Usuario</string>
+    <string name="string_password">Constraseña</string>
+
+    <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
+
 
 </resources>
