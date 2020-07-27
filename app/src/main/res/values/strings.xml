@@ -22,6 +22,7 @@
 
     <string name="string_username">Username</string>
     <string name="string_password">Password</string>
+    <string name="string_login">Log In</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020I agree to the terms \u0026 conditions</string>
 
 

@@ -4,6 +4,6 @@
     <dimen name="custom_spacing2">4dp</dimen>
     <dimen name="custom_spacing3">78dp</dimen>
     <dimen name="custom_cornerRadius">15dp</dimen>
-
+    <dimen name="custom_text_size1">16sp</dimen>
     <dimen name="custom_spacing4">16dp</dimen>
 </resources>

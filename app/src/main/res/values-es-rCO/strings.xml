@@ -26,7 +26,7 @@
 
     <string name="string_username">Usuario</string>
     <string name="string_password">Constraseña</string>
-
+    <string name="string_login">Iniciar Sesión</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
 
 

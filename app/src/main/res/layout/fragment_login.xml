@@ -3,38 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/login_content"
+    <include
+        android:id="@+id/content"
+        layout="@layout/login_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <include
-            layout="@layout/login_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways" />
-    </androidx.core.widget.NestedScrollView>
-
+        android:layout_centerInParent="true" />
 
     <LinearLayout
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_content"
+        android:layout_below="@+id/content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/login_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@drawable/checkbox_selector"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/string_accept"
             android:textColor="@color/colorPrimary"
-            app:buttonTint="@color/colorPrimaryDark" />
+            android:textSize="@dimen/custom_text_size1"
+            android:textStyle="normal"
+            app:buttonTint="@android:color/white" />
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/custom_spacing4"
+        android:layout_marginEnd="@dimen/custom_spacing4"
+        android:layout_marginBottom="@dimen/custom_spacing4"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/custom_spacing"
+            android:layout_marginBottom="@dimen/custom_spacing"
+            android:gravity="center"
+            android:text="@string/string_login"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/custom_text_size1" />
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
