@@ -2,6 +2,10 @@ package co.mba.strat_risk.util;
 
 public class Constants {
 
+    public static final String GRANT_TYPE="password";
+    public static final String CLIENT_ID="2";
+    public static final String CLIENT_SECRET="wAUkM5QxxNwLbPKFIjvUl6mFUyBCf2Qc4k5FClqw";
+
     public static final Integer OPPORTUNITY_STATUS = 1;
     public static final Integer INTERESTING_STATUS = 2;
     public static final Integer RISK_STATUS = 3;

@@ -14,13 +14,18 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import co.mba.strat_risk.data.dao.NewsDao;
+import co.mba.strat_risk.data.dao.UserDao;
+import co.mba.strat_risk.data.dto.AccessTokenDTO;
 import co.mba.strat_risk.data.dto.ArticlesDTO;
 import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
+import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.network.RequestInterceptor;
+import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -36,6 +41,7 @@ public class Repository {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Executor executor;
     private NewsDao newsDao;
+    private UserDao userDao;
 
 
     //Internet Connection
@@ -43,10 +49,11 @@ public class Repository {
     private RequestInterceptor interceptor;
 
     @Inject
-    public Repository(ApiService apiService, Executor executor, NewsDao newsDao, InternetConnection connection, RequestInterceptor interceptor) {
+    public Repository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection, RequestInterceptor interceptor) {
         this.apiService = apiService;
         this.executor = executor;
         this.newsDao = newsDao;
+        this.userDao = userDao;
         this.connection = connection;
         this.interceptor = interceptor;
     }
@@ -55,6 +62,22 @@ public class Repository {
     /*public LiveData<List<News>> getDBListNews(Integer idStatus) {
         return newsDao.loadNewsStatus(idStatus);
     }*/
+
+
+    public void getAccessToken(Context context, Session session) {
+        executor.execute(() -> compositeDisposable.add(apiService.getToken(session)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(accessTokenDTO -> {
+
+                    AppPreferences.getInstance().setAccessTokenDTO(accessTokenDTO);
+
+                    Log.e(TAG, accessTokenDTO.toString());
+
+                }, throwable -> {
+
+                })));
+    }
 
 
     //Load news list

@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import co.mba.strat_risk.data.SRDataBase;
 import co.mba.strat_risk.data.dao.NewsDao;
+import co.mba.strat_risk.data.dao.UserDao;
 import co.mba.strat_risk.data.repository.Repository;
 import co.mba.strat_risk.util.Constants;
 import dagger.Module;
@@ -33,8 +34,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, InternetConnection connection, RequestInterceptor interceptor) {
-        return new Repository(apiService, executor, newsDao, connection, interceptor);
+    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection, RequestInterceptor interceptor) {
+        return new Repository(apiService, executor, newsDao, userDao,connection, interceptor);
     }
 
     @Provides

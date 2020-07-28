@@ -31,6 +31,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/TextInputEditTextOutlinedBox"
                 android:clickable="true"
+                android:fontFamily="@font/esteban"
                 android:id="@+id/login_username"
                 android:drawableStart="@drawable/ic_home_black_24dp"
                 android:drawablePadding="8dp"
@@ -68,6 +69,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/TextInputEditTextOutlinedBox"
                 android:clickable="true"
+                android:fontFamily="@font/esteban"
                 android:drawableStart="@drawable/ic_home_black_24dp"
                 android:drawablePadding="8dp"
                 android:enabled="true"

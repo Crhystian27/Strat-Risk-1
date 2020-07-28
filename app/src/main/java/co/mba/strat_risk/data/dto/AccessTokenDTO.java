@@ -44,4 +44,15 @@ public final  class AccessTokenDTO {
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
+
+
+    @Override
+    public String toString() {
+        return "AccessTokenDTO{" +
+                "type='" + type + '\'' +
+                ", expires='" + expires + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", refreshToken='" + refreshToken + '\'' +
+                '}';
+    }
 }

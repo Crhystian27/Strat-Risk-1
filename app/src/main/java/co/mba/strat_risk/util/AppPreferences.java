@@ -2,13 +2,13 @@ package co.mba.strat_risk.util;
 
 import co.mba.strat_risk.base.BaseApplication;
 import co.mba.strat_risk.data.dto.AccessTokenDTO;
-import co.mba.strat_risk.data.dto.UserDTO;
+
 
 public class AppPreferences {
     private static AppPreferences instance;
 
     private AccessTokenDTO accessTokenDTO = null;
-    private UserDTO userDTO = null;
+    //private UserDT userDT = null;
 
     private AppPreferences() {
     }
@@ -20,27 +20,27 @@ public class AppPreferences {
         return instance;
     }
 
-    public UserDTO userDTO() {
-        if (userDTO == null) {
-            userDTO = Preferences.getObject(
+    /*public UserDT userDT() {
+        if (userDT == null) {
+            userDT = Preferences.getObject(
                     BaseApplication.getAppContext(),
                     Preferences.PreferenceType.USER,
                     Constants.KEY_USER,
-                    UserDTO.class);
+                    UserDT.class);
         }
-        return userDTO;
+        return userDT;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        if (userDTO != null) {
+    public void setUserDT(UserDT userDT) {
+        if (userDT != null) {
             Preferences.setObject(
                     BaseApplication.getAppContext(),
                     Preferences.PreferenceType.USER,
                     Constants.KEY_USER,
-                    userDTO);
+                    userDT);
         }
-        this.userDTO = userDTO;
-    }
+        this.userDT = userDTO;
+    }*/
 
     public AccessTokenDTO getAccessTokenDTO() {
         if (accessTokenDTO == null) {
