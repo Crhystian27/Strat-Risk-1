@@ -48,7 +48,7 @@ public class InternetConnection {
         return result;
     }
 
-    public boolean isAirplaneMode(Context context) {
+    public static boolean isAirplaneMode(Context context) {
         return Settings.System.getInt(context.getContentResolver(),
                 Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
     }

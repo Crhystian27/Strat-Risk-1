@@ -2,7 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
 
-
     <string name="app_name">MBA Strat -Risk</string>
 
     <string name="title_news">Noticias</string>
@@ -28,6 +27,18 @@
     <string name="string_password">Constraseña</string>
     <string name="string_login">Iniciar Sesión</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
+
+    <string name="dialog_no_internet_connection">El teléfono no esta conectado a internet.</string>
+    <string name="dialog_airplane_mode">El teléfono esta en modo avión.</string>
+
+    <string name="dialog_empty_camps">Los campos no pueden ser vacíos.</string>
+
+    <string name="dialog_terms_conditions">Por favor acepta los términos y condiciones.</string>
+
+    <string name="dialog_accept_terms_conditions">Avisos legales</string>
+
+    <string name="dialog_policy_private">Política de privacidad.</string>
+    <string name="dialog_policy_service">Términos del servicio.</string>
 
 
 </resources>

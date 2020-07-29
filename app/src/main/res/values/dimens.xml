@@ -1,9 +1,10 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="custom_spacing">8dp</dimen>
-    <dimen name="custom_spacing2">4dp</dimen>
-    <dimen name="custom_spacing3">78dp</dimen>
-    <dimen name="custom_cornerRadius">15dp</dimen>
-    <dimen name="custom_text_size1">16sp</dimen>
-    <dimen name="custom_spacing4">16dp</dimen>
+    <dimen name="custom_spacing8dp">8dp</dimen>
+    <dimen name="custom_spacing4dp">4dp</dimen>
+    <dimen name="custom_spacing78dp">78dp</dimen>
+    <dimen name="custom_cornerRadius15dp">15dp</dimen>
+    <dimen name="custom_text_size16sp">16sp</dimen>
+    <dimen name="custom_spacing16dp">16dp</dimen>
+    <dimen name="custom_spacing18sp">18sp</dimen>
 </resources>

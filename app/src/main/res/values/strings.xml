@@ -25,5 +25,15 @@
     <string name="string_login">Log In</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020I agree to the terms \u0026 conditions</string>
 
+    <string name="dialog_no_internet_connection">The phone is not connected to the internet.</string>
+    <string name="dialog_airplane_mode">The phone is in airplane mode.</string>
+    
+    <string name="dialog_empty_camps">The fields cannot be empty.</string>
+    <string name="dialog_terms_conditions">Please accept the terms and conditions.</string>
+
+    <string name="dialog_accept_terms_conditions">Legal notices.</string>
+
+    <string name="dialog_policy_private">Privacy Policy.</string>
+    <string name="dialog_policy_service">Terms of Service.</string>
 
 </resources>

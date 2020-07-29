@@ -1,6 +1,5 @@
 package co.mba.strat_risk.ui.login;
 
-import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -10,8 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
@@ -22,13 +22,13 @@ import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.util.Constants;
+import co.mba.strat_risk.widgets.DialogInformation;
 
 
 public class LoginFragment extends BaseFragment {
 
     @Inject
     ViewModelProvider.Factory factory;
-
     private LoginFragmentViewModel viewModel;
 
 
@@ -44,39 +44,32 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
-
         MaterialCheckBox materialCheckBox = view.findViewById(R.id.login_checkbox);
-        CardView cardView = view.findViewById(R.id.login_button);
+        LinearLayout linearLayout = view.findViewById(R.id.login_button);
         TextInputEditText username = view.findViewById(R.id.login_username);
         TextInputEditText password = view.findViewById(R.id.login_password);
 
-        cardView.setOnClickListener(v -> {
+        linearLayout.setOnClickListener(v -> {
 
             if (materialCheckBox.isChecked()) {
-
-                //TODO Cambiar los TOas por Dialogs
                 if (TextUtils.isEmpty(username.getText()) && TextUtils.isEmpty(password.getText())) {
-                    Toast.makeText(getBaseActivity(), "Campos Vacios", Toast.LENGTH_SHORT).show();
+                    Log.e(getClass().getSimpleName(), getString(R.string.dialog_empty_camps));
+                    DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_empty_camps), 0);
 
                 } else {
-                    Toast.makeText(getBaseActivity(), "Campos diligenciados", Toast.LENGTH_SHORT).show();
                     //TODO CALL VIEWMODEL AND SEDN DATA
                     String string_username = String.valueOf(username.getText());
                     String string_password = String.valueOf(password.getText());
                     Session session = new Session(Constants.GRANT_TYPE, Integer.parseInt(Constants.CLIENT_ID), Constants.CLIENT_SECRET, string_username, string_password);
                     viewModel.sendSession(getBaseActivity(), session);
                 }
-
             } else {
-                Toast.makeText(getBaseActivity(), "Terminos no Aceptados dialog", Toast.LENGTH_SHORT).show();
+                Log.e(getClass().getSimpleName(), getString(R.string.dialog_terms_conditions));
+                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_terms_conditions), 0);
             }
         });
 
-        materialCheckBox.setOnClickListener(view1 -> {
-
-            //TODO show Dialog
-
-        });
+        materialCheckBox.setOnClickListener(view1 -> DialogInformation.showDialog(getBaseActivity(),getString(R.string.dialog_accept_terms_conditions),1));
 
     }
 }

@@ -35,13 +35,19 @@ public class ApplicationModule {
     @Provides
     @Singleton
     Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection, RequestInterceptor interceptor) {
-        return new Repository(apiService, executor, newsDao, userDao,connection, interceptor);
+        return new Repository(apiService, executor, newsDao, userDao, connection, interceptor);
     }
 
     @Provides
     @Singleton
-    NewsDao provideNewsDao(SRDataBase dataBase){
+    NewsDao provideNewsDao(SRDataBase dataBase) {
         return dataBase.newsDao();
+    }
+
+    @Provides
+    @Singleton
+    UserDao provideUserDao(SRDataBase dataBase) {
+        return dataBase.userDao();
     }
 
     @Provides

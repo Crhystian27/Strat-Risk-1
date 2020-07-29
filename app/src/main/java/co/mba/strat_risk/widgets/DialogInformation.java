@@ -3,18 +3,18 @@ package co.mba.strat_risk.widgets;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.util.Utilities;
 
 /**
  * @Author Cristian David Soto
@@ -27,38 +27,37 @@ public class DialogInformation {
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("InflateParams")
-    public static void showDialog(Activity activity, String message, View.OnClickListener listener) {
+    public static void showDialog(Activity activity, String message, Integer status) {
         final Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        dialog.setCancelable(false);
-        Rect displayRectangle = new Rect();
-
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-
-        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
-        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.item_dialog_information, null);
-        layout.setMinimumWidth((int) (displayRectangle.width() * 0.8f));
-
-        wlp.gravity = Gravity.CENTER;
-        window.setAttributes(wlp);
+        View view = activity.getLayoutInflater().inflate(R.layout.item_dialog_information, null);
+        dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.setCancelable(false);
 
-        final TextView textView = dialog.findViewById(R.id.txt_dialog_message_title);
-        textView.setText(message);
+        TextView text_message = dialog.findViewById(R.id.txt_dialog_message_title);
+        ImageView img = dialog.findViewById(R.id.dialog_img);
+        Drawable drawable = activity.getDrawable(R.drawable.ic_rss);
 
-        dialog.findViewById(R.id.txt_dialog_accept).setOnClickListener(v -> {
+        Utilities.getBitmap(activity, img);
+        Glide.with(activity.getApplicationContext())
+                .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                .load(drawable)
+                .into(img);
+        text_message.setText(message);
+        TextView text_accept = dialog.findViewById(R.id.txt_dialog_accept);
+
+        if(status.equals(1)){
+            dialog.setTitle(message);
+
+        }
+
+
+        text_accept.setOnClickListener(v -> {
             isShowing = false;
             dialog.dismiss();
-            if (listener != null) {
-                listener.onClick(v);
-            }
-
-            isShowing = true;
-            dialog.show();
         });
-
+        isShowing = true;
+        dialog.show();
     }
 }

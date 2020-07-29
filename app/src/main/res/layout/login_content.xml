@@ -10,9 +10,9 @@
 
     <LinearLayout
         style="@style/CustomLinearLayout"
-        android:layout_marginStart="@dimen/custom_spacing4"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="@dimen/custom_spacing4">
+        android:layout_marginEnd="@dimen/custom_spacing16dp">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,9 +47,9 @@
 
     <LinearLayout
         style="@style/CustomLinearLayout"
-        android:layout_marginStart="@dimen/custom_spacing4"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="@dimen/custom_spacing4">
+        android:layout_marginEnd="@dimen/custom_spacing16dp">
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"

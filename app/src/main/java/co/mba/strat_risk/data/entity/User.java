@@ -38,8 +38,19 @@ public final class User {
     private String source;
 
     @Ignore
+    public User() {
+    }
 
-
+    public User(Integer id, String name, String email, String username, Integer company_id, String key, String search, String source) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.company_id = company_id;
+        this.key = key;
+        this.search = search;
+        this.source = source;
+    }
 
     public Integer getId() {
         return id;
