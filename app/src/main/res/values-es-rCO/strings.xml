@@ -15,6 +15,7 @@
     <string name="dialog_alert_dialog">Dialogo</string>
 
     <string name="btn_accept">Aceptar</string>
+    <string name="btn_cancel">Cancelar</string>
 
     <string name="row_title">Titulo</string>
     <string name="row_body">Contenido</string>
@@ -39,6 +40,9 @@
 
     <string name="dialog_policy_private">Política de privacidad.</string>
     <string name="dialog_policy_service">Términos del servicio.</string>
+
+    <string name="string_policy_private">Text here!! 1111</string>
+    <string name="string_policy_service">Text here!! 2222</string>
 
 
 </resources>

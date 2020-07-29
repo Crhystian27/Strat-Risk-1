@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -35,23 +37,54 @@ public class DialogInformation {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setCancelable(false);
 
+        TextView text_accept = dialog.findViewById(R.id.txt_dialog_accept);
+        TextView text_cancel = dialog.findViewById(R.id.txt_dialog_cancel);
         TextView text_message = dialog.findViewById(R.id.txt_dialog_message_title);
+        RadioGroup radioGroup = dialog.findViewById(R.id.dialog_radio_group);
         ImageView img = dialog.findViewById(R.id.dialog_img);
         Drawable drawable = activity.getDrawable(R.drawable.ic_rss);
+
+        RadioButton radio1 = dialog.findViewById(R.id.dialog_radio_button1);
+        RadioButton radio2 = dialog.findViewById(R.id.dialog_radio_button2);
 
         Utilities.getBitmap(activity, img);
         Glide.with(activity.getApplicationContext())
                 .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
                 .load(drawable)
                 .into(img);
-        text_message.setText(message);
-        TextView text_accept = dialog.findViewById(R.id.txt_dialog_accept);
 
-        if(status.equals(1)){
-            dialog.setTitle(message);
-
+        switch (status) {
+            case 0:
+                radioGroup.setVisibility(View.GONE);
+                text_message.setText(message);
+                text_cancel.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                radioGroup.setVisibility(View.VISIBLE);
+                text_cancel.setVisibility(View.VISIBLE);
+                dialog.setTitle(message);
+                text_message.setText(activity.getString(R.string.string_policy_private));
+                radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+                    switch (checkedId) {
+                        case R.id.dialog_radio_button1:
+                            text_message.setText(activity.getString(R.string.string_policy_private));
+                            radio1.setTextColor(activity.getColor(R.color.textWhite));
+                            radio2.setTextColor(activity.getColor(R.color.colorPrimaryDark));
+                            break;
+                        case R.id.dialog_radio_button2:
+                            text_message.setText(activity.getString(R.string.string_policy_service));
+                            radio1.setTextColor(activity.getColor(R.color.colorPrimaryDark));
+                            radio2.setTextColor(activity.getColor(R.color.textWhite));
+                            break;
+                    }
+                });
+                break;
         }
 
+        text_cancel.setOnClickListener(v -> {
+            isShowing = false;
+            dialog.dismiss();
+        });
 
         text_accept.setOnClickListener(v -> {
             isShowing = false;

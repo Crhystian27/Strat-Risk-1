@@ -44,6 +44,7 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
+
         MaterialCheckBox materialCheckBox = view.findViewById(R.id.login_checkbox);
         LinearLayout linearLayout = view.findViewById(R.id.login_button);
         TextInputEditText username = view.findViewById(R.id.login_username);
@@ -69,7 +70,17 @@ public class LoginFragment extends BaseFragment {
             }
         });
 
-        materialCheckBox.setOnClickListener(view1 -> DialogInformation.showDialog(getBaseActivity(),getString(R.string.dialog_accept_terms_conditions),1));
+        if(materialCheckBox.isChecked()){
+            materialCheckBox.setChecked(false);
+        }
+
+        materialCheckBox.setOnClickListener( v -> {
+            if (materialCheckBox.isChecked()) {
+                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_accept_terms_conditions), 1);
+            }else{
+                materialCheckBox.setChecked(false);
+            }
+        });
 
     }
 }

@@ -5,6 +5,7 @@
     <dimen name="custom_spacing78dp">78dp</dimen>
     <dimen name="custom_cornerRadius15dp">15dp</dimen>
     <dimen name="custom_text_size16sp">16sp</dimen>
+    <dimen name="custom_text_size14sp">14sp</dimen>
     <dimen name="custom_spacing16dp">16dp</dimen>
     <dimen name="custom_spacing18sp">18sp</dimen>
 </resources>
