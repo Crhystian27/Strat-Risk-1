@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -51,11 +52,10 @@ public class LoginFragment extends BaseFragment {
         TextInputEditText password = view.findViewById(R.id.login_password);
 
         linearLayout.setOnClickListener(v -> {
-
             if (materialCheckBox.isChecked()) {
                 if (TextUtils.isEmpty(username.getText()) && TextUtils.isEmpty(password.getText())) {
                     Log.e(getClass().getSimpleName(), getString(R.string.dialog_empty_camps));
-                    DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_empty_camps), 0);
+                    DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_empty_camps), 0, null);
 
                 } else {
                     //TODO CALL VIEWMODEL AND SEDN DATA
@@ -66,21 +66,11 @@ public class LoginFragment extends BaseFragment {
                 }
             } else {
                 Log.e(getClass().getSimpleName(), getString(R.string.dialog_terms_conditions));
-                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_terms_conditions), 0);
+                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_terms_conditions), 0, null);
             }
         });
 
-        if(materialCheckBox.isChecked()){
-            materialCheckBox.setChecked(false);
-        }
-
-        materialCheckBox.setOnClickListener( v -> {
-            if (materialCheckBox.isChecked()) {
-                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_accept_terms_conditions), 1);
-            }else{
-                materialCheckBox.setChecked(false);
-            }
-        });
+        materialCheckBox.setOnClickListener(v -> DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_accept_terms_conditions), 1, materialCheckBox));
 
     }
 }

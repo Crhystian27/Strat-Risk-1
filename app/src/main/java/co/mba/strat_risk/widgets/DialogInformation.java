@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.util.Utilities;
@@ -29,7 +30,7 @@ public class DialogInformation {
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("InflateParams")
-    public static void showDialog(Activity activity, String message, Integer status) {
+    public static void showDialog(Activity activity, String message, Integer status, MaterialCheckBox materialCheckBox) {
         final Dialog dialog = new Dialog(activity);
         View view = activity.getLayoutInflater().inflate(R.layout.item_dialog_information, null);
         dialog.setContentView(view);
@@ -83,11 +84,13 @@ public class DialogInformation {
 
         text_cancel.setOnClickListener(v -> {
             isShowing = false;
+            materialCheckBox.setChecked(false);
             dialog.dismiss();
         });
 
         text_accept.setOnClickListener(v -> {
             isShowing = false;
+            materialCheckBox.setChecked(true);
             dialog.dismiss();
         });
         isShowing = true;
