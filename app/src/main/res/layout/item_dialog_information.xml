@@ -30,7 +30,7 @@
             android:layout_marginBottom="@dimen/custom_spacing16dp"
             android:orientation="horizontal">
 
-            <!-- TODO  CHANGE COLOR RADIO BUTTONS-->
+            <!-- TODO CHANGE POSITION BUTTON-->
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button1"
@@ -38,16 +38,14 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/radiobutton_selector_left"
-                android:button="@android:color/transparent"
-                android:checked="true"
+
+                android:button="@drawable/radiobutton_selector_left"
                 android:fontFamily="@font/esteban"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:text="@string/dialog_policy_private"
-                android:textColor="@android:color/white"
                 android:textSize="@dimen/custom_text_size14sp"
-                app:buttonTint="@color/colorPrimary" />
+               />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button2"
@@ -69,7 +67,7 @@
 
         <TextView
             android:id="@+id/txt_dialog_message_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/esteban"
             android:hint="@string/dialog_alert_dialog"

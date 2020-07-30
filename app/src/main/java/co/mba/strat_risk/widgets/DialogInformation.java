@@ -56,11 +56,15 @@ public class DialogInformation {
 
         switch (status) {
             case 0:
+                text_message.setVerticalScrollBarEnabled(false);
                 radioGroup.setVisibility(View.GONE);
+                text_message.setLines(2);
                 text_message.setText(message);
                 text_cancel.setVisibility(View.INVISIBLE);
                 break;
             case 1:
+                text_message.setVerticalScrollBarEnabled(true);
+                text_message.setLines(16);
                 radioGroup.setVisibility(View.VISIBLE);
                 text_cancel.setVisibility(View.VISIBLE);
                 dialog.setTitle(message);
@@ -90,7 +94,9 @@ public class DialogInformation {
 
         text_accept.setOnClickListener(v -> {
             isShowing = false;
-            materialCheckBox.setChecked(true);
+            if (materialCheckBox != null) {
+                materialCheckBox.setChecked(true);
+            }
             dialog.dismiss();
         });
         isShowing = true;
