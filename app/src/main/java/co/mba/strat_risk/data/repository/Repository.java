@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
@@ -101,6 +102,10 @@ public class Repository {
                         progressBar.setVisibility(View.GONE);
                     })));
         }
+    }
+
+    public LiveData<User> getDBUser(Integer id) {
+        return userDao.loadUser(id);
     }
 
     public void getCurrentUser(Activity activity, String key, ContentLoadingProgressBar progressBar) {

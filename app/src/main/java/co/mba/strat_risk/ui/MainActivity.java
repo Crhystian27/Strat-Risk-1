@@ -3,12 +3,17 @@ package co.mba.strat_risk.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import javax.inject.Inject;
 
@@ -21,7 +26,7 @@ import co.mba.strat_risk.ui.risk.RiskFragment;
 import co.mba.strat_risk.util.Utilities;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Inject
     ViewModelProvider.Factory factory;
@@ -36,7 +41,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int layoutRes() {
-        return R.layout.activity_main;
+        return R.layout.activity_main_navigationview;
     }
 
     @Override
@@ -100,5 +105,25 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
+    }
+
+    //TODO change menu
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        switch (item.getItemId()) {
+            case R.id.item_account:
+                item.setChecked(true);
+                drawerLayout.closeDrawer(GravityCompat.START);
+
+                return true;
+            case R.id.item_log_in_out:
+                item.setChecked(true);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+
+            default:
+                return true;
+        }
     }
 }
