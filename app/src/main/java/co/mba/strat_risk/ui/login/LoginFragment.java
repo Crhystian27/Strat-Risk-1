@@ -1,5 +1,6 @@
 package co.mba.strat_risk.ui.login;
 
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -50,6 +51,8 @@ public class LoginFragment extends BaseFragment {
         LinearLayout linearLayout = view.findViewById(R.id.login_button);
         TextInputEditText username = view.findViewById(R.id.login_username);
         TextInputEditText password = view.findViewById(R.id.login_password);
+        ContentLoadingProgressBar progress = view.findViewById(R.id.login_progress);
+
 
         linearLayout.setOnClickListener(v -> {
             if (materialCheckBox.isChecked()) {
@@ -58,11 +61,11 @@ public class LoginFragment extends BaseFragment {
                     DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_empty_camps), 0, null);
 
                 } else {
-                    //TODO CALL VIEWMODEL AND SEDN DATA
+                    progress.setVisibility(View.VISIBLE);
                     String string_username = String.valueOf(username.getText());
                     String string_password = String.valueOf(password.getText());
-                    Session session = new Session(Constants.GRANT_TYPE, Integer.parseInt(Constants.CLIENT_ID), Constants.CLIENT_SECRET, string_username, string_password);
-                    viewModel.sendSession(getBaseActivity(), session);
+                    Session session = new Session(Constants.GRANT_TYPE, Constants.CLIENT_ID, Constants.CLIENT_SECRET, string_username, string_password);
+                    viewModel.sendSession(getBaseActivity(), session, progress);
                 }
             } else {
                 Log.e(getClass().getSimpleName(), getString(R.string.dialog_terms_conditions));

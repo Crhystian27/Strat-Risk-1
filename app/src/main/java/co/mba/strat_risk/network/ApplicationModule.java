@@ -17,7 +17,6 @@ import co.mba.strat_risk.util.Constants;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -34,8 +33,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection, RequestInterceptor interceptor) {
-        return new Repository(apiService, executor, newsDao, userDao, connection, interceptor);
+    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection) {
+        return new Repository(apiService, executor, newsDao, userDao, connection);
     }
 
     @Provides
@@ -56,10 +55,11 @@ public class ApplicationModule {
         return Executors.newSingleThreadExecutor();
     }
 
+
     @Provides
     @Singleton
-    RequestInterceptor providesRequestInterceptor() {
-        return new RequestInterceptor();
+    OkHttpClient.Builder provideOkHttpClientBuilder() {
+        return new OkHttpClient.Builder().connectTimeout(Constants.REQUEST_TIMEOUT, TimeUnit.SECONDS);
     }
 
     @Provides
@@ -70,15 +70,12 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    OkHttpClient providesOkHttpClient(RequestInterceptor requestInterceptor) {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+    OkHttpClient providesOkHttpClient(OkHttpClient.Builder okHttpClientBuilder) {
 
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.addInterceptor(requestInterceptor);
-        builder.addInterceptor(requestInterceptor);
-        builder.addNetworkInterceptor(loggingInterceptor);
-        builder.connectTimeout(Constants.REQUEST_TIMEOUT, TimeUnit.SECONDS);
-        return builder.cache(null).build();
+        okHttpClientBuilder.addInterceptor(new ErrorInterceptor());
+        okHttpClientBuilder.addNetworkInterceptor(new LoggingInterceptor());
+        okHttpClientBuilder.addInterceptor(new RequestInterceptor());
+        return okHttpClientBuilder.cache(null).build();
     }
 
     @Provides
@@ -89,7 +86,8 @@ public class ApplicationModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //.baseUrl("https://jsonplaceholder.typicode.com/")
-                .baseUrl("https://newsapi.org/v2/")
+                //.baseUrl("https://mbariesgos.com/strat-risk/api_users/public/")
+                .baseUrl("http://192.168.0.37:80/")
                 .build();
     }
 

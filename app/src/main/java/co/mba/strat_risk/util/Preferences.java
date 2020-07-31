@@ -12,16 +12,14 @@ public class Preferences {
             public String getGroup() {
                 return Constants.PREFERENCE_AUTHORIZATION;
             }
-        },
-        USER {
+        };
+        /*USER {
             public String getGroup() {
                 return Constants.PREFERENCE_USER;
             }
-        };
-
+        };*/
         public abstract String getGroup();
     };
-
 
     private static SharedPreferences getPreferences(Context context, PreferenceType preferenceType) {
         return context.getSharedPreferences(preferenceType.getGroup(), Context.MODE_PRIVATE);

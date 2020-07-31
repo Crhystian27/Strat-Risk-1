@@ -9,5 +9,5 @@
         android:right="2dp"
         android:bottom="2dp" />
     <corners android:radius="20dp" />
-    <solid android:color="@color/backgroundWhite" />
+    <solid android:color="@android:color/white" />
 </shape>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,28 +18,27 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@android:color/darker_gray"
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
-            android:textColorHint="@color/textWhite"
             app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeColor="@color/colorAccent_800"
+            app:boxStrokeColor="@color/colorPrimary"
             app:hintTextAppearance="@style/HintText"
-            app:hintTextColor="@color/textWhite">
+            app:hintTextColor="@android:color/darker_gray">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username"
                 style="@style/TextInputEditTextOutlinedBox"
                 android:clickable="true"
-                android:fontFamily="@font/esteban"
-                android:id="@+id/login_username"
-                android:drawableStart="@drawable/ic_home_black_24dp"
+                android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="8dp"
                 android:enabled="true"
                 android:focusable="true"
                 android:hint="@string/string_username"
                 android:inputType="text"
                 android:lines="1"
-                android:textColor="@color/textWhite" />
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -55,30 +53,29 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@android:color/darker_gray"
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
             app:boxCornerRadiusTopStart="15dp"
-            app:boxStrokeColor="@color/colorAccent_800"
+            app:boxStrokeColor="@color/colorPrimary"
             app:hintTextAppearance="@style/HintText"
-            app:hintTextColor="@color/textWhite"
-            android:textColorHint="@color/textWhite"
+            app:hintTextColor="@android:color/darker_gray"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/textWhite">
+            app:passwordToggleTint="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password"
                 style="@style/TextInputEditTextOutlinedBox"
                 android:clickable="true"
-                android:fontFamily="@font/esteban"
                 android:drawableStart="@drawable/ic_home_black_24dp"
                 android:drawablePadding="8dp"
                 android:enabled="true"
-                android:id="@+id/login_password"
                 android:focusable="true"
                 android:hint="@string/string_password"
                 android:inputType="textPassword"
                 android:lines="1"
-                android:textColor="@color/textWhite" />
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 

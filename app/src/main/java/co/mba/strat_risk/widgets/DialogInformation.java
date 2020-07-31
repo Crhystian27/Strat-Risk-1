@@ -69,17 +69,20 @@ public class DialogInformation {
                 text_cancel.setVisibility(View.VISIBLE);
                 dialog.setTitle(message);
                 text_message.setText(activity.getString(R.string.string_policy_private));
+                radio1.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_check));
+                radio2.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_uncheck));
                 radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
                     switch (checkedId) {
                         case R.id.dialog_radio_button1:
                             text_message.setText(activity.getString(R.string.string_policy_private));
-                            radio1.setTextColor(activity.getColor(R.color.textWhite));
-                            radio2.setTextColor(activity.getColor(R.color.colorPrimaryDark));
+                            radio1.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_check));
+                            radio2.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_uncheck));
+
                             break;
                         case R.id.dialog_radio_button2:
                             text_message.setText(activity.getString(R.string.string_policy_service));
-                            radio1.setTextColor(activity.getColor(R.color.colorPrimaryDark));
-                            radio2.setTextColor(activity.getColor(R.color.textWhite));
+                            radio1.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_uncheck));
+                            radio2.setCompoundDrawablesWithIntrinsicBounds(null, null, null, activity.getDrawable(R.drawable.radiobutton_check));
                             break;
                     }
                 });

@@ -38,8 +38,8 @@
 
     <string name="dialog_accept_terms_conditions">Avisos legales</string>
 
-    <string name="dialog_policy_private">Política de privacidad.</string>
-    <string name="dialog_policy_service">Términos del servicio.</string>
+    <string name="dialog_policy_private">Política de privacidad</string>
+    <string name="dialog_policy_service">Términos del servicio</string>
 
     <string name="string_policy_private">Text here!! 1111</string>
     <string name="string_policy_service">Text here!! 2222</string>

@@ -28,11 +28,11 @@ public interface ApiService {
     //http://newsapi.org/v2/top-headlines?country=co&apiKey=2ba600d146a84468ac58021aa9f7c2e3
     //@GET("everything?qInTitle=suzuki motor&apiKey=2433bb7187974bb890590e8593afda40")
 
-    @POST("localhost/oauth/token")
+    @POST("oauth/token")
     Observable<AccessTokenDTO> getToken(@Body Session session);
 
-    @GET("localhost/api/user")
-    Observable<User> getUser(@Header("Authorization") String bearer);
+    @GET("api/user")
+    Observable<User> getUser(@Header("Authorization-Bearer") String bearer);
 
     @GET("top-headlines?country=co&apiKey=2433bb7187974bb890590e8593afda40")
     Observable<NewsDTO> getNews();

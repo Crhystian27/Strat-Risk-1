@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_content_dialog_alert"
     android:layout_width="match_parent"
@@ -17,16 +16,16 @@
         android:background="@drawable/background_dialog_message"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
         android:paddingTop="40dp"
-        android:paddingRight="16dp"
         android:paddingBottom="20dp">
 
         <RadioGroup
             android:id="@+id/dialog_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing4dp"
             android:layout_marginTop="@dimen/custom_spacing8dp"
+            android:layout_marginEnd="@dimen/custom_spacing4dp"
             android:layout_marginBottom="@dimen/custom_spacing16dp"
             android:orientation="horizontal">
 
@@ -38,14 +37,18 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-
-                android:button="@drawable/radiobutton_selector_left"
-                android:fontFamily="@font/esteban"
+                android:background="@drawable/bg_list_row"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:clickable="true"
+                android:drawableBottom="@drawable/radiobutton_check"
+                android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
+                android:paddingTop="16dp"
                 android:text="@string/dialog_policy_private"
-                android:textSize="@dimen/custom_text_size14sp"
-               />
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/custom_text_size14sp" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button2"
@@ -53,15 +56,17 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="@drawable/radiobutton_selector_right"
+                android:background="@drawable/bg_list_row"
                 android:button="@android:color/transparent"
-                android:checked="false"
-                android:fontFamily="@font/esteban"
+                android:clickable="true"
+                android:drawableBottom="@drawable/radiobutton_uncheck"
+                android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
+                android:paddingTop="16dp"
                 android:text="@string/dialog_policy_service"
-                android:textSize="@dimen/custom_text_size14sp"
-                app:buttonTint="@color/colorPrimary" />
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/custom_text_size14sp" />
         </RadioGroup>
 
 
@@ -69,18 +74,21 @@
             android:id="@+id/txt_dialog_message_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/esteban"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:gravity="start"
             android:hint="@string/dialog_alert_dialog"
             android:textColor="@android:color/black"
+
             android:textSize="@dimen/custom_spacing18sp" />
 
         <LinearLayout
             android:id="@+id/content_controlls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/custom_spacing8dp"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
             android:layout_marginTop="@dimen/custom_spacing16dp"
-            android:layout_marginEnd="@dimen/custom_spacing8dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
             android:gravity="end"
             android:orientation="horizontal">
 
@@ -90,8 +98,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_button_accent2"
-                android:fontFamily="@font/esteban"
+                android:background="@drawable/background_button_accent"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingLeft="30dp"
@@ -108,8 +115,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_button_accent"
-                android:fontFamily="@font/esteban"
+                android:background="@drawable/background_button_accent2"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingLeft="30dp"
@@ -136,7 +142,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_rss"
+            android:src="@drawable/ic_home_black_24dp"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>

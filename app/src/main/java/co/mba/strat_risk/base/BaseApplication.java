@@ -38,28 +38,4 @@ public class BaseApplication extends DaggerApplication {
         return instance;
     }
 
-    /*@Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
-
-    //TODO create new Context application Injector
-    public Context context;
-
-    //Nuevoas cambios
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        this.initDagger();
-    }
-
-    @Override
-    public DispatchingAndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
-    }
-
-
-    //TODO REVISAR DAGGER
-    private void initDagger() {
-        DaggerApplicationComponent.builder().application(this).build().inject(this);
-    }*/
 }

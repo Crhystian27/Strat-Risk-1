@@ -116,5 +116,17 @@ public final class User {
         this.source = source;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", company_id=" + company_id +
+                ", key='" + key + '\'' +
+                ", search='" + search + '\'' +
+                ", source='" + source + '\'' +
+                '}';
+    }
 }

@@ -1,7 +1,8 @@
 package co.mba.strat_risk.ui.login;
 
-import android.content.Context;
+import android.app.Activity;
 
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.ViewModel;
 
 import javax.inject.Inject;
@@ -11,7 +12,6 @@ import co.mba.strat_risk.data.repository.Repository;
 
 public class LoginFragmentViewModel extends ViewModel {
 
-    private static final String TAG = "Login_FV";
     private Repository repository;
 
     @Inject
@@ -19,8 +19,7 @@ public class LoginFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-
-    public void sendSession(Context context, Session session){
-        repository.getAccessToken(context, session);
+    public void sendSession(Activity activity, Session session, ContentLoadingProgressBar progressBar){
+        repository.getAccessToken(activity, session, progressBar);
     }
 }
