@@ -13,7 +13,6 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="@dimen/custom_spacing16dp">
 
-
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
@@ -68,7 +67,7 @@
                 android:id="@+id/login_password"
                 style="@style/TextInputEditTextOutlinedBox"
                 android:clickable="true"
-                android:drawableStart="@drawable/ic_home_black_24dp"
+                android:drawableStart="@drawable/ic_lock"
                 android:drawablePadding="8dp"
                 android:enabled="true"
                 android:focusable="true"

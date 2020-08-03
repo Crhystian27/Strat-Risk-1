@@ -54,6 +54,8 @@ public class LoginFragment extends BaseFragment {
         ContentLoadingProgressBar progress = view.findViewById(R.id.login_progress);
 
 
+
+
         linearLayout.setOnClickListener(v -> {
             if (materialCheckBox.isChecked()) {
                 if (TextUtils.isEmpty(username.getText()) && TextUtils.isEmpty(password.getText())) {
@@ -74,6 +76,5 @@ public class LoginFragment extends BaseFragment {
         });
 
         materialCheckBox.setOnClickListener(v -> DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_accept_terms_conditions), 1, materialCheckBox));
-
     }
 }

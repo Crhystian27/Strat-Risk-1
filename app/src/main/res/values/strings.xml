@@ -25,6 +25,7 @@
     <string name="string_username">Username</string>
     <string name="string_password">Password</string>
     <string name="string_login">Log In</string>
+    <string name="string_forgot_password">Forgot your password?</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020I agree to the terms \u0026 conditions</string>
 
     <string name="dialog_no_internet_connection">The phone is not connected to the internet.</string>

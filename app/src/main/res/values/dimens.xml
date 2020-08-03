@@ -3,7 +3,9 @@
     <dimen name="custom_spacing8dp">8dp</dimen>
     <dimen name="custom_spacing4dp">4dp</dimen>
     <dimen name="custom_spacing78dp">78dp</dimen>
+    <dimen name="custom_height256dp">256dp</dimen>
     <dimen name="custom_cornerRadius15dp">15dp</dimen>
+    <dimen name="custom_cornerRadius30dp">30dp</dimen>
     <dimen name="custom_text_size16sp">16sp</dimen>
     <dimen name="custom_text_size14sp">14sp</dimen>
     <dimen name="custom_spacing16dp">16dp</dimen>

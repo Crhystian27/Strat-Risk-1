@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
+    tools:context=".ui.LoginActivity">
 
     <FrameLayout
         android:id="@+id/login_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/forgot_password" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
+        android:layout_marginTop="@dimen/custom_spacing16dp"
+        android:layout_marginEnd="@dimen/custom_spacing16dp"
+        android:layout_marginBottom="@dimen/custom_spacing16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:paddingBottom="@dimen/custom_spacing8dp"
+        android:text="@string/string_forgot_password"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/custom_text_size16sp" />
+
 </RelativeLayout>

@@ -5,11 +5,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
+import co.mba.strat_risk.ui.login.ForgotFragment;
 import co.mba.strat_risk.ui.login.LoginFragment;
 import co.mba.strat_risk.util.Utilities;
 
@@ -18,6 +21,7 @@ public class LoginActivity extends BaseActivity {
     @Inject
     ViewModelProvider.Factory factory;
     LoginViewModel viewModel;
+    TextView textView;
 
     @Override
     protected int layoutRes() {
@@ -39,7 +43,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initUI() {
+        textView = findViewById(R.id.forgot_password);
         Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment);
+
+        textView.setOnClickListener(view -> {
+            textView.setVisibility(View.GONE);
+            Utilities.loadFragment(LoginActivity.this, new ForgotFragment(), R.id.login_fragment);
+        });
     }
 
     @Override

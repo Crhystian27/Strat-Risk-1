@@ -1,5 +1,6 @@
 package co.mba.strat_risk.di.module;
 
+import co.mba.strat_risk.ui.login.ForgotFragment;
 import co.mba.strat_risk.ui.login.LoginFragment;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -9,5 +10,8 @@ public abstract class FragmentLoginModule {
 
     @ContributesAndroidInjector
     abstract LoginFragment contributeLoginFragment();
+
+    @ContributesAndroidInjector
+    abstract ForgotFragment contributeForgotFragment();
 
 }
