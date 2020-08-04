@@ -2,15 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:id="@+id/group_search"
+        android:id="@+id/group_menu"
         android:checkableBehavior="single">
-        <item android:title="title1">
+        <item android:title="@string/nv_string_title_menu">
             <menu>
                 <group android:checkableBehavior="single">
                     <item
-                        android:id="@+id/item_account"
+                        android:id="@+id/item_safe"
+                        android:icon="@drawable/ic_safe"
+                        android:title="@string/nv_string_safe" />
 
-                        android:title="title1" />
+                    <item
+                        android:id="@+id/item_question"
+                        android:icon="@drawable/ic_question"
+                        android:title="@string/nv_string_question" />
                 </group>
             </menu>
         </item>
@@ -19,13 +24,13 @@
     <group
         android:id="@+id/group_settings"
         android:checkableBehavior="single">
-        <item android:title="title 2">
+        <item android:title="@string/nv_string_title_options">
             <menu>
                 <group android:checkableBehavior="single">
                     <item
                         android:id="@+id/item_log_in_out"
-
-                        android:title="title2" />
+                        android:icon="@drawable/ic_close"
+                        android:title="@string/nv_string_log_in_out" />
                 </group>
             </menu>
         </item>

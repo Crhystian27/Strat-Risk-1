@@ -108,7 +108,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
             switch (item.getItemId()) {
                 case INFORMATION_ID:
                     pressMenuItem = true;
-                    Utilities.OpenSendEmail(BaseActivity.this);
+                    Utilities.OpenSendEmail(BaseActivity.this, null);
                     new Handler().postDelayed(() -> pressMenuItem = false, Constants.DELAY_BUTTON_PREES);
                     break;
                 case FAQ_ID:
@@ -130,5 +130,10 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
 
         //Elimina la actividad actual de la lista.
         Utilities.removeThisActivityFromRunningActivities(getClass());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

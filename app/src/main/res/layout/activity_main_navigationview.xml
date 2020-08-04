@@ -20,8 +20,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@drawable/background_navigationview"
-        android:fitsSystemWindows="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:headerLayout="@layout/nav_header_main"
+        app:itemBackground="@drawable/selector_background_drawer"
+        app:itemIconTint="@color/color_item_drawer"
+        app:itemTextAppearance="@style/NavigationViewTextAppearance"
         app:menu="@menu/activity_main_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

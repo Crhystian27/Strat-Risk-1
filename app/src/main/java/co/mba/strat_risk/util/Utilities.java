@@ -1,5 +1,6 @@
 package co.mba.strat_risk.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -51,7 +52,6 @@ public class Utilities {
     }
 
 
-
     /**
      * Verifica si hay actividades en cola y cierra la actividad actual,
      * de no haber actividades en cola envia a la actividad principal MainActivity.class
@@ -68,12 +68,18 @@ public class Utilities {
 
 
     //TODO ENVIAR UN BUNDLE AL FRAGMENT
-    public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value){
+    public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value, String TAG) {
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(value, fragment);
+        transaction.addToBackStack(TAG);
         transaction.commit();
+    }
 
+    public static String getTagFragment(FragmentActivity activity) {
+        int index = activity.getSupportFragmentManager().getBackStackEntryCount() - 1;
+        FragmentManager.BackStackEntry backEntry = activity.getSupportFragmentManager().getBackStackEntryAt(index);
+        return backEntry.getName();
     }
 
     /*public static String getTagFragment(FragmentActivity context){
@@ -82,16 +88,17 @@ public class Utilities {
         return backEntry.getName();
     }*/
 
-    public static void OpenSendEmail(Context context) {
+    public static void OpenSendEmail(Activity activity, String email) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setData(Uri.parse("mailto:"));
-        Log.e(String.valueOf(context.getClass()), " " + Arrays.toString(Constants.EXTRA_EMAIL));
+        Log.e(String.valueOf(activity.getClass()), " " + Arrays.toString(Constants.EXTRA_EMAIL));
         i.putExtra(Intent.EXTRA_EMAIL, new String[]{Arrays.toString(Constants.EXTRA_EMAIL)});
-        i.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.btn_contact));
+        i.putExtra(Intent.EXTRA_SUBJECT, activity.getResources().getString(R.string.extra_subject));
+        i.putExtra(Intent.EXTRA_TEXT, email);
         try {
-            context.startActivity(Intent.createChooser(i, context.getResources().getString(R.string.send_mail)));
+            activity.startActivity(Intent.createChooser(i, activity.getResources().getString(R.string.send_mail)));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(context, context.getResources().getString(R.string.msj_there_are_no_email_clients_installed_), Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, activity.getResources().getString(R.string.msj_there_are_no_email_clients_installed_), Toast.LENGTH_SHORT).show();
         }
     }
 

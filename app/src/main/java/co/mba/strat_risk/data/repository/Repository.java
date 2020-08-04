@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -18,10 +16,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
-import co.mba.strat_risk.data.dto.AccessTokenDTO;
 import co.mba.strat_risk.data.dto.ArticlesDTO;
 import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
@@ -29,11 +25,10 @@ import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
-import co.mba.strat_risk.network.RequestInterceptor;
 import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
+import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.DialogInformation;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -106,6 +101,12 @@ public class Repository {
 
     public LiveData<User> getDBUser(Integer id) {
         return userDao.loadUser(id);
+    }
+
+    public void sendEmailRequest(Activity activity, String email, ContentLoadingProgressBar progress) {
+        progress.setVisibility(View.GONE);
+        Utilities.OpenSendEmail(activity, email);
+
     }
 
     public void getCurrentUser(Activity activity, String key, ContentLoadingProgressBar progressBar) {

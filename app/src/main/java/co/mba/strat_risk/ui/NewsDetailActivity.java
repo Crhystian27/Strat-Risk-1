@@ -49,7 +49,7 @@ public class NewsDetailActivity extends BaseActivity {
 
 
     private void initUI() {
-        Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment);
+        Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment, Constants.TAG_NEWS_DETAIL);
 
     }
 

@@ -6,6 +6,12 @@ public class Constants {
     public static final int CLIENT_ID = 2;
     public static final String CLIENT_SECRET = "wAUkM5QxxNwLbPKFIjvUl6mFUyBCf2Qc4k5FClqw";
 
+
+    public static final String TAG_LOGIN = "Tag_Login";
+    public static final String TAG_FORGOT = "Tag_Forgot";
+    public static final String TAG_MAIN = "Tag_Main";
+    public static final String TAG_NEWS_DETAIL = "Tag_News_Detail";
+
     public static final Integer OPPORTUNITY_STATUS = 1;
     public static final Integer INTERESTING_STATUS = 2;
     public static final Integer RISK_STATUS = 3;

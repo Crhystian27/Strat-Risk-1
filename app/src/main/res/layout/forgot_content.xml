@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/forgot_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/custom_spacing32dp"
+        android:layout_marginEnd="@dimen/custom_spacing32dp"
+        android:fontFamily="@font/montserrat_light"
+        android:text="@string/string_forgot_body"
+        android:textSize="@dimen/custom_text_size18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        style="@style/CustomLinearLayout"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
+        android:layout_marginEnd="@dimen/custom_spacing16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/darker_gray"
+            app:boxCornerRadiusBottomEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:hintTextAppearance="@style/HintText"
+            app:hintTextColor="@android:color/darker_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/forgot_email"
+                style="@style/TextInputEditTextOutlinedBox"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_send_email"
+                android:drawablePadding="8dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:fontFamily="@font/montserrat_regular_"
+                android:hint="@string/string_email"
+                android:inputType="text"
+                android:lines="1"
+                android:textColor="@android:color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+</LinearLayout>
+

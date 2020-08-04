@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forgot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.ForgotFragment">
 
-    <TextView
+    <include
+        android:id="@+id/toolbar_main"
+        layout="@layout/toolbar_material"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="?attr/actionBarSize" />
 
-</FrameLayout>
+    <include
+        android:id="@+id/content"
+        layout="@layout/forgot_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar_main"
+        android:layout_marginTop="@dimen/custom_spacing32dp" />
+
+    <LinearLayout
+        android:id="@+id/forgot_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
+        android:layout_marginTop="@dimen/custom_spacing32dp"
+        android:layout_marginEnd="@dimen/custom_spacing16dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_button_accent2"
+            android:fontFamily="@font/montserrat_regular_"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingTop="10dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="@string/string_restore"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/custom_text_size16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/forgot_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

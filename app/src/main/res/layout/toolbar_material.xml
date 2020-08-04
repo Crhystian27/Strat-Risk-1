@@ -8,6 +8,7 @@
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
     app:contentInsetStartWithNavigation="0dp"
+    app:titleTextAppearance="@style/ToolbarTextAppearance"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"

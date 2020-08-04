@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -53,28 +52,25 @@ public class LoginFragment extends BaseFragment {
         TextInputEditText password = view.findViewById(R.id.login_password);
         ContentLoadingProgressBar progress = view.findViewById(R.id.login_progress);
 
-
-
-
         linearLayout.setOnClickListener(v -> {
             if (materialCheckBox.isChecked()) {
                 if (TextUtils.isEmpty(username.getText()) && TextUtils.isEmpty(password.getText())) {
                     Log.e(getClass().getSimpleName(), getString(R.string.dialog_empty_camps));
-                    DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_empty_camps), 0, null);
+                    DialogInformation.showDialog(getActivity(), getString(R.string.dialog_empty_camps), 0, null);
 
                 } else {
                     progress.setVisibility(View.VISIBLE);
                     String string_username = String.valueOf(username.getText());
                     String string_password = String.valueOf(password.getText());
                     Session session = new Session(Constants.GRANT_TYPE, Constants.CLIENT_ID, Constants.CLIENT_SECRET, string_username, string_password);
-                    viewModel.sendSession(getBaseActivity(), session, progress);
+                    viewModel.sendSession(getActivity(), session, progress);
                 }
             } else {
                 Log.e(getClass().getSimpleName(), getString(R.string.dialog_terms_conditions));
-                DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_terms_conditions), 0, null);
+                DialogInformation.showDialog(getActivity(), getString(R.string.dialog_terms_conditions), 0, null);
             }
         });
 
-        materialCheckBox.setOnClickListener(v -> DialogInformation.showDialog(getBaseActivity(), getString(R.string.dialog_accept_terms_conditions), 1, materialCheckBox));
+        materialCheckBox.setOnClickListener(v -> DialogInformation.showDialog(getActivity(), getString(R.string.dialog_accept_terms_conditions), 1, materialCheckBox));
     }
 }

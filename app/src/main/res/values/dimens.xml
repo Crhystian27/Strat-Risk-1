@@ -4,9 +4,15 @@
     <dimen name="custom_spacing4dp">4dp</dimen>
     <dimen name="custom_spacing78dp">78dp</dimen>
     <dimen name="custom_height256dp">256dp</dimen>
+    <dimen name="custom_image_size128dp">128dp</dimen>
     <dimen name="custom_cornerRadius15dp">15dp</dimen>
     <dimen name="custom_cornerRadius30dp">30dp</dimen>
     <dimen name="custom_text_size16sp">16sp</dimen>
+    <dimen name="custom_text_size18sp">18sp</dimen>
+    <dimen name="custom_spacing18dp">18dp</dimen>
+    <dimen name="custom_spacing24dp">24dp</dimen>
+    <dimen name="custom_spacing32dp">32dp</dimen>
+    <dimen name="custom_spacing128dp">128dp</dimen>
     <dimen name="custom_text_size14sp">14sp</dimen>
     <dimen name="custom_spacing16dp">16dp</dimen>
     <dimen name="custom_spacing18sp">18sp</dimen>
