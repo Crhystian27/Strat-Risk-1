@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -25,6 +27,7 @@ public class LoginActivity extends BaseActivity {
     ViewModelProvider.Factory factory;
     LoginViewModel viewModel;
     TextView textView;
+    RelativeLayout layout;
 
     private boolean recentlyBackPressed = false;
     private Runnable exitRunnable = () -> recentlyBackPressed = false;
@@ -50,6 +53,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initUI() {
+        layout = findViewById(R.id.login_relative);
         textView = findViewById(R.id.forgot_password);
         textView.setVisibility(View.VISIBLE);
         Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment, Constants.TAG_LOGIN);
@@ -65,9 +69,6 @@ public class LoginActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
-    //TODO: back forgot fragment to login fragment
-
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
@@ -81,7 +82,12 @@ public class LoginActivity extends BaseActivity {
                     finish();
                 } else {
                     recentlyBackPressed = true;
-                    Toast.makeText(this, getResources().getString(R.string.press_again_to_exit), Toast.LENGTH_SHORT).show();
+                    //TODO SNACKBAR IMPLEMENT
+
+                    Snackbar snackbar = Snackbar.make(layout, getResources().getString(R.string.press_again_to_exit),Snackbar.LENGTH_INDEFINITE);
+                    snackbar.setActionTextColor(getColor(R.color.colorPrimary))
+                            .setDuration(1400).show();
+                    //Toast.makeText(this, getResources().getString(R.string.press_again_to_exit), Toast.LENGTH_SHORT).show();
                     exitHandler.postDelayed(exitRunnable, 2000L);
                 }
             } else {
