@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/login_relative"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.LoginActivity">
 
@@ -23,11 +23,13 @@
         android:layout_marginBottom="@dimen/custom_spacing16dp"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/montserrat_regular_"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:paddingBottom="@dimen/custom_spacing8dp"
         android:text="@string/string_forgot_password"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/custom_text_size16sp" />
+        android:textSize="@dimen/custom_text_size16sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

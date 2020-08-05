@@ -30,7 +30,6 @@ public class Constants {
 
     public static final String[] EXTRA_EMAIL = {"cristian.soto@mbariesgos.com", "juan.olaya@mbariesgos.com"};
     public static final int DELAY_BUTTON_PREES = 400;
-    public static final Integer SNACK_BAR_DURATION = 1400;
     public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
     public static final int REQUEST_TIMEOUT = 8;
 }

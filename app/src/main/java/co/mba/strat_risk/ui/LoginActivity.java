@@ -59,8 +59,16 @@ public class LoginActivity extends BaseActivity {
         Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment, Constants.TAG_LOGIN);
 
         textView.setOnClickListener(view -> {
-            textView.setVisibility(View.GONE);
-            Utilities.loadFragment(LoginActivity.this, new ForgotFragment(), R.id.login_fragment, Constants.TAG_FORGOT);
+
+            if (textView.getText().equals(getString(R.string.string_forgot_password))) {
+                textView.setText(getResources().getString(R.string.string_log_in));
+                Utilities.loadFragment(LoginActivity.this, new ForgotFragment(), R.id.login_fragment, Constants.TAG_FORGOT);
+            } else {
+                textView.setText(getResources().getString(R.string.string_forgot_password));
+                Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment, Constants.TAG_LOGIN);
+            }
+
+
         });
     }
 
@@ -82,16 +90,17 @@ public class LoginActivity extends BaseActivity {
                     finish();
                 } else {
                     recentlyBackPressed = true;
-                    //TODO SNACKBAR IMPLEMENT
+                    //TODO textapearnace in snakbar
+                    //TODO MONSERRAT
 
-                    Snackbar snackbar = Snackbar.make(layout, getResources().getString(R.string.press_again_to_exit),Snackbar.LENGTH_INDEFINITE);
-                    snackbar.setActionTextColor(getColor(R.color.colorPrimary))
+                    Snackbar snackbar = Snackbar.make(layout, getResources().getString(R.string.press_again_to_exit), Snackbar.LENGTH_INDEFINITE);
+                    snackbar.setTextColor(getColor(R.color.textWhite))
                             .setDuration(1400).show();
                     //Toast.makeText(this, getResources().getString(R.string.press_again_to_exit), Toast.LENGTH_SHORT).show();
                     exitHandler.postDelayed(exitRunnable, 2000L);
                 }
             } else {
-                textView.setVisibility(View.VISIBLE);
+                textView.setText(getString(R.string.string_forgot_password));
                 getSupportFragmentManager().popBackStack();
             }
         }

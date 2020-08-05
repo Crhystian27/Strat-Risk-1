@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -52,9 +53,14 @@ public class ForgotFragment extends BaseFragment {
                 DialogInformation.showDialog(getActivity(), getString(R.string.dialog_empty_camps), 0, null);
 
             } else {
-                String string_email = String.valueOf(email.getText());
-                progress.setVisibility(View.VISIBLE);
-                viewModel.sendEmail(getActivity(), string_email, progress);
+
+                if (Patterns.EMAIL_ADDRESS.matcher(String.valueOf(email.getText())).matches()) {
+                    String string_email = String.valueOf(email.getText());
+                    progress.setVisibility(View.VISIBLE);
+                    viewModel.sendEmail(getActivity(), string_email, progress);
+                } else {
+                    DialogInformation.showDialog(getActivity(), getString(R.string.dialog_matcher_email_address), 0, null);
+                }
             }
 
         });
