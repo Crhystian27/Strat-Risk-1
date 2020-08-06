@@ -12,6 +12,7 @@
     <dimen name="custom_spacing18dp">18dp</dimen>
     <dimen name="custom_spacing24dp">24dp</dimen>
     <dimen name="custom_spacing32dp">32dp</dimen>
+    <dimen name="custom_elevation16dp">16dp</dimen>
     <dimen name="custom_spacing128dp">128dp</dimen>
     <dimen name="custom_text_size14sp">14sp</dimen>
     <dimen name="custom_spacing16dp">16dp</dimen>

@@ -64,10 +64,24 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @return Regresa al frgament anterior con el boton superior
+     */
+
     @Override
     public boolean onSupportNavigateUp() {
         if (toolbar != null)
-            finish();
+            if (getSupportFragmentManager().getBackStackEntryCount() != 0){
+                System.out.println("FRAGMENT_TAG -> " + Utilities.getTagFragment(BaseActivity.this));
+
+                if(Constants.TAG_LOGIN.equals(Utilities.getTagFragment(BaseActivity.this))){
+                    moveTaskToBack(true);
+                    finish();
+                }else {
+                    getSupportFragmentManager().popBackStack();
+                }
+            }
         return false;
     }
 
@@ -130,10 +144,5 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
 
         //Elimina la actividad actual de la lista.
         Utilities.removeThisActivityFromRunningActivities(getClass());
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 }

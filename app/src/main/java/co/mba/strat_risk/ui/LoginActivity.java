@@ -5,28 +5,22 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
-import co.mba.strat_risk.ui.login.ForgotFragment;
 import co.mba.strat_risk.ui.login.LoginFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
+import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class LoginActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory factory;
     LoginViewModel viewModel;
-    TextView textView;
     RelativeLayout layout;
 
     private boolean recentlyBackPressed = false;
@@ -40,42 +34,22 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected int toolbarId() {
-        return 0;
+        return R.id.toolbar_main;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        layout = findViewById(R.id.login_relative);
         viewModel = ViewModelProviders.of(LoginActivity.this, factory).get(LoginViewModel.class);
-
         initUI();
-        setSupportActionBar(false, false);
     }
 
     private void initUI() {
-        layout = findViewById(R.id.login_relative);
-        textView = findViewById(R.id.forgot_password);
-        textView.setVisibility(View.VISIBLE);
+        setSupportActionBar(true, true);
         Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment, Constants.TAG_LOGIN);
-
-        textView.setOnClickListener(view -> {
-
-            if (textView.getText().equals(getString(R.string.string_forgot_password))) {
-                textView.setText(getResources().getString(R.string.string_log_in));
-                Utilities.loadFragment(LoginActivity.this, new ForgotFragment(), R.id.login_fragment, Constants.TAG_FORGOT);
-            } else {
-                textView.setText(getResources().getString(R.string.string_forgot_password));
-                Utilities.loadFragment(LoginActivity.this, new LoginFragment(), R.id.login_fragment, Constants.TAG_LOGIN);
-            }
-
-
-        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public void onBackPressed() {
@@ -90,17 +64,12 @@ public class LoginActivity extends BaseActivity {
                     finish();
                 } else {
                     recentlyBackPressed = true;
-                    //TODO textapearnace in snakbar
-                    //TODO MONSERRAT
 
-                    Snackbar snackbar = Snackbar.make(layout, getResources().getString(R.string.press_again_to_exit), Snackbar.LENGTH_INDEFINITE);
-                    snackbar.setTextColor(getColor(R.color.textWhite))
-                            .setDuration(1400).show();
-                    //Toast.makeText(this, getResources().getString(R.string.press_again_to_exit), Toast.LENGTH_SHORT).show();
+                    SnackBarInformation.showSnackBar(LoginActivity.this, layout, getString(R.string.press_again_to_exit), "fonts/montserrat_regular_.ttf");
+
                     exitHandler.postDelayed(exitRunnable, 2000L);
                 }
             } else {
-                textView.setText(getString(R.string.string_forgot_password));
                 getSupportFragmentManager().popBackStack();
             }
         }

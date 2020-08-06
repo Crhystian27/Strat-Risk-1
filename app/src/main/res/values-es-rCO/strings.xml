@@ -53,7 +53,8 @@
     <string name="string_login">Iniciar Sesión</string>
     <string name="string_forgot_password">¿Olvidó su contraseña?</string>
 
-    <string name="string_log_in">Inicia sesión.</string>
+    <string name="string_forgot">Restaurar el acceso</string>
+    <string name="string_log_in">Inicia sesión</string>
 
     <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
 

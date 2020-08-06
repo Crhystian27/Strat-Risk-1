@@ -74,9 +74,11 @@ public class Repository {
         if (InternetConnection.isAirplaneMode(activity) && !DialogInformation.isShowing) {
             Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_airplane_mode));
             DialogInformation.showDialog(activity, activity.getString(R.string.dialog_airplane_mode), 0, null);
+            progressBar.setVisibility(View.GONE);
         } else if (InternetConnection.isConnected(activity) == 0 && !DialogInformation.isShowing) {
             Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_no_internet_connection));
             DialogInformation.showDialog(activity, activity.getString(R.string.dialog_no_internet_connection), 0, null);
+            progressBar.setVisibility(View.GONE);
         } else {
             executor.execute(() -> compositeDisposable.add(apiService.getToken(session)
                     .subscribeOn(Schedulers.io())

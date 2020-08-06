@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected int toolbarId() {
-        return R.id.main_toolbar;
+        return R.id.toolbar_material;
     }
 
     @Override

@@ -18,6 +18,7 @@
 
     <LinearLayout
         style="@style/CustomLinearLayout"
+        android:layout_marginTop="@dimen/custom_spacing16dp"
         android:layout_marginStart="@dimen/custom_spacing16dp"
         android:layout_marginEnd="@dimen/custom_spacing16dp">
 

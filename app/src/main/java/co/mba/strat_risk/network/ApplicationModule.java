@@ -87,7 +87,7 @@ public class ApplicationModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //.baseUrl("https://jsonplaceholder.typicode.com/")
                 //.baseUrl("https://mbariesgos.com/strat-risk/api_users/public/")
-                .baseUrl("http://192.168.0.37:80/")
+                .baseUrl("http://192.168.0.4:80/")
                 .build();
     }
 

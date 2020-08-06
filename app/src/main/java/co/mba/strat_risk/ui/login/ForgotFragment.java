@@ -20,11 +20,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.widgets.DialogInformation;
 
 public class ForgotFragment extends BaseFragment {
-
 
     @Inject
     ViewModelProvider.Factory factory;
@@ -42,6 +42,10 @@ public class ForgotFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
+        ((BaseActivity)getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.string_forgot));
+        ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.VISIBLE);
+        ((BaseActivity)getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+
 
         TextInputEditText email = view.findViewById(R.id.forgot_email);
         LinearLayout linearLayout = view.findViewById(R.id.forgot_button);
@@ -62,7 +66,6 @@ public class ForgotFragment extends BaseFragment {
                     DialogInformation.showDialog(getActivity(), getString(R.string.dialog_matcher_email_address), 0, null);
                 }
             }
-
         });
     }
 }

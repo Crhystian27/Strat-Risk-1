@@ -2,6 +2,8 @@
 
     <string name="app_name">Strat - Risk MBA</string>
 
+    <string name="app_subtitle">MBA Riesgos</string>
+
 
     <string name="press_again_to_exit">Press again to exit</string>
 
@@ -52,7 +54,10 @@
     <string name="string_password">Password</string>
     <string name="string_login">Log In</string>
     <string name="string_forgot_password">Forgot your password?</string>
-    <string name="string_log_in">Log in.</string>
+
+    <string name="string_forgot">Restore Access</string>
+
+    <string name="string_log_in">Log in</string>
     <string name="string_accept">\u0020\u0020\u0020\u0020I agree to the terms \u0026 conditions</string>
 
     <string name="string_forgot_body">We will send you a code to reset your password.</string>

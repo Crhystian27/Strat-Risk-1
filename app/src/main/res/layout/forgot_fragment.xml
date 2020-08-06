@@ -2,29 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/forgot"
+    android:layout_marginBottom="56dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.ForgotFragment">
-
-    <include
-        android:id="@+id/toolbar_main"
-        layout="@layout/toolbar_material"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
 
     <include
         android:id="@+id/content"
         layout="@layout/forgot_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_main"
         android:layout_marginTop="@dimen/custom_spacing16dp" />
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:id="@+id/forgot_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/custom_spacing16dp"
         android:layout_marginEnd="@dimen/custom_spacing16dp"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
@@ -46,6 +40,8 @@
             android:textSize="@dimen/custom_text_size16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/forgot_progress"

@@ -14,13 +14,17 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,7 +75,7 @@ public class Utilities {
     public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value, String TAG) {
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,android.R.anim.fade_in, android.R.anim.fade_out);
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_out_right, android.R.anim.slide_in_left);
         transaction.replace(value, fragment);
         transaction.addToBackStack(TAG);
         transaction.commit();

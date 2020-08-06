@@ -13,16 +13,22 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.util.Constants;
+import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.DialogInformation;
 
 
@@ -45,6 +51,14 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
+
+        ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.GONE);
+
+        TextView textView = view.findViewById(R.id.forgot_password);
+        textView.setText(getString(R.string.string_forgot_password));
+
+        textView.setOnClickListener(v ->
+                Utilities.loadFragment(Objects.requireNonNull(getActivity()), new ForgotFragment(), R.id.login_fragment, Constants.TAG_FORGOT));
 
         MaterialCheckBox materialCheckBox = view.findViewById(R.id.login_checkbox);
         LinearLayout linearLayout = view.findViewById(R.id.login_button);
