@@ -24,9 +24,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseFragment;
+import co.mba.strat_risk.data.entity.News;
 
 public class Utilities {
 
@@ -73,6 +75,13 @@ public class Utilities {
         transaction.replace(value, fragment);
         transaction.addToBackStack(TAG);
         transaction.commit();
+    }
+
+
+    //TODO IMPLEMENT UN RECYCLERVIEW UTIL
+    public void setRecyclerView(Activity activity, List<News> list){
+
+
     }
 
     public static String getTagFragment(FragmentActivity activity) {

@@ -24,13 +24,15 @@ public class RiskFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<List<News>> initRisk(Integer idStatus){
+    public void fetchRiskDB(Integer status) {
         if (this.riskLiveData != null) {
             Log.e(TAG, riskLiveData.toString());
-            return null;
-        } else {
-            //riskLiveData = repository.getDBListNews(idStatus);
-            return this.riskLiveData;
+            return;
         }
+        riskLiveData = repository.getNewsDB(status);
+    }
+
+    public LiveData<List<News>> getRiskDB() {
+        return this.riskLiveData;
     }
 }

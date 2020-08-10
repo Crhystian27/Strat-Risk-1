@@ -20,6 +20,7 @@ public class NewsFragmentViewModel extends ViewModel {
 
     private MutableLiveData<NewsDTO> newsDTOLiveData;
     private LiveData<List<News>> newsLiveData;
+
     private static final String TAG = "News_FV";
     private Repository repository;
 
@@ -39,13 +40,15 @@ public class NewsFragmentViewModel extends ViewModel {
         return newsDTOLiveData;
     }
 
-    public LiveData<List<News>> fetchNewsDB(Integer status) {
-        if (newsLiveData != null) {
+    public void fetchNewsDB(Integer status) {
+        if (this.newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());
-            return null;
-        } else {
-            newsLiveData = repository.getNewsDB(status);
+            return;
         }
+        newsLiveData = repository.getNewsDB(status);
+    }
+
+    public LiveData<List<News>> getNewsDB() {
         return this.newsLiveData;
     }
 }

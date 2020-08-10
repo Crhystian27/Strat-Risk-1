@@ -23,13 +23,15 @@ public class OpportunityFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    /*public LiveData<List<News>> initOpportunity(Integer idStatus) {
+    public void fetchOpportunityDB(Integer status) {
         if (this.opportunityLiveData != null) {
             Log.e(TAG, opportunityLiveData.toString());
-            return null;
-        } else {
-            //opportunityLiveData = repository.getDBListNews(idStatus);
-            return this.opportunityLiveData;
+            return;
         }
-    }*/
+        opportunityLiveData = repository.getNewsDB(status);
+    }
+
+    public LiveData<List<News>> getOpportunityDB() {
+        return this.opportunityLiveData;
+    }
 }

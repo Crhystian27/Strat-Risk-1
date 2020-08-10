@@ -10,7 +10,7 @@
 
     <string name="title_news">Noticias</string>
     <string name="title_opportunity">Oportunidad</string>
-    <string name="title_interesting">Interes</string>
+    <string name="title_interesting">Intermedio</string>
     <string name="title_risk">Riesgo</string>
 
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">No hay clientes de correo electrónico instalados.</string>

@@ -24,13 +24,15 @@ public class InterestingFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<List<News>> initInteresting(Integer idStatus) {
+    public void fetchInterestingDB(Integer status) {
         if (this.interestingLiveData != null) {
             Log.e(TAG, interestingLiveData.toString());
-            return null;
-        } else {
-            //interestingLiveData = repository.getDBListNews(idStatus);
-            return this.interestingLiveData;
+            return;
         }
+        interestingLiveData = repository.getNewsDB(status);
+    }
+
+    public LiveData<List<News>> getInterestingDB() {
+        return this.interestingLiveData;
     }
 }

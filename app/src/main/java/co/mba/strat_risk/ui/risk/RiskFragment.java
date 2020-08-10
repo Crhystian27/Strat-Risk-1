@@ -7,15 +7,28 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.adapter.NewsAdapter;
+import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
+import co.mba.strat_risk.data.entity.News;
+import co.mba.strat_risk.util.Constants;
 
 public class RiskFragment extends BaseFragment {
 
+    @Inject
+    ViewModelProvider.Factory factory;
 
-    RiskFragmentViewModel viewModel;
 
     private RecyclerView recyclerView;
     private RelativeLayout empty;
@@ -28,28 +41,30 @@ public class RiskFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        unitUI();
-
         recyclerView = view.findViewById(R.id.recycler_risk);
         empty = view.findViewById(R.id.empty_relative);
+        unitUI();
     }
 
     private void unitUI() {
         //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
-        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.activity_default_elevation));
+        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
-        //viewModel = new ViewModelProvider(this).get(RiskViewModel.class);
-        //viewModel.initRisk(Constants.RISK_STATUS).observe(getBaseActivity(), this::setRecyclerView);
+        RiskFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(RiskFragmentViewModel.class);
+
+        viewModel.fetchRiskDB(Constants.RISK_STATUS);
+        viewModel.getRiskDB().observe(getViewLifecycleOwner(), this::setRecyclerView);
+
     }
 
-    /*private void setRecyclerView(List<News> ls) {
-        Collections.sort(ls, (o1, o2) -> o1.getPublishedAt().compareTo(o2.getPublishedAt()));
+    private void setRecyclerView(List<News> list) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        RiskAdapter adapter = new RiskAdapter(getBaseActivity(), ls, empty);
-        recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        NewsAdapter adapter = new NewsAdapter(getContext(), list, empty);
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-    }*/
+    }
+
 
 }

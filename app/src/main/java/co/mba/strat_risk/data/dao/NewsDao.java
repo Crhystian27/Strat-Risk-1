@@ -25,6 +25,9 @@ public interface NewsDao {
     @Query("DELETE FROM news_table where id = :idNews")
     void deleteNews(Integer idNews);
 
+    @Query("DELETE FROM news_table")
+    void deleteAllNews();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNews(News news);
 }

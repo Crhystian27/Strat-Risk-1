@@ -72,16 +72,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         if (toolbar != null)
-            if (getSupportFragmentManager().getBackStackEntryCount() != 0){
-                System.out.println("FRAGMENT_TAG -> " + Utilities.getTagFragment(BaseActivity.this));
-
-                if(Constants.TAG_LOGIN.equals(Utilities.getTagFragment(BaseActivity.this))){
-                    moveTaskToBack(true);
-                    finish();
-                }else {
-                    getSupportFragmentManager().popBackStack();
-                }
-            }
+        finish();
         return false;
     }
 

@@ -135,6 +135,7 @@ public class Repository {
         return ls;
     }
 
+    //STATUS LOCAL-(0), OPPORTUNITY-(1), INTERMEDIATE-(2), RISK-(3)
     public LiveData<List<News>> getNewsDB(Integer status) {
         return newsDao.loadNewsStatus(status);
     }
@@ -142,11 +143,12 @@ public class Repository {
     private void addItems(NewsDTO news) {
         List<News> newsDTO = news.getArticles();
         for (int i = 0; i < newsDTO.size(); i++) {
-            newsDao.insertNews(new News(newsDTO.get(i).getTitle(),
+            News data = new News(newsDTO.get(i).getTitle(),
                     newsDTO.get(i).getDescription(), newsDTO.get(i).getAuthor(),
                     newsDTO.get(i).getUrl(), newsDTO.get(i).getUrlToImage(),
-                    newsDTO.get(i).getPublishedAt(), newsDTO.get(i).getContent(), Constants.LOCAL_STATUS));
-            Log.e(TAG, newsDTO.get(i).toString());
+                    newsDTO.get(i).getPublishedAt(), newsDTO.get(i).getContent(), Constants.LOCAL_STATUS);
+            newsDao.insertNews(data);
+            Log.e(TAG, data.toString());
         }
     }
 
