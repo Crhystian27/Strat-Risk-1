@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.RelativeLayout;
 
 import javax.inject.Inject;
@@ -42,7 +43,11 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         layout = findViewById(R.id.login_relative);
         viewModel = ViewModelProviders.of(LoginActivity.this, factory).get(LoginViewModel.class);
-        initUI();
+
+        if (viewModel.initLogin(LoginActivity.this, MainActivity.class)) {
+            initUI();
+            Log.e(getClass().getSimpleName(), "No user");
+        }
     }
 
     private void initUI() {

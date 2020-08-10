@@ -33,8 +33,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection) {
-        return new Repository(apiService, executor, newsDao, userDao, connection);
+    Repository provideRepository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao) {
+        return new Repository(apiService, executor, newsDao, userDao);
     }
 
     @Provides
@@ -62,11 +62,6 @@ public class ApplicationModule {
         return new OkHttpClient.Builder().connectTimeout(Constants.REQUEST_TIMEOUT, TimeUnit.SECONDS);
     }
 
-    @Provides
-    @Singleton
-    InternetConnection providesInternetConnection() {
-        return new InternetConnection();
-    }
 
     @Provides
     @Singleton
@@ -87,7 +82,7 @@ public class ApplicationModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //.baseUrl("https://jsonplaceholder.typicode.com/")
                 //.baseUrl("https://mbariesgos.com/strat-risk/api_users/public/")
-                .baseUrl("http://192.168.0.4:80/")
+                .baseUrl("http://192.168.0.37:80/")
                 .build();
     }
 

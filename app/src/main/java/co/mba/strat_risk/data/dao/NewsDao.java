@@ -8,18 +8,18 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
-import java.util.Objects;
 
 import co.mba.strat_risk.data.entity.News;
-import dagger.Provides;
-
 
 @Dao
 public interface NewsDao {
 
-    //Load New -1, 0 or 1
+    //Load New  Local 0  Opportunity 1 Neutral 2  Risk 3,
     @Query("SELECT * FROM news_table where status = :idStatus")
     LiveData<List<News>> loadNewsStatus(Integer idStatus);
+
+    @Query("SELECT * FROM news_table where id = :idNews")
+    LiveData<News> loadNews(Integer idNews);
 
     //Delete
     @Query("DELETE FROM news_table where id = :idNews")

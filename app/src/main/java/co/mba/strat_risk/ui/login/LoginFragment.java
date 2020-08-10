@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -15,12 +14,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
-
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;

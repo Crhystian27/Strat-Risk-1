@@ -34,6 +34,6 @@ public interface ApiService {
     @GET("api/user")
     Observable<User> getUser(@Header("Authorization-Bearer") String bearer);
 
-    @GET("top-headlines?country=co&apiKey=2433bb7187974bb890590e8593afda40")
+    @GET("http://newsapi.org/v2/top-headlines?country=co&apiKey=2433bb7187974bb890590e8593afda40")
     Observable<NewsDTO> getNews();
 }

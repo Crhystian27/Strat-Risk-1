@@ -13,11 +13,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import co.mba.strat_risk.data.dto.NewsDTO;
+import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
 public class NewsFragmentViewModel extends ViewModel {
 
-    private MutableLiveData<NewsDTO> newsLiveData;
+    private MutableLiveData<NewsDTO> newsDTOLiveData;
+    private LiveData<List<News>> newsLiveData;
     private static final String TAG = "News_FV";
     private Repository repository;
 
@@ -26,14 +28,24 @@ public class NewsFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<NewsDTO> fetchNewsDTO(Context context) {
-        if (this.newsLiveData != null) {
+    public LiveData<NewsDTO> fetchNewsInternet(Context context) {
+        if (this.newsDTOLiveData != null) {
+            Log.e(TAG, newsDTOLiveData.toString());
+            return null;
+        } else {
+            newsDTOLiveData = new MutableLiveData<>();
+            newsDTOLiveData = repository.getNewsInternet(context, newsDTOLiveData);
+        }
+        return newsDTOLiveData;
+    }
+
+    public LiveData<List<News>> fetchNewsDB(Integer status) {
+        if (newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());
             return null;
         } else {
-            newsLiveData = new MutableLiveData<>();
-            newsLiveData = repository.getCurrentNews(context, newsLiveData);
+            newsLiveData = repository.getNewsDB(status);
         }
-        return newsLiveData;
+        return this.newsLiveData;
     }
 }

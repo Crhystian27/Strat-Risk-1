@@ -42,7 +42,6 @@
     </LinearLayout>
 
 
-
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/forgot_progress"
         style="?android:attr/progressBarStyleLarge"

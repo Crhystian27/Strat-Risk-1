@@ -11,8 +11,8 @@ import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
-import co.mba.strat_risk.data.dto.ArticlesDTO;
 
+import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.ui.detail.NewsDetailFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
@@ -23,7 +23,7 @@ public class NewsDetailActivity extends BaseActivity {
     ViewModelProvider.Factory factory;
     NewsDetailViewModel viewModel;
 
-    ArticlesDTO dto;
+    News dto;
     String dto_extra;
 
     @Override
@@ -43,7 +43,7 @@ public class NewsDetailActivity extends BaseActivity {
         if (extras != null) {
             dto_extra = extras.getString(Constants.EXTRA_NEWS);
         }
-        dto = new Gson().fromJson(dto_extra, ArticlesDTO.class);
+        dto = new Gson().fromJson(dto_extra, News.class);
         initUI();
     }
 

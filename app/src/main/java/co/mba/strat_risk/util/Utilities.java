@@ -14,9 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -24,15 +22,11 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
-import co.mba.strat_risk.ui.MainActivity;
 
 public class Utilities {
 

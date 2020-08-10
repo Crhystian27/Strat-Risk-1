@@ -58,6 +58,7 @@
 
     <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
 
+    <string name="toast_no_internet_connection">Comprueba tu conexión a internet e inténtalo de nuevo</string>
     <string name="dialog_no_internet_connection">El teléfono no esta conectado a internet.</string>
     <string name="dialog_airplane_mode">El teléfono esta en modo avión.</string>
 

@@ -22,7 +22,8 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.data.dto.ArticlesDTO;
+
+import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
@@ -31,12 +32,12 @@ import co.mba.strat_risk.util.Utilities;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private Context context;
-    private List<? extends ArticlesDTO> dtoList;
-    private List<? extends ArticlesDTO> filteredList;
+    private List<? extends News> dtoList;
+    private List<? extends News> filteredList;
     private RelativeLayout empty;
     private Dialog dialog;
 
-    public NewsAdapter(Context context, List<? extends ArticlesDTO> dtoList, RelativeLayout empty) {
+    public NewsAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty) {
         this.context = context;
         this.dtoList = dtoList;
         this.dialog = dialog;
@@ -98,12 +99,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         private Context context;
-        private List<? extends ArticlesDTO> dtoList;
+        private List<? extends News> dtoList;
         private Dialog dialog;
         private TextView param1, param2, param3, param4;
         private ImageView param0;
 
-        public ViewHolder(@NonNull View itemView, Context context, List<? extends ArticlesDTO> dtoList, Dialog dialog) {
+        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Dialog dialog) {
             super(itemView);
             this.dialog = dialog;
             this.context = context;
@@ -118,7 +119,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            ArticlesDTO dto = this.dtoList.get(position);
+            News dto = this.dtoList.get(position);
             Intent intent = new Intent(context, NewsDetailActivity.class);
             intent.putExtra(Constants.EXTRA_NEWS, new Gson().toJson(dto));
             context.startActivity(intent);
@@ -128,7 +129,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         @Override
         public boolean onLongClick(View v) {
             int position = getAdapterPosition();
-            ArticlesDTO dto = this.dtoList.get(position);
+            News dto = this.dtoList.get(position);
 
             Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
 

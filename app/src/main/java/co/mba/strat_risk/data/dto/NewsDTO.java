@@ -5,13 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import co.mba.strat_risk.data.entity.News;
+
 public final class NewsDTO {
 
     @SerializedName("totalResults")
     private Integer totalResults;
 
     @SerializedName("articles")
-    private List<ArticlesDTO> articles;
+    private List<News> articles;
 
 
     public NewsDTO() {
@@ -26,11 +28,11 @@ public final class NewsDTO {
         this.totalResults = totalResults;
     }
 
-    public List<ArticlesDTO> getArticles() {
+    public List<News> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<ArticlesDTO> articles) {
+    public void setArticles(List<News> articles) {
         this.articles = articles;
     }
 }

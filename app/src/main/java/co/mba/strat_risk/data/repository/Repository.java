@@ -2,6 +2,7 @@ package co.mba.strat_risk.data.repository;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
@@ -18,13 +19,13 @@ import javax.inject.Singleton;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
-import co.mba.strat_risk.data.dto.ArticlesDTO;
 import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
+import co.mba.strat_risk.ui.MainActivity;
 import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
@@ -39,45 +40,28 @@ public class Repository {
 
     private static final String TAG = "repository";
 
-
     private ApiService apiService;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private Executor executor;
     private NewsDao newsDao;
     private UserDao userDao;
 
-
-    //Internet Connection
-    private InternetConnection connection;
-
     @Inject
-    public Repository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao, InternetConnection connection) {
+    public Repository(ApiService apiService, Executor executor, NewsDao newsDao, UserDao userDao) {
         this.apiService = apiService;
         this.executor = executor;
         this.newsDao = newsDao;
         this.userDao = userDao;
-        this.connection = connection;
     }
 
-    //Load opportunity, interesting and risk
-    /*public LiveData<List<News>> getDBListNews(Integer idStatus) {
-        return newsDao.loadNewsStatus(idStatus);
-    }*/
-
-    private boolean verifyConnectionDialog(Activity activity) {
-
-        return true;
+    public LiveData<User> getCurrentUser(Integer id) {
+        return userDao.loadUser(id);
     }
-
 
     public void getAccessToken(Activity activity, Session session, ContentLoadingProgressBar progressBar) {
-        if (InternetConnection.isAirplaneMode(activity) && !DialogInformation.isShowing) {
-            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_airplane_mode));
-            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_airplane_mode), 0, null);
+        if (InternetConnection.getAirPlaneMode(activity)) {
             progressBar.setVisibility(View.GONE);
-        } else if (InternetConnection.isConnected(activity) == 0 && !DialogInformation.isShowing) {
-            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_no_internet_connection));
-            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_no_internet_connection), 0, null);
+        } else if (InternetConnection.getConnection(activity)) {
             progressBar.setVisibility(View.GONE);
         } else {
             executor.execute(() -> compositeDisposable.add(apiService.getToken(session)
@@ -94,7 +78,7 @@ public class Repository {
 
                     }, throwable -> {
 
-                        DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
+                        //DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
                         Log.e(TAG, throwable.getMessage());
                         progressBar.setVisibility(View.GONE);
                     })));
@@ -117,9 +101,16 @@ public class Repository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
 
+                    AppPreferences.getInstance().setUser(user);
                     userDao.insertUser(user);
+
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    activity.startActivity(intent);
+                    Utilities.removeThisActivityFromRunningActivities(activity.getClass());
+
                     Log.e(TAG, user.toString());
                     progressBar.setVisibility(View.GONE);
+                    Utilities.removeThisActivityFromRunningActivities(activity.getClass());
 
                 }, throwable -> {
                     DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
@@ -130,7 +121,7 @@ public class Repository {
 
 
     //Load news list
-    public MutableLiveData<NewsDTO> getCurrentNews(Context context, MutableLiveData<NewsDTO> ls) {
+    public MutableLiveData<NewsDTO> getNewsInternet(Context context, MutableLiveData<NewsDTO> ls) {
         executor.execute(() -> compositeDisposable.add(apiService.getNews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -144,16 +135,37 @@ public class Repository {
         return ls;
     }
 
+    public LiveData<List<News>> getNewsDB(Integer status) {
+        return newsDao.loadNewsStatus(status);
+    }
+
     private void addItems(NewsDTO news) {
-        List<ArticlesDTO> articlesDTO = news.getArticles();
-        for (int i = 0; i < articlesDTO.size(); i++) {
-            newsDao.insertNews(new News(articlesDTO.get(i).getTitle(),
-                    articlesDTO.get(i).getDescription(), articlesDTO.get(i).getAuthor(),
-                    articlesDTO.get(i).getUrl(), articlesDTO.get(i).getUrlToImage(),
-                    articlesDTO.get(i).getPublishedAt(), Constants.LOCAL_STATUS));
-            Log.e(TAG, articlesDTO.get(i).toString());
+        List<News> newsDTO = news.getArticles();
+        for (int i = 0; i < newsDTO.size(); i++) {
+            newsDao.insertNews(new News(newsDTO.get(i).getTitle(),
+                    newsDTO.get(i).getDescription(), newsDTO.get(i).getAuthor(),
+                    newsDTO.get(i).getUrl(), newsDTO.get(i).getUrlToImage(),
+                    newsDTO.get(i).getPublishedAt(), newsDTO.get(i).getContent(), Constants.LOCAL_STATUS));
+            Log.e(TAG, newsDTO.get(i).toString());
         }
     }
+
+
+   /* private boolean getAirPlaneMode(Activity activity) {
+        if (InternetConnection.isAirplaneMode(activity) && !DialogInformation.isShowing) {
+            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_airplane_mode));
+            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_airplane_mode), 0, null);
+        }
+        return false;
+    }
+
+    private boolean getConnection(Activity activity) {
+        if (InternetConnection.isConnected(activity) == 0 && !DialogInformation.isShowing) {
+            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_no_internet_connection));
+            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_no_internet_connection), 0, null);
+        }
+        return false;
+    }*/
 
 
     //TODO DELETES

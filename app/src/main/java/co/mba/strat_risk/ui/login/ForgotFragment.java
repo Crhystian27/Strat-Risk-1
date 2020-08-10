@@ -46,7 +46,6 @@ public class ForgotFragment extends BaseFragment {
         ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.VISIBLE);
         ((BaseActivity)getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
-
         TextInputEditText email = view.findViewById(R.id.forgot_email);
         LinearLayout linearLayout = view.findViewById(R.id.forgot_button);
         ContentLoadingProgressBar progress = view.findViewById(R.id.forgot_progress);

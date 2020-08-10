@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseApplication;
 import co.mba.strat_risk.data.dto.ServerError;
 import okhttp3.Interceptor;
@@ -27,7 +28,7 @@ public class ErrorInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         if (!isOnline()){
-            backgroundThreadShortToast(BaseApplication.getAppContext(), "Comprueba tu conexión a internet e inténtalo de nuevo");
+            backgroundThreadShortToast(BaseApplication.getAppContext(), BaseApplication.getAppContext().getString(R.string.toast_no_internet_connection));
         }
         Request request = chain.request();
         Response response = chain.proceed(request);
@@ -71,13 +72,7 @@ public class ErrorInterceptor implements Interceptor {
     private static void backgroundThreadShortToast(final Context context, final String msg)
     {
         if(context != null && msg != null) {
-            new Handler(Looper.getMainLooper()).post(new Runnable(){
-                @Override
-                public void run()
-                {
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                }
-            });
+            new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(context, msg, Toast.LENGTH_SHORT).show());
         }
     }
 

@@ -62,6 +62,8 @@
 
     <string name="string_forgot_body">We will send you a code to reset your password.</string>
 
+
+    <string name="toast_no_internet_connection">Please check your internet connection and try again</string>
     <string name="dialog_no_internet_connection">The phone is not connected to the internet.</string>
     <string name="dialog_airplane_mode">The phone is in airplane mode.</string>
 

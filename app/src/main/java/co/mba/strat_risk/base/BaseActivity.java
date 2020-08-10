@@ -91,13 +91,16 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (InternetConnection.isAirplaneMode(this) && !DialogInformation.isShowing) {
+        /*if (InternetConnection.isAirplaneMode(this) && !DialogInformation.isShowing) {
             Log.e(getClass().getSimpleName(), getString(R.string.dialog_airplane_mode));
             DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_airplane_mode), 0, null);
         } else if (InternetConnection.isConnected(this) == 0 && !DialogInformation.isShowing) {
             Log.e(getClass().getSimpleName(), getString(R.string.dialog_no_internet_connection));
             DialogInformation.showDialog(BaseActivity.this, getString(R.string.dialog_no_internet_connection), 0, null);
-        }
+        }*/
+
+        InternetConnection.getAirPlaneMode(this);
+        InternetConnection.getConnection(this);
 
         //Agregar la actividad actual a la lista
         Utilities.addThisActivityToRunningActivityies(getClass());

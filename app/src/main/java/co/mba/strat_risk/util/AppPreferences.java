@@ -2,13 +2,14 @@ package co.mba.strat_risk.util;
 
 import co.mba.strat_risk.base.BaseApplication;
 import co.mba.strat_risk.data.dto.AccessTokenDTO;
+import co.mba.strat_risk.data.entity.User;
 
 
 public class AppPreferences {
     private static AppPreferences instance;
 
     private AccessTokenDTO accessTokenDTO = null;
-    //private UserDT userDT = null;
+    private User user = null;
 
     private AppPreferences() {
     }
@@ -20,27 +21,16 @@ public class AppPreferences {
         return instance;
     }
 
-    /*public UserDT userDT() {
-        if (userDT == null) {
-            userDT = Preferences.getObject(
+    public User getUser() {
+        if (user == null) {
+            user = Preferences.getObject(
                     BaseApplication.getAppContext(),
                     Preferences.PreferenceType.USER,
                     Constants.KEY_USER,
-                    UserDT.class);
+                    User.class);
         }
-        return userDT;
+        return user;
     }
-
-    public void setUserDT(UserDT userDT) {
-        if (userDT != null) {
-            Preferences.setObject(
-                    BaseApplication.getAppContext(),
-                    Preferences.PreferenceType.USER,
-                    Constants.KEY_USER,
-                    userDT);
-        }
-        this.userDT = userDTO;
-    }*/
 
     public AccessTokenDTO getAccessTokenDTO() {
         if (accessTokenDTO == null) {
@@ -54,6 +44,17 @@ public class AppPreferences {
         return accessTokenDTO;
     }
 
+    public void setUser(User user) {
+        if (user != null) {
+            Preferences.setObject(
+                    BaseApplication.getAppContext(),
+                    Preferences.PreferenceType.USER,
+                    Constants.KEY_USER,
+                    user);
+        }
+        this.user = user;
+    }
+
     public void setAccessTokenDTO(AccessTokenDTO accessTokenDTO) {
         if (accessTokenDTO != null) {
             Preferences.setObject(
@@ -64,6 +65,4 @@ public class AppPreferences {
         }
         this.accessTokenDTO = accessTokenDTO;
     }
-
-
 }

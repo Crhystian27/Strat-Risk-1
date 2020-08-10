@@ -6,24 +6,42 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "news_table", indices = {@Index(value = "id", unique = true)})
 public final class News {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private Integer id;
+
+    @SerializedName("title")
     @ColumnInfo(name = "title")
     private String title;
+
+    @SerializedName("description")
     @ColumnInfo(name = "description")
     private String description;
+
+    @SerializedName("author")
     @ColumnInfo(name = "author")
     private String author;
+
+    @SerializedName("url")
     @ColumnInfo(name = "url")
     private String url;
+
+    @SerializedName("urlToImage")
     @ColumnInfo(name = "urlToImage")
     private String urlToImage;
+
+    @SerializedName("publishedAt")
     @ColumnInfo(name = "publishedAt")
     private String publishedAt;
+
+    @SerializedName("content")
+    @ColumnInfo(name = "content")
+    private String content;
 
     // 3(risk) - 2(Interesting) - 1(opportunity) // 0 local
     @ColumnInfo(name = "status")
@@ -33,13 +51,14 @@ public final class News {
     public News() {
     }
 
-    public News(String title, String description, String author, String url, String urlToImage, String publishedAt, Integer status) {
+    public News(String title, String description, String author, String url, String urlToImage, String publishedAt, String content, Integer status) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.url = url;
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
+        this.content = content;
         this.status = status;
     }
 
@@ -99,6 +118,14 @@ public final class News {
         this.publishedAt = publishedAt;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -117,6 +144,7 @@ public final class News {
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 ", publishedAt='" + publishedAt + '\'' +
+                ", content='" + content + '\'' +
                 ", status=" + status +
                 '}';
     }

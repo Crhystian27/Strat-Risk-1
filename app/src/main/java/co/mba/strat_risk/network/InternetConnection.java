@@ -1,24 +1,23 @@
 package co.mba.strat_risk.network;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.IntRange;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import co.mba.strat_risk.R;
+import co.mba.strat_risk.widgets.DialogInformation;
 
-@Singleton
+
 public class InternetConnection {
 
     private static final String TAG = "Internet Status";
 
-    @Inject
     public InternetConnection() {
     }
 
@@ -52,6 +51,23 @@ public class InternetConnection {
         return Settings.System.getInt(context.getContentResolver(),
                 Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
     }
+
+    public static boolean getAirPlaneMode(Activity activity) {
+        if (isAirplaneMode(activity) && !DialogInformation.isShowing) {
+            Log.e(TAG, activity.getString(R.string.dialog_airplane_mode));
+            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_airplane_mode), 0, null);
+        }
+        return false;
+    }
+
+    public static boolean getConnection(Activity activity) {
+        if (isConnected(activity) == 0 && !DialogInformation.isShowing) {
+            Log.e(TAG, activity.getString(R.string.dialog_no_internet_connection));
+            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_no_internet_connection), 0, null);
+        }
+        return false;
+    }
+
 }
 
 
