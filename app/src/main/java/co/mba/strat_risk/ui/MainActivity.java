@@ -1,6 +1,7 @@
 package co.mba.strat_risk.ui;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -12,12 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -75,9 +81,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         viewDrawer = navigationView.getHeaderView(0);
 
         ImageView nv_image = viewDrawer.findViewById(R.id.nv_image);
+
+        Glide.with(MainActivity.this)
+                .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_notifications_black_24dp).error(R.drawable.ic_notifications_black_24dp))
+                .load(R.drawable.ic_notifications_black_24dp)
+                .into(new SimpleTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        nv_image.setBackground(getDrawable(R.drawable.background_icon_navigationview));
+                    }
+                });
+
         TextView nv_name = viewDrawer.findViewById(R.id.nv_name);
         TextView nv_email = viewDrawer.findViewById(R.id.nv_email);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        viewModel.getCurrentUser();
+        viewModel.getUser().observe(this, user -> {
+            nv_name.setText(user.getName());
+            nv_email.setText(user.getEmail());
+        });
 
         initUI();
 
@@ -118,19 +142,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initUI() {
 
-        setSupportActionBar(true, true);
+        setSupportActionBar(false, true);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
 
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
-                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
                 break;
             case R.id.navigation_opportunity:
                 //counterNews(this, Constants.OPPORTUNITY_STATUS);
@@ -148,16 +172,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     };
 
-    private void counterNews(Context context, Integer idStatus) {
-        /*viewModel.getNews(idStatus).observe(this, news -> {
-            String a = String.valueOf(news.size());
-
-        });*/
-
-        //viewModel.getNewsDTO(context).observe(this, newsDTOS -> {
-
-        //});
-    }
+    //TODO COUNTER PARA CADA FRGMENT
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

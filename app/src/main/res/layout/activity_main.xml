@@ -35,7 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
-        app:backgroundTint="@color/textWhite"
+        app:backgroundTint="@color/colorSecondary"
+
         app:itemRippleColor="@color/colorPrimary"
         app:menu="@menu/bottom_nav_menu" />
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/custom_height256dp"
     android:background="@drawable/nav_header_main_background"
-    android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
 
@@ -12,14 +11,15 @@
         android:id="@+id/nv_image"
         android:layout_width="@dimen/custom_image_size128dp"
         android:layout_height="@dimen/custom_image_size128dp"
+        android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:background="@android:color/white"
         android:src="@drawable/ic_notifications_black_24dp"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/custom_spacing4dp"
         android:layout_marginBottom="@dimen/custom_spacing4dp"
         android:orientation="vertical">
@@ -47,4 +47,4 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

@@ -54,9 +54,7 @@ public class Repository {
         this.userDao = userDao;
     }
 
-    public LiveData<User> getCurrentUser(Integer id) {
-        return userDao.loadUser(id);
-    }
+
 
     public void getAccessToken(Activity activity, Session session, ContentLoadingProgressBar progressBar) {
         if (InternetConnection.getAirPlaneMode(activity)) {
