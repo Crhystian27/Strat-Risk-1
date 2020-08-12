@@ -46,6 +46,7 @@ public class LoginActivity extends BaseActivity {
 
         if (viewModel.initLogin(LoginActivity.this, MainActivity.class)) {
             initUI();
+            //Next Activity si existe un usuario... si no muestra el login
             Log.e(getClass().getSimpleName(), "No user");
         }
     }

@@ -29,7 +29,6 @@ public class RiskFragment extends BaseFragment {
     @Inject
     ViewModelProvider.Factory factory;
 
-
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 
@@ -47,8 +46,8 @@ public class RiskFragment extends BaseFragment {
     }
 
     private void unitUI() {
-        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
-        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_risk));
+        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
         RiskFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(RiskFragmentViewModel.class);
 

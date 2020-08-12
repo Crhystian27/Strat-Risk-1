@@ -2,10 +2,12 @@ package co.mba.strat_risk.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import co.mba.strat_risk.ui.opportunity.OpportunityFragment;
 import co.mba.strat_risk.ui.risk.RiskFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
+import co.mba.strat_risk.widgets.SnackBarInformation;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,10 +43,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     DrawerLayout drawerLayout;
     View viewDrawer;
 
+    RelativeLayout layout;
+    private boolean recentlyBackPressed = false;
+    private Runnable exitRunnable = () -> recentlyBackPressed = false;
+    private Handler exitHandler = new Handler();
+
 
     @Override
     protected int toolbarId() {
-        return R.id.toolbar_material;
+        return R.id.toolbar_main;
     }
 
     @Override
@@ -54,6 +62,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        layout = findViewById(R.id.main_relative);
+
         viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainViewModel.class);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -70,12 +80,34 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.setNavigationItemSelectedListener(this);
 
         initUI();
-        setSupportActionBar(true, true);
+
     }
 
 
     @Override
     public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() != 0) {
+            System.out.println("FRAGMENT_TAG -> " + Utilities.getTagFragment(MainActivity.this));
+
+            if (Constants.TAG_MAIN.equals(Utilities.getTagFragment(MainActivity.this))) {
+                if (recentlyBackPressed) {
+                    exitHandler.removeCallbacks(exitRunnable);
+                    recentlyBackPressed = false;
+                    moveTaskToBack(true);
+                    finish();
+
+                } else {
+                    recentlyBackPressed = true;
+
+                    SnackBarInformation.showSnackBar(MainActivity.this, layout, getString(R.string.press_again_to_exit), "fonts/montserrat_regular_.ttf");
+                    exitHandler.postDelayed(exitRunnable, 2000L);
+                }
+            } else {
+                getSupportFragmentManager().popBackStack();
+            }
+        }
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -85,6 +117,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initUI() {
+
+        setSupportActionBar(true, true);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         // Passing each menu ID as a set of Ids because each
 
@@ -100,15 +134,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.navigation_opportunity:
                 //counterNews(this, Constants.OPPORTUNITY_STATUS);
-                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
                 break;
             case R.id.navigation_interesting:
                 //counterNews(this, Constants.INTERESTING_STATUS);
-                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
                 break;
             case R.id.navigation_risk:
                 //counterNews(this, Constants.RISK_STATUS);
-                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
                 break;
         }
         return true;

@@ -1,5 +1,7 @@
 package co.mba.strat_risk.network;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.module.AppGlideModule;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,6 +25,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class ApplicationModule {
+
+
+    @Provides
+    @Singleton
+    AppGlideModule provideAppGlideModule(){
+        return provideAppGlideModule();
+    }
 
     @Provides
     @Singleton
@@ -82,7 +91,7 @@ public class ApplicationModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 //.baseUrl("https://jsonplaceholder.typicode.com/")
                 //.baseUrl("https://mbariesgos.com/strat-risk/api_users/public/")
-                .baseUrl("http://192.168.0.37:80/")
+                .baseUrl("http://192.168.0.4:80/")
                 .build();
     }
 

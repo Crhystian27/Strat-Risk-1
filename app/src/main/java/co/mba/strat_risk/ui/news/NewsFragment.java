@@ -49,8 +49,8 @@ public class NewsFragment extends BaseFragment {
 
 
     private void unitUI() {
-        //((BaseActivity) getActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
-        //((BaseActivity) getActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
+        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
         NewsFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(NewsFragmentViewModel.class);
 

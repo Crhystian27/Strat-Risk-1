@@ -48,8 +48,8 @@ public class InterestingFragment extends BaseFragment {
     }
 
     private void unitUI() {
-        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_interesting));
-        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_interesting));
+        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
         InterestingFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(InterestingFragmentViewModel.class);
 

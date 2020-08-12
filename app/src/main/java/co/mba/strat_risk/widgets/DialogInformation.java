@@ -49,6 +49,7 @@ public class DialogInformation {
         RadioButton radio2 = dialog.findViewById(R.id.dialog_radio_button2);
 
         Utilities.getBitmap(activity, img);
+
         Glide.with(activity.getApplicationContext())
                 .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
                 .load(drawable)

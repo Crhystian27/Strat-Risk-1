@@ -39,14 +39,14 @@ public class OpportunityFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        recyclerView = view.findViewById(R.id.recycler_interesting);
+        recyclerView = view.findViewById(R.id.recycler_opportunity);
         empty = view.findViewById(R.id.empty_relative);
         unitUI();
     }
 
     private void unitUI() {
-        //((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_opportunity));
-        //((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+        ((BaseActivity)getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_opportunity));
+        ((BaseActivity)getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
         OpportunityFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(OpportunityFragmentViewModel.class);
 
@@ -56,14 +56,14 @@ public class OpportunityFragment extends BaseFragment {
 
     private void setRecyclerView(List<News> list) {
         //TODO VALIDAR SI EL RECYCLER NO ES EMPTY
-        if(recyclerView != null){
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
-            NewsAdapter adapter = new NewsAdapter(getContext(), list, empty);
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-        }
+        //if(recyclerView != null){
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        NewsAdapter adapter = new NewsAdapter(getContext(), list, empty);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        //}
 
     }
 }

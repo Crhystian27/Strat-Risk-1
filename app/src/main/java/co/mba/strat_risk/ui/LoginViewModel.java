@@ -2,6 +2,7 @@ package co.mba.strat_risk.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -21,6 +22,9 @@ public class LoginViewModel extends ViewModel {
         if (AppPreferences.getInstance().getUser() != null) {
             Intent intent = new Intent(activity, aClass);
             activity.startActivity(intent);
+            Log.e(TAG, "");
+            activity.finish();
+
         }
         return true;
     }
