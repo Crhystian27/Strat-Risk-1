@@ -4,13 +4,15 @@
     <color name="colorPrimaryDark">#090821</color>
     <color name="colorPrimaryLight">#31A5DE</color>
     <color name="colorSecondary">#AECAD3</color>
-    <color name="colorAccent">#404B61</color>
+    <color name="colorAccent">#31A5DE</color>
     <color name="colorAccent_800">#c8134a</color>
     <color name="textWhite">#FFFFFF</color>
+    <color name="textHint">#BDBDBD</color>
     <color name="shadow">#26000000</color>
     <color name="backgroundWhite">#FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@android:color/darker_gray</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#BDBDBD</color>
 
     <color name="gradient_primary">#6271f6</color>
     <color name="gradient_accent">#f9417a</color>

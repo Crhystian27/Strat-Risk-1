@@ -52,7 +52,6 @@ public class LoginFragment extends BaseFragment {
         ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.GONE);
 
         TextView textView = view.findViewById(R.id.forgot_password);
-        textView.setText(getString(R.string.string_forgot_password));
 
         textView.setOnClickListener(v ->
                 Utilities.loadFragment(Objects.requireNonNull(getActivity()), new ForgotFragment(), R.id.login_fragment, Constants.TAG_FORGOT));

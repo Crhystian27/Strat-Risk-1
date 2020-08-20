@@ -4,7 +4,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/title"
@@ -13,8 +13,9 @@
         android:layout_marginTop="@dimen/custom_spacing32dp"
         android:fontFamily="@font/montserrat_black"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="@string/app_name"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorWhite"
         android:textSize="40sp" />
 
     <include
@@ -42,10 +43,11 @@
             android:fontFamily="@font/montserrat_regular_"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/string_accept"
-            android:textColor="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorWhite"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/custom_text_size16sp"
             android:textStyle="bold"
-            app:buttonTint="@color/colorPrimary" />
+            app:buttonTint="@color/colorPrimaryLight" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,13 +57,15 @@
         android:layout_above="@+id/forgot_password"
         android:layout_marginStart="@dimen/custom_spacing16dp"
         android:layout_marginEnd="@dimen/custom_spacing16dp"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
+            android:fontFamily="@font/montserrat_regular_"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:background="@drawable/background_button_accent2"
             android:gravity="center"
             android:paddingLeft="30dp"
@@ -69,7 +73,7 @@
             android:paddingRight="30dp"
             android:paddingBottom="10dp"
             android:text="@string/string_login"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorPrimaryLight"
             android:textSize="@dimen/custom_text_size16sp" />
     </LinearLayout>
 
@@ -79,26 +83,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/custom_spacing16dp"
-        android:layout_marginTop="@dimen/custom_spacing8dp"
-        android:layout_marginEnd="@dimen/custom_spacing16dp"
+        android:layout_marginTop="@dimen/custom_spacing16dp"
+        android:layout_marginEnd="@dimen/custom_spacing24dp"
         android:layout_marginBottom="@dimen/custom_spacing16dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="@font/montserrat_regular_"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:gravity="center"
-        android:paddingTop="@dimen/custom_spacing8dp"
-        android:paddingBottom="@dimen/custom_spacing8dp"
         android:text="@string/string_forgot_password"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/custom_text_size16sp"
         android:textStyle="bold" />
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/login_progress"
+        android:visibility="gone"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone" />
+         />
 </RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 
     <string name="app_name">MBA Strat -Risk</string>
@@ -51,12 +51,12 @@
     <string name="string_username">Usuario</string>
     <string name="string_password">Constraseña</string>
     <string name="string_login">Iniciar Sesión</string>
-    <string name="string_forgot_password">¿Olvidó su contraseña?</string>
+    <string name="string_forgot_password">\¿<u>Olvidó\u0020su\u0020contraseña</u>\?</string>
 
     <string name="string_forgot">Restaurar el acceso</string>
     <string name="string_log_in">Inicia sesión</string>
 
-    <string name="string_accept">\u0020\u0020\u0020\u0020Acepto los términos \u0026 condiciones.</string>
+    <string name="string_accept">\u0020\u0020\u0020\u0020<u>Acepto los términos \u0026 condiciones.</u></string>
 
     <string name="toast_no_internet_connection">Comprueba tu conexión a internet e inténtalo de nuevo</string>
     <string name="dialog_no_internet_connection">El teléfono no esta conectado a internet.</string>
