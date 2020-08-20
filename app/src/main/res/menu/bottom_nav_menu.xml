@@ -2,25 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO Change title for number of News. -->
     <item
         android:id="@+id/navigation_news"
-        android:title="@string/title_news"
-        app:showAsAction="ifRoom" />
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:orderInCategory="1"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_opportunity"
-        android:title="@string/title_opportunity"
-        app:showAsAction="ifRoom" />
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:orderInCategory="2"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_interesting"
-        android:title="@string/title_interesting"
-        app:showAsAction="ifRoom" />
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:orderInCategory="3"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_risk"
-        android:title="@string/title_risk"
-        app:showAsAction="ifRoom" />
+        android:enabled="true"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:orderInCategory="4"
+        android:title="" />
 
 </menu>

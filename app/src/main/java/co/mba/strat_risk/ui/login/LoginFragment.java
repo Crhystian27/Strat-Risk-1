@@ -48,9 +48,7 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
-
         ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.GONE);
-
         TextView textView = view.findViewById(R.id.forgot_password);
 
         textView.setOnClickListener(v ->

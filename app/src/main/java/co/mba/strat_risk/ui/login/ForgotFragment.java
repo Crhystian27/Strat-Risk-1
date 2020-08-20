@@ -42,9 +42,10 @@ public class ForgotFragment extends BaseFragment {
     }
 
     private void initUi(View view) {
-        ((BaseActivity)getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.string_forgot));
+        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.string_forgot));
         ((BaseActivity) getBaseActivity()).getToolbar().setVisibility(View.VISIBLE);
-        ((BaseActivity)getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
+        ((BaseActivity) getBaseActivity()).getToolbar().setNavigationOnClickListener((View.OnClickListener) v -> ((BaseActivity) getBaseActivity()).onBackPressed());
+        ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
         TextInputEditText email = view.findViewById(R.id.forgot_email);
         LinearLayout linearLayout = view.findViewById(R.id.forgot_button);

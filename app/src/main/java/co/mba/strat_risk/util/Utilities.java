@@ -71,7 +71,7 @@ public class Utilities {
     public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value, String TAG) {
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_out_right, android.R.anim.slide_in_left);
+        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         transaction.replace(value, fragment);
         transaction.addToBackStack(TAG);
         transaction.commit();

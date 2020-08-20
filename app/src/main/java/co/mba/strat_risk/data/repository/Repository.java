@@ -104,11 +104,10 @@ public class Repository {
 
                     Intent intent = new Intent(activity, MainActivity.class);
                     activity.startActivity(intent);
-                    Utilities.removeThisActivityFromRunningActivities(activity.getClass());
-
                     Log.e(TAG, user.toString());
                     progressBar.setVisibility(View.GONE);
                     Utilities.removeThisActivityFromRunningActivities(activity.getClass());
+                    activity.finish();
 
                 }, throwable -> {
                     DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);

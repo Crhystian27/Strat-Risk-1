@@ -23,6 +23,7 @@ public class MainViewModel extends ViewModel {
 
     private LiveData<User> userLiveData;
     private Repository repository;
+    private LiveData<List<News>> newsLiveData;
 
     @Inject
     public MainViewModel(Repository repository) {
@@ -42,27 +43,18 @@ public class MainViewModel extends ViewModel {
         return this.userLiveData;
     }
 
-
-    //Internet
-    /*public LiveData<List<NewsDTO>> getNewsDTO(Context context) {
-        if (this.newsDTOLiveData != null) {
-            Log.e(TAG, newsDTOLiveData.toString());
-            return null;
-        } else {
-            newsDTOLiveData = new MutableLiveData<>();
-            //newsDTOLiveData = repository.getCurrentNews(context, newsDTOLiveData);
-            return this.newsDTOLiveData;
-        }
-    }
-
-    //Local
-    public LiveData<List<News>> getNews(Integer idStatus) {
+    public void initNews(Integer id) {
         if (this.newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());
-            return null;
-        } else {
-            //newsLiveData = repository.getDBListNews(idStatus);
-            return this.newsLiveData;
+            return;
+
         }
-    }*/
+        newsLiveData = repository.getNewsDB(id);
+    }
+
+    public LiveData<List<News>> getLocalNews() {
+        return this.newsLiveData;
+    }
+
+
 }

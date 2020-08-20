@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -24,6 +27,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -48,6 +53,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     BottomNavigationView bottomNavigationView;
     DrawerLayout drawerLayout;
     View viewDrawer;
+    View notificationBadge;
+
 
     RelativeLayout layout;
     private boolean recentlyBackPressed = false;
@@ -79,8 +86,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         viewDrawer = navigationView.getHeaderView(0);
+        navigationView.setNavigationItemSelectedListener(this);
 
         ImageView nv_image = viewDrawer.findViewById(R.id.nv_image);
+        TextView nv_name = viewDrawer.findViewById(R.id.nv_name);
+        TextView nv_email = viewDrawer.findViewById(R.id.nv_email);
 
         Glide.with(MainActivity.this)
                 .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_notifications_black_24dp).error(R.drawable.ic_notifications_black_24dp))
@@ -92,19 +102,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     }
                 });
 
-        TextView nv_name = viewDrawer.findViewById(R.id.nv_name);
-        TextView nv_email = viewDrawer.findViewById(R.id.nv_email);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
         viewModel.getCurrentUser();
         viewModel.getUser().observe(this, user -> {
             nv_name.setText(user.getName());
             nv_email.setText(user.getEmail());
         });
 
-        initUI();
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+        addBadgeView(Constants.LOCAL_STATUS);
+
+        setSupportActionBar(false, true);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    private void addBadgeView(Integer value) {
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(value);
+        notificationBadge = LayoutInflater.from(this).inflate(R.layout.notification_badge, menuView, false);
+        itemView.addView(notificationBadge);
     }
 
 
@@ -135,49 +159,45 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout = findViewById(R.id.drawer_layout);
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
     }
 
-    private void initUI() {
-
-        setSupportActionBar(false, true);
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        // Passing each menu ID as a set of Ids because each
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
-
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
-                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
+                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                notificationBadge.setVisibility(View.GONE);
+                addBadgeView(Constants.LOCAL_STATUS);
                 break;
             case R.id.navigation_opportunity:
-                //counterNews(this, Constants.OPPORTUNITY_STATUS);
-                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
+                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                notificationBadge.setVisibility(View.GONE);
+                addBadgeView(Constants.OPPORTUNITY_STATUS);
                 break;
             case R.id.navigation_interesting:
-                //counterNews(this, Constants.INTERESTING_STATUS);
-                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                notificationBadge.setVisibility(View.GONE);
+                addBadgeView(Constants.INTERESTING_STATUS);
                 break;
             case R.id.navigation_risk:
-                //counterNews(this, Constants.RISK_STATUS);
-                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN2);
+                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                notificationBadge.setVisibility(View.GONE);
+                addBadgeView(Constants.RISK_STATUS);
                 break;
         }
         return true;
     };
 
-    //TODO COUNTER PARA CADA FRGMENT
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+    private void newsCounter(Integer id) {
+        viewModel.initNews(id);
+        viewModel.getLocalNews().observe(this, news -> {
+            Integer count = news.size();
+            //getToolbar().setTitle(count);
+        });
+
+
     }
 
 

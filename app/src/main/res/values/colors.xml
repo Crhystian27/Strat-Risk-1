@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#090821</color>
     <color name="colorPrimaryLight">#31A5DE</color>
     <color name="colorSecondary">#AECAD3</color>
+    <color name="colorNavigation">#404B61</color>
     <color name="colorAccent">#31A5DE</color>
     <color name="colorAccent_800">#c8134a</color>
     <color name="textWhite">#FFFFFF</color>
