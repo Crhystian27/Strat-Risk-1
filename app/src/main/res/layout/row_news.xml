@@ -8,7 +8,7 @@
     android:layout_marginStart="@dimen/custom_spacing4dp"
     android:layout_marginTop="@dimen/custom_spacing4dp"
     android:layout_marginEnd="@dimen/custom_spacing4dp"
-    app:cardBackgroundColor="@color/backgroundWhite"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="@dimen/custom_cornerRadius15dp"
     app:cardElevation="@dimen/custom_spacing4dp">
 
@@ -46,13 +46,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/custom_spacing4dp"
                 android:layout_marginStart="@dimen/custom_spacing4dp"
+                android:layout_marginEnd="@dimen/custom_spacing4dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/montserrat_regular_"
                 android:gravity="start"
                 android:maxLines="1"
                 android:text="@string/row_title"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorPrimaryLight"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,19 +62,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/custom_spacing4dp"
                 android:layout_marginStart="@dimen/custom_spacing4dp"
+                android:layout_marginEnd="@dimen/custom_spacing4dp"
                 android:ellipsize="end"
+                android:fontFamily="@font/montserrat_regular_"
                 android:gravity="start"
                 android:maxLines="2"
                 android:text="@string/row_body"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/colorWhite" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="@dimen/custom_spacing4dp"
                 android:layout_gravity="bottom"
+                android:layout_marginStart="@dimen/custom_spacing4dp"
                 android:background="@drawable/side_nav_bar" />
         </LinearLayout>
 

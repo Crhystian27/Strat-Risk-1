@@ -17,19 +17,18 @@
         android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_main"
-        android:layout_marginBottom="?attr/actionBarSize" />
+        android:layout_below="@id/chipNavigationView" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
+        android:id="@+id/chipNavigationView"
         android:layout_width="match_parent"
-        android:elevation="@dimen/custom_elevation16dp"
         android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:backgroundTint="@color/colorNavigation"
-        app:itemIconTint="@color/color_item_navigation_icon"
-        app:itemRippleColor="@color/colorPrimaryLight"
-        app:menu="@menu/bottom_nav_menu" />
+        android:layout_below="@id/toolbar_main"
+        app:cnb_badgeColor="@color/colorPrimary"
+        app:cnb_unselectedColor="@color/textHint"
+        android:background="@drawable/background_navigation_view"
+        android:elevation="@dimen/custom_elevation16dp"
+        app:cnb_menuResource="@menu/bottom_nav_menu"
+        app:cnb_textAppearance="@style/CustomChipNavigationBar" />
 
 </RelativeLayout>

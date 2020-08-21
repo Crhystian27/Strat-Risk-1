@@ -13,6 +13,10 @@
     <color name="backgroundWhite">#FFFFFF</color>
     <color name="colorWhite">#FFFFFF</color>
 
+    <color name="colorOpportunity">#96D22A</color>
+    <color name="colorInteresting">#FAC300</color>
+    <color name="colorRisk">#F91100</color>
+
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#BDBDBD</color>
 
     <color name="gradient_primary">#6271f6</color>

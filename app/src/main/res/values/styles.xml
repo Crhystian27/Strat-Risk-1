@@ -60,8 +60,9 @@
         <item name="android:textColor">@color/textWhite</item>
     </style>
 
-    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">20sp</item>
+
+    <style name="CustomChipNavigationBar" parent="@style/TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/montserrat_regular_</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>

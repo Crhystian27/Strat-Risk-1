@@ -31,6 +31,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import javax.inject.Inject;
 
@@ -50,7 +51,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Inject
     ViewModelProvider.Factory factory;
     MainViewModel viewModel;
-    BottomNavigationView bottomNavigationView;
+    //BottomNavigationView bottomNavigationView;
+    ChipNavigationBar chipNavigationBar;
     DrawerLayout drawerLayout;
     View viewDrawer;
     View notificationBadge;
@@ -75,7 +77,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        chipNavigationBar = findViewById(R.id.chipNavigationView);
+
+        if(savedInstanceState == null){
+            chipNavigationBar.setItemSelected(R.id.navigation_news, true);
+            Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+        }
+
         layout = findViewById(R.id.main_relative);
+
+        setSupportActionBar(false, true);
 
         viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainViewModel.class);
 
@@ -108,13 +120,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             nv_email.setText(user.getEmail());
         });
 
+        chipNavigationBar.setOnItemSelectedListener((ChipNavigationBar.OnItemSelectedListener) id -> {
+            switch (id) {
+                case R.id.navigation_news:
+                    Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                    break;
+                case R.id.navigation_opportunity:
+                    Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                    break;
+                case R.id.navigation_interesting:
+                    Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                    break;
+                case R.id.navigation_risk:
+                    Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                    break;
+            }
+        });
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-        addBadgeView(Constants.LOCAL_STATUS);
 
-        setSupportActionBar(false, true);
+        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+
+        //addBadgeView(Constants.LOCAL_STATUS);
+
 
     }
 
@@ -124,12 +152,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
-    private void addBadgeView(Integer value) {
+    /*private void addBadgeView(Integer value) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
         BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(value);
         notificationBadge = LayoutInflater.from(this).inflate(R.layout.notification_badge, menuView, false);
         itemView.addView(notificationBadge);
-    }
+    }*/
 
 
     @Override
@@ -163,7 +191,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
+    /*private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
                 Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
@@ -187,7 +215,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
         }
         return true;
-    };
+    };*/
 
 
     private void newsCounter(Integer id) {
