@@ -15,18 +15,24 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import co.mba.strat_risk.R;
+import co.mba.strat_risk.adapter.NewsAdapter;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.entity.News;
 
@@ -67,8 +73,7 @@ public class Utilities {
     }*/
 
 
-    //TODO ENVIAR UN BUNDLE AL FRAGMENT
-    public static void loadFragment(FragmentActivity context, BaseFragment fragment, Integer value, String TAG) {
+    public static void loadFragment(FragmentActivity context, Fragment fragment, Integer value, String TAG) {
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -78,10 +83,13 @@ public class Utilities {
     }
 
 
-    //TODO IMPLEMENT UN RECYCLERVIEW UTIL
-    public void setRecyclerView(Activity activity, List<News> list){
-
-
+    public static void setRecyclerView(Context context, RelativeLayout empty, List<News> list, RecyclerView recyclerView, Integer status) {
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        NewsAdapter adapter = new NewsAdapter(context, list, empty, status);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public static String getTagFragment(FragmentActivity activity) {

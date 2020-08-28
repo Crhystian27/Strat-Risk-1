@@ -16,7 +16,6 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
 import co.mba.strat_risk.data.dto.NewsDTO;
@@ -53,8 +52,6 @@ public class Repository {
         this.newsDao = newsDao;
         this.userDao = userDao;
     }
-
-
 
     public void getAccessToken(Activity activity, Session session, ContentLoadingProgressBar progressBar) {
         if (InternetConnection.getAirPlaneMode(activity)) {

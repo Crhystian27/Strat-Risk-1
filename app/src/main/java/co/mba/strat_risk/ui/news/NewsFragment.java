@@ -1,16 +1,16 @@
 package co.mba.strat_risk.ui.news;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -18,19 +18,18 @@ import java.util.List;
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
-import co.mba.strat_risk.adapter.NewsAdapter;
 import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.util.Constants;
+import co.mba.strat_risk.util.Utilities;
 
 
 public class NewsFragment extends BaseFragment {
 
     @Inject
     ViewModelProvider.Factory factory;
-
     private RecyclerView recyclerView;
     private RelativeLayout empty;
 
@@ -49,31 +48,25 @@ public class NewsFragment extends BaseFragment {
 
 
     private void unitUI() {
-        ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.title_news));
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
-        NewsFragmentViewModel viewModel = ViewModelProviders.of(this, factory).get(NewsFragmentViewModel.class);
+        NewsFragmentViewModel viewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsFragmentViewModel.class);
 
-        if (InternetConnection.getAirPlaneMode(getActivity()) || InternetConnection.getConnection(getActivity())) {
+        if (InternetConnection.getAirPlaneMode(getBaseActivity()) || InternetConnection.getConnection(getBaseActivity())) {
             viewModel.fetchNewsDB(Constants.LOCAL_STATUS);
-            viewModel.getNewsDB().observe(getViewLifecycleOwner(), this::setRecyclerView);
-            Log.e(getClass().getSimpleName(), "Status Local " + Constants.LOCAL_STATUS);
+            viewModel.getNewsDB().observe(getViewLifecycleOwner(), news -> {
+                Log.e(getClass().getSimpleName(), "Status Local " + Constants.LOCAL_STATUS);
+                Utilities.setRecyclerView(getContext(), empty, news, recyclerView, Constants.LOCAL_STATUS);
+                ((BaseActivity) getBaseActivity()).getToolbar().setTitle(news.size() + getResources().getString(R.string.app_name));
+            });
+
         } else {
             viewModel.fetchNewsInternet(getActivity()).observe(getViewLifecycleOwner(), newsDTO -> {
-                List<News> list = newsDTO.getArticles();
                 Log.e(getClass().getSimpleName(), "Status Internet");
-                setRecyclerView(list);
+                List<News> list = newsDTO.getArticles();
+                ((BaseActivity) getBaseActivity()).getToolbar().setTitle("(" + list.size() + ")" + getResources().getString(R.string.app_name));
+                Utilities.setRecyclerView(getContext(), empty, list, recyclerView, Constants.LOCAL_STATUS);
             });
         }
-    }
-
-
-    private void setRecyclerView(List<News> list) {
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        NewsAdapter adapter = new NewsAdapter(getContext(), list, empty);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
     }
 }

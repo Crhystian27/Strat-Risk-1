@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Strat - Risk MBA</string>
+    <string name="app_name">\u0020Strat - Risk\u0020</string>
 
     <string name="app_subtitle">MBA Riesgos</string>
 
@@ -35,6 +35,8 @@
 
     <string name="string_name">Name</string>
     <string name="string_email">Email</string>
+
+    <string name="string_save_selection">Save news as\u003A</string>
 
     <string name="nv_string_title_menu">Menu</string>
     <string name="nv_string_safe">Is there a transfer to insurance?</string>

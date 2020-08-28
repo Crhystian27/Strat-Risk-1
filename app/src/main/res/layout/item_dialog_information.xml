@@ -43,12 +43,14 @@
                 android:clickable="true"
                 android:drawableBottom="@drawable/radiobutton_check"
                 android:focusable="true"
+                android:fontFamily="@font/montserrat_light"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingTop="16dp"
                 android:text="@string/dialog_policy_private"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/custom_text_size14sp" />
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/custom_text_size14sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button2"
@@ -61,12 +63,14 @@
                 android:clickable="true"
                 android:drawableBottom="@drawable/radiobutton_uncheck"
                 android:focusable="true"
+                android:fontFamily="@font/montserrat_light"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingTop="16dp"
                 android:text="@string/dialog_policy_service"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/custom_text_size14sp" />
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/custom_text_size14sp"
+                android:textStyle="bold" />
         </RadioGroup>
 
 
@@ -78,8 +82,8 @@
             android:layout_marginEnd="@dimen/custom_spacing16dp"
             android:gravity="start"
             android:hint="@string/dialog_alert_dialog"
-            android:textColor="@android:color/black"
-
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
             android:textSize="@dimen/custom_spacing18sp" />
 
         <LinearLayout
@@ -99,6 +103,7 @@
                 android:layout_marginEnd="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_button_accent"
+                android:fontFamily="@font/montserrat_regular_"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingLeft="30dp"
@@ -106,8 +111,8 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="@string/btn_cancel"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/custom_text_size14sp" />
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="@dimen/custom_text_size16sp" />
 
             <TextView
                 android:id="@+id/txt_dialog_accept"
@@ -115,7 +120,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_button_accent2"
+                android:background="@drawable/background_button_accent"
+                android:fontFamily="@font/montserrat_regular_"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingLeft="30dp"
@@ -123,8 +129,8 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="@string/btn_accept"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/custom_text_size14sp" />
+                android:textColor="@color/colorPrimaryLight"
+                android:textSize="@dimen/custom_text_size16sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -142,7 +148,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_home_black_24dp"
+            android:src="@drawable/ic_rss"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>

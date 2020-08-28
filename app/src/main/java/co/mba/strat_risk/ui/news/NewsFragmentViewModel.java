@@ -32,7 +32,6 @@ public class NewsFragmentViewModel extends ViewModel {
     public LiveData<NewsDTO> fetchNewsInternet(Context context) {
         if (this.newsDTOLiveData != null) {
             Log.e(TAG, newsDTOLiveData.toString());
-            return null;
         } else {
             newsDTOLiveData = new MutableLiveData<>();
             newsDTOLiveData = repository.getNewsInternet(context, newsDTOLiveData);

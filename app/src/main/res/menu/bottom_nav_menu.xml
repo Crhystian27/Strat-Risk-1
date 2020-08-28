@@ -4,31 +4,30 @@
 
     <item
         android:id="@+id/navigation_news"
-        android:icon="@drawable/ic_newspaper"
         android:orderInCategory="1"
         android:title="@string/title_news"
-        app:cnb_iconColor="@color/colorWhite" />
-
-    <item
-        android:id="@+id/navigation_opportunity"
-        android:icon="@drawable/ic_oportunidad"
-        android:orderInCategory="2"
-        android:title="@string/title_opportunity"
-        app:cnb_iconColor="@color/colorOpportunity"
+        android:icon="@drawable/ic_neutral"
         />
 
     <item
+        android:id="@+id/navigation_opportunity"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_oportunidad"
+        android:title="@string/title_opportunity"
+        app:cnb_iconColor="@color/colorOpportunity"/>
+
+    <item
         android:id="@+id/navigation_interesting"
-        android:icon="@drawable/ic_neutral"
         android:orderInCategory="3"
+        android:icon="@drawable/ic_neutral"
         android:title="@string/title_interesting"
         app:cnb_iconColor="@color/colorInteresting"
         />
 
     <item
         android:id="@+id/navigation_risk"
-        android:icon="@drawable/ic_amenaza"
         android:orderInCategory="4"
-        android:title="@string/title_risk"
-        app:cnb_iconColor="@color/colorRisk"  />
+        android:icon="@drawable/ic_amenaza"
+        app:cnb_iconColor="@color/colorRisk"
+        android:title="@string/title_risk" />
 </menu>

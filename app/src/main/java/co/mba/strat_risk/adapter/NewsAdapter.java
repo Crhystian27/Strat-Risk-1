@@ -27,6 +27,8 @@ import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
+import co.mba.strat_risk.widgets.DialogInformation;
+import co.mba.strat_risk.widgets.DialogSelection;
 
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
@@ -34,22 +36,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private Context context;
     private List<? extends News> dtoList;
     private List<? extends News> filteredList;
+    private Integer status;
     private RelativeLayout empty;
-    private Dialog dialog;
 
-    public NewsAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty) {
+    public NewsAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty, Integer status) {
         this.context = context;
         this.dtoList = dtoList;
-        this.dialog = dialog;
         this.filteredList = dtoList;
         this.empty = empty;
+        this.status = status;
     }
 
     @NonNull
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false);
-        return new ViewHolder(view, context, dtoList, dialog);
+        return new ViewHolder(view, context, dtoList, status);
     }
 
     @Override
@@ -59,12 +61,26 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         //TODO DIAGRAMA DE FLUJO PARA LOS SEGUROS. -AUTOMATIZAR
 
+        switch (status) {
+            case 0:
+                holder.param1.setTextColor(context.getColor(R.color.colorPrimaryLight));
+                break;
+            case 1:
+                holder.param1.setTextColor(context.getColor(R.color.colorOpportunity));
+                break;
+            case 2:
+                holder.param1.setTextColor(context.getColor(R.color.colorInteresting));
+                break;
+            case 3:
+                holder.param1.setTextColor(context.getColor(R.color.colorRisk));
+                break;
+        }
+
+
         String param1 = dtoList.get(position).getTitle();
         String param2 = dtoList.get(position).getDescription();
         String param0 = dtoList.get(position).getUrlToImage();
-
         Drawable drawable = context.getDrawable(R.drawable.ic_rss);
-
         setImage(context, holder, drawable, param0);
         holder.param1.setText(param1);
         holder.param2.setText(param2);
@@ -100,13 +116,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         private Context context;
         private List<? extends News> dtoList;
-        private Dialog dialog;
         private TextView param1, param2, param3, param4;
         private ImageView param0;
+        private Integer status;
 
-        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Dialog dialog) {
+        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Integer status) {
             super(itemView);
-            this.dialog = dialog;
+            this.status = status;
             this.context = context;
             this.dtoList = dtoList;
             itemView.setOnClickListener(this);
@@ -130,8 +146,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public boolean onLongClick(View v) {
             int position = getAdapterPosition();
             News dto = this.dtoList.get(position);
-
             Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
+
+            //TODO HACER EL LONG CLICK
+
+            //DialogSelection.showDialog(,dto.getTitle(),dto.getDescription(), dto.getUrlToImage(),status);
+
+
 
 
             return false;

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_content_dialog_alert"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/content_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon_dialog_message"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/background_dialog_message"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp">
+
+        <TextView
+            android:id="@+id/txt_dialog_selection_title"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_regular_"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="@string/row_title"
+            android:textColor="@color/colorPrimaryLight"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_dialog_selection_body"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_regular_"
+            android:gravity="start"
+            android:maxLines="3"
+            android:text="@string/row_body"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/txt_dialog_selection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_regular_"
+            android:gravity="center"
+            android:text="@string/string_save_selection"
+            android:textColor="@color/textHint"
+            android:textSize="@dimen/custom_text_size16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/content_controlls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginTop="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingOpportunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingInteresting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingRisk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/icon_dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp">
+
+        <ImageView
+            android:id="@+id/dialog_selection_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_rss"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+</RelativeLayout>
