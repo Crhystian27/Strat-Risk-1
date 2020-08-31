@@ -15,7 +15,7 @@ import co.mba.strat_risk.data.entity.News;
 @Dao
 public interface NewsDao {
 
-    //Load New  Local 0  Opportunity 1 Neutral 2  Risk 3,
+    //Load New  Local 0  Opportunity 1 Neutral 2  Risk 3, -1 delete
     @Query("SELECT * FROM news_table where status = :idStatus")
     LiveData<List<News>> loadNewsStatus(Integer idStatus);
 

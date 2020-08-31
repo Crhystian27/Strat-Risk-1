@@ -15,6 +15,12 @@
     <string name="title_interesting">Intermediate</string>
     <string name="title_risk">Risk</string>
 
+    <string name="snackBar_opportunity">Added to Opportunity.</string>
+    <string name="snackBar_interesting">Added to Intermediate.</string>
+    <string name="snackBar_risk">Added to Risk.</string>
+    <string name="snackBar_remove">Remove.</string>
+
+
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">There are no email clients installed.</string>
     <string name="btn_contact">Contact</string>
 
@@ -23,6 +29,7 @@
     <string name="send_mail">Send mail</string>
     <string name="dialog_alert_dialog">AlertDialog</string>
     <string name="btn_accept">Accept</string>
+    <string name="btn_remove">Remove</string>
 
     <string name="btn_cancel">Cancel</string>
 

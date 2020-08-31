@@ -1,6 +1,8 @@
 package co.mba.strat_risk.ui.opportunity;
 
+import android.app.Activity;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -30,6 +32,12 @@ public class OpportunityFragmentViewModel extends ViewModel {
         }
         opportunityLiveData = repository.getNewsDB(status);
     }
+
+    public void addNewsDB(Activity activity, News news, Integer newsStatus, RelativeLayout layout, String message) {
+        repository.addNews(activity, news, newsStatus, layout, message);
+    }
+
+
 
     public LiveData<List<News>> getOpportunityDB() {
         return this.opportunityLiveData;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
@@ -29,6 +30,7 @@ import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.DialogInformation;
+import co.mba.strat_risk.widgets.SnackBarInformation;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -121,6 +123,8 @@ public class Repository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(newsDTO -> {
                     ls.setValue(newsDTO);
+                    //TODO Siempre mostrar de database  y comparar las que fueron eliminadas
+
                     addItems(newsDTO);
                 }, throwable -> {
                     Log.e(TAG, "getCurrentsNews" + throwable.getMessage());
@@ -144,6 +148,16 @@ public class Repository {
             newsDao.insertNews(data);
             Log.e(TAG, data.toString());
         }
+    }
+
+    public void addNews(Activity activity, News news, Integer newStatus, RelativeLayout layout, String message) {
+        News newsData = new News(news.getTitle(),
+                news.getDescription(), news.getAuthor(),
+                news.getUrl(), news.getUrlToImage(),
+                news.getPublishedAt(), news.getContent(), newStatus);
+        newsDao.insertNews(newsData);
+        newsDao.deleteNews(news.getId());
+        SnackBarInformation.showSnackBar(activity, layout, message, "fonts/montserrat_regular_.ttf");
     }
 
 

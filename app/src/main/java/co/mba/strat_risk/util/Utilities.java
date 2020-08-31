@@ -33,8 +33,11 @@ import java.util.List;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.NewsAdapter;
-import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.entity.News;
+import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
+import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
+import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
+import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 
 public class Utilities {
 
@@ -71,8 +74,6 @@ public class Utilities {
             ChangeActivity.animLeftRight(context, MainActivity.class);
         }
     }*/
-
-
     public static void loadFragment(FragmentActivity context, Fragment fragment, Integer value, String TAG) {
         FragmentManager manager = context.getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -83,11 +84,11 @@ public class Utilities {
     }
 
 
-    public static void setRecyclerView(Context context, RelativeLayout empty, List<News> list, RecyclerView recyclerView, Integer status) {
+    public static void setRecyclerView(Context context, Activity activity, RelativeLayout empty, List<News> list, RecyclerView recyclerView, Integer status, NewsFragmentViewModel viewModelNews, OpportunityFragmentViewModel viewModelOpportunity, InterestingFragmentViewModel viewModelInteresting, RiskFragmentViewModel viewModelRisk, RelativeLayout layout) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        NewsAdapter adapter = new NewsAdapter(context, list, empty, status);
+        NewsAdapter adapter = new NewsAdapter(context, list, empty, status, activity, viewModelNews, viewModelOpportunity, viewModelInteresting, viewModelRisk, layout);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

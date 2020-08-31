@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -38,6 +40,10 @@ public class DialogInformation {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setCancelable(false);
 
+        DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
         TextView text_accept = dialog.findViewById(R.id.txt_dialog_accept);
         TextView text_cancel = dialog.findViewById(R.id.txt_dialog_cancel);
         TextView text_message = dialog.findViewById(R.id.txt_dialog_message_title);
@@ -57,6 +63,8 @@ public class DialogInformation {
 
         switch (status) {
             case 0:
+                dialog.getWindow().setLayout((39 * width) / 40, (4 * height) / 5);
+
                 text_message.setVerticalScrollBarEnabled(false);
                 radioGroup.setVisibility(View.GONE);
                 text_message.setLines(2);
@@ -64,6 +72,8 @@ public class DialogInformation {
                 text_cancel.setVisibility(View.INVISIBLE);
                 break;
             case 1:
+                dialog.getWindow().setLayout((39 * width) / 40, (4 * height) / 5);
+
                 text_message.setVerticalScrollBarEnabled(true);
                 text_message.setLines(16);
                 radioGroup.setVisibility(View.VISIBLE);
@@ -89,6 +99,8 @@ public class DialogInformation {
                 });
                 break;
         }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         text_cancel.setOnClickListener(v -> {
             isShowing = false;

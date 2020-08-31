@@ -1,8 +1,10 @@
 package co.mba.strat_risk.ui.news;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -45,6 +47,10 @@ public class NewsFragmentViewModel extends ViewModel {
             return;
         }
         newsLiveData = repository.getNewsDB(status);
+    }
+
+    public void addNewsDB(Activity activity, News news, Integer newsStatus, RelativeLayout layout, String message) {
+        repository.addNews(activity, news, newsStatus, layout, message);
     }
 
     public LiveData<List<News>> getNewsDB() {

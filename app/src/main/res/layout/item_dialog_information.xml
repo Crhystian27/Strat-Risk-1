@@ -23,9 +23,7 @@
             android:id="@+id/dialog_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/custom_spacing4dp"
             android:layout_marginTop="@dimen/custom_spacing8dp"
-            android:layout_marginEnd="@dimen/custom_spacing4dp"
             android:layout_marginBottom="@dimen/custom_spacing16dp"
             android:orientation="horizontal">
 
@@ -150,6 +148,5 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_rss"
             tools:ignore="ContentDescription" />
-
     </RelativeLayout>
 </RelativeLayout>

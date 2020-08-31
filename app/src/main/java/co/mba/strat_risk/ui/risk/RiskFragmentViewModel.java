@@ -1,7 +1,9 @@
 package co.mba.strat_risk.ui.risk;
 
 
+import android.app.Activity;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -31,6 +33,11 @@ public class RiskFragmentViewModel extends ViewModel {
         }
         riskLiveData = repository.getNewsDB(status);
     }
+
+    public void addNewsDB(Activity activity, News news, Integer newsStatus, RelativeLayout layout, String message) {
+        repository.addNews(activity, news, newsStatus, layout, message);
+    }
+
 
     public LiveData<List<News>> getRiskDB() {
         return this.riskLiveData;

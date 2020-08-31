@@ -22,6 +22,9 @@ import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.network.InternetConnection;
+import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
+import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
+import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -32,6 +35,7 @@ public class NewsFragment extends BaseFragment {
     ViewModelProvider.Factory factory;
     private RecyclerView recyclerView;
     private RelativeLayout empty;
+    private RelativeLayout layout;
 
 
     @Override
@@ -43,29 +47,33 @@ public class NewsFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recycler_news);
         empty = view.findViewById(R.id.empty_relative);
+        layout = view.findViewById(R.id.relative_news);
         unitUI();
     }
-
 
     private void unitUI() {
         ((BaseActivity) getBaseActivity()).getToolbar().setElevation(getResources().getDimension(R.dimen.custom_elevation16dp));
 
-        NewsFragmentViewModel viewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsFragmentViewModel.class);
+        NewsFragmentViewModel newsViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsFragmentViewModel.class);
+        OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(OpportunityFragmentViewModel.class);
+        InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(InterestingFragmentViewModel.class);
+        RiskFragmentViewModel riskViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(RiskFragmentViewModel.class);
 
-        if (InternetConnection.getAirPlaneMode(getBaseActivity()) || InternetConnection.getConnection(getBaseActivity())) {
-            viewModel.fetchNewsDB(Constants.LOCAL_STATUS);
-            viewModel.getNewsDB().observe(getViewLifecycleOwner(), news -> {
+
+        //TODO SIEMPRE CARGAR DE BASE DE DATOS, NO DIRECTAMENTE DE INTERNET
+        if (!InternetConnection.getAirPlaneMode(getBaseActivity()) || !InternetConnection.getConnection(getBaseActivity())) {
+            newsViewModel.fetchNewsDB(Constants.LOCAL_STATUS);
+            newsViewModel.getNewsDB().observe(getViewLifecycleOwner(), news -> {
                 Log.e(getClass().getSimpleName(), "Status Local " + Constants.LOCAL_STATUS);
-                Utilities.setRecyclerView(getContext(), empty, news, recyclerView, Constants.LOCAL_STATUS);
-                ((BaseActivity) getBaseActivity()).getToolbar().setTitle(news.size() + getResources().getString(R.string.app_name));
+                Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.LOCAL_STATUS, newsViewModel, opportunityViewModel, interestingViewModel, riskViewModel, layout);
             });
 
         } else {
-            viewModel.fetchNewsInternet(getActivity()).observe(getViewLifecycleOwner(), newsDTO -> {
+            newsViewModel.fetchNewsInternet(getActivity()).observe(getViewLifecycleOwner(), newsDTO -> {
                 Log.e(getClass().getSimpleName(), "Status Internet");
                 List<News> list = newsDTO.getArticles();
-                ((BaseActivity) getBaseActivity()).getToolbar().setTitle("(" + list.size() + ")" + getResources().getString(R.string.app_name));
-                Utilities.setRecyclerView(getContext(), empty, list, recyclerView, Constants.LOCAL_STATUS);
+                //((BaseActivity) getBaseActivity()).getToolbar().setTitle("(" + list.size() + ")" + getResources().getString(R.string.app_name));
+                Utilities.setRecyclerView(getContext(), getActivity(), empty, list, recyclerView, Constants.LOCAL_STATUS, newsViewModel, opportunityViewModel, interestingViewModel, riskViewModel, layout);
             });
         }
     }

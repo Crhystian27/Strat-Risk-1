@@ -13,6 +13,11 @@
     <string name="title_interesting">Intermedio</string>
     <string name="title_risk">Riesgo</string>
 
+    <string name="snackBar_opportunity">Agregado a Oportunidad.</string>
+    <string name="snackBar_interesting">Agregado a Intermedio.</string>
+    <string name="snackBar_risk">Agregado a Riesgo.</string>
+    <string name="snackBar_remove">Eliminar.</string>
+
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">No hay clientes de correo electrónico instalados.</string>
     <string name="btn_contact">Contacto</string>
 
@@ -23,6 +28,7 @@
 
     <string name="btn_accept">Aceptar</string>
     <string name="btn_cancel">Cancelar</string>
+    <string name="btn_remove">Eliminar</string>
 
     <string name="row_title">Titulo</string>
     <string name="row_body">Contenido</string>

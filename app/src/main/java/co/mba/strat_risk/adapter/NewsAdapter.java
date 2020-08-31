@@ -1,5 +1,6 @@
 package co.mba.strat_risk.adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,10 @@ import co.mba.strat_risk.R;
 
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.ui.NewsDetailActivity;
+import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
+import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
+import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
+import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.DialogInformation;
@@ -38,20 +43,32 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<? extends News> filteredList;
     private Integer status;
     private RelativeLayout empty;
+    private Activity activity;
+    private NewsFragmentViewModel viewModelNews;
+    private OpportunityFragmentViewModel viewModelOpportunity;
+    private InterestingFragmentViewModel viewModelInteresting;
+    private RiskFragmentViewModel viewModelRisk;
+    private RelativeLayout layout;
 
-    public NewsAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty, Integer status) {
+    public NewsAdapter(Context context, List<? extends News> dtoList, RelativeLayout empty, Integer status, Activity activity, NewsFragmentViewModel viewModelNews, OpportunityFragmentViewModel viewModelOpportunity, InterestingFragmentViewModel viewModelInteresting, RiskFragmentViewModel viewModelRisk, RelativeLayout layout) {
         this.context = context;
         this.dtoList = dtoList;
         this.filteredList = dtoList;
         this.empty = empty;
         this.status = status;
+        this.activity = activity;
+        this.viewModelNews = viewModelNews;
+        this.viewModelOpportunity = viewModelOpportunity;
+        this.viewModelInteresting = viewModelInteresting;
+        this.viewModelRisk = viewModelRisk;
+        this.layout = layout;
     }
 
     @NonNull
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false);
-        return new ViewHolder(view, context, dtoList, status);
+        return new ViewHolder(view, context, dtoList, status, activity, viewModelNews, viewModelOpportunity, viewModelInteresting, viewModelRisk, layout);
     }
 
     @Override
@@ -115,16 +132,28 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         private Context context;
+        private Activity activity;
         private List<? extends News> dtoList;
         private TextView param1, param2, param3, param4;
         private ImageView param0;
         private Integer status;
+        private NewsFragmentViewModel viewModelNews;
+        private OpportunityFragmentViewModel viewModelOpportunity;
+        private InterestingFragmentViewModel viewModelInteresting;
+        private RiskFragmentViewModel viewModelRisk;
+        private RelativeLayout layout;
 
-        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Integer status) {
+        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Integer status, Activity activity, NewsFragmentViewModel viewModelNews, OpportunityFragmentViewModel viewModelOpportunity, InterestingFragmentViewModel viewModelInteresting, RiskFragmentViewModel viewModelRisk, RelativeLayout layout) {
             super(itemView);
             this.status = status;
             this.context = context;
             this.dtoList = dtoList;
+            this.activity = activity;
+            this.viewModelNews = viewModelNews;
+            this.viewModelOpportunity = viewModelOpportunity;
+            this.viewModelInteresting = viewModelInteresting;
+            this.viewModelRisk = viewModelRisk;
+            this.layout = layout;
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
             param0 = itemView.findViewById(R.id.pic);
@@ -146,16 +175,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public boolean onLongClick(View v) {
             int position = getAdapterPosition();
             News dto = this.dtoList.get(position);
-            Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
-
-            //TODO HACER EL LONG CLICK
-
-            //DialogSelection.showDialog(,dto.getTitle(),dto.getDescription(), dto.getUrlToImage(),status);
-
-
-
-
-            return false;
+            //Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
+            DialogSelection.showDialog(activity, dto.getTitle(), dto.getDescription(), dto.getUrlToImage(), status, dto, viewModelNews, viewModelOpportunity, viewModelInteresting, viewModelRisk, layout);
+            return true;
         }
     }
 }
