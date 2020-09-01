@@ -13,9 +13,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.lifecycle.ViewModelProvider.Factory;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.entity.News;
@@ -37,7 +44,7 @@ public class DialogSelection {
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("InflateParams")
-    public static void showDialog(Activity activity, String tittle, String message, String image, Integer status, News news, NewsFragmentViewModel viewModelNews, OpportunityFragmentViewModel viewModelOpportunity, InterestingFragmentViewModel viewModelInteresting, RiskFragmentViewModel viewModelRisk, RelativeLayout layout) {
+    public static void showDialog(Activity activity, String tittle, String message, String image, Integer status, News news, Fragment fragment, Factory factory, RelativeLayout layout) {
         final Dialog dialog = new Dialog(activity);
         View view = activity.getLayoutInflater().inflate(R.layout.item_dialog_selection, null);
         dialog.setContentView(view);
@@ -45,6 +52,11 @@ public class DialogSelection {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
+
+        NewsFragmentViewModel newsViewModel = ViewModelProviders.of(fragment, factory).get(NewsFragmentViewModel.class);
+        OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(fragment, factory).get(OpportunityFragmentViewModel.class);
+        InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(fragment, factory).get(InterestingFragmentViewModel.class);
+        RiskFragmentViewModel riskViewModel = ViewModelProviders.of(fragment, factory).get(RiskFragmentViewModel.class);
 
         TextView text_title = dialog.findViewById(R.id.txt_dialog_selection_title);
         text_title.setText(tittle);
@@ -84,19 +96,19 @@ public class DialogSelection {
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
                 button_opportunity.setOnClickListener(v -> {
-                    viewModelNews.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    newsViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
                 });
                 button_interesting.setOnClickListener(v -> {
-                    viewModelNews.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    newsViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
                 });
                 button_risk.setOnClickListener(v -> {
-                    viewModelNews.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    newsViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
                 });
                 button_delete.setOnClickListener(v -> {
-                    viewModelNews.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    newsViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
 
@@ -107,19 +119,19 @@ public class DialogSelection {
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
                 button_opportunity.setOnClickListener(v -> {
-                    viewModelOpportunity.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    opportunityViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
                 });
                 button_interesting.setOnClickListener(v -> {
-                    viewModelOpportunity.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    opportunityViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
                 });
                 button_risk.setOnClickListener(v -> {
-                    viewModelOpportunity.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    opportunityViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
                 });
                 button_delete.setOnClickListener(v -> {
-                    viewModelOpportunity.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    opportunityViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
                 break;
@@ -130,19 +142,19 @@ public class DialogSelection {
                 button_interesting.setVisibility(View.GONE);
                 button_risk.setVisibility(View.VISIBLE);
                 button_opportunity.setOnClickListener(v -> {
-                    viewModelInteresting.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
                 });
                 button_interesting.setOnClickListener(v -> {
-                    viewModelInteresting.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    interestingViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
                 });
                 button_risk.setOnClickListener(v -> {
-                    viewModelInteresting.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    interestingViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
                 });
                 button_delete.setOnClickListener(v -> {
-                    viewModelInteresting.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
 
@@ -153,19 +165,19 @@ public class DialogSelection {
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.GONE);
                 button_opportunity.setOnClickListener(v -> {
-                    viewModelRisk.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    riskViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
                 });
                 button_interesting.setOnClickListener(v -> {
-                    viewModelRisk.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    riskViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
                 });
                 button_risk.setOnClickListener(v -> {
-                    viewModelRisk.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    riskViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
                 });
                 button_delete.setOnClickListener(v -> {
-                    viewModelRisk.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    riskViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
                 break;

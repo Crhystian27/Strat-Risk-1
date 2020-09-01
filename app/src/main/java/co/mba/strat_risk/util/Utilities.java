@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,10 +36,7 @@ import java.util.List;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.NewsAdapter;
 import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
-import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
-import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
-import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
+import androidx.lifecycle.ViewModelProvider.Factory;
 
 public class Utilities {
 
@@ -84,11 +83,11 @@ public class Utilities {
     }
 
 
-    public static void setRecyclerView(Context context, Activity activity, RelativeLayout empty, List<News> list, RecyclerView recyclerView, Integer status, NewsFragmentViewModel viewModelNews, OpportunityFragmentViewModel viewModelOpportunity, InterestingFragmentViewModel viewModelInteresting, RiskFragmentViewModel viewModelRisk, RelativeLayout layout) {
+    public static void setRecyclerView(Context context, Activity activity, LinearLayout empty, List<News> list, RecyclerView recyclerView, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        NewsAdapter adapter = new NewsAdapter(context, list, empty, status, activity, viewModelNews, viewModelOpportunity, viewModelInteresting, viewModelRisk, layout);
+        NewsAdapter adapter = new NewsAdapter(context, list, empty, status, activity, fragment, factory, layout);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

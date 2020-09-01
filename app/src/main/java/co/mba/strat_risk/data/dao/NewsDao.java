@@ -22,6 +22,9 @@ public interface NewsDao {
     @Query("SELECT * FROM news_table where id = :idNews")
     LiveData<News> loadNews(Integer idNews);
 
+    @Query("SELECT * FROM news_table where status =:status")
+    List<News> loadRemove(Integer status);
+
     //Delete
     @Query("DELETE FROM news_table where id = :idNews")
     void deleteNews(Integer idNews);

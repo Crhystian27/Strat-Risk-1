@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_news"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/relative_news"
     tools:context=".ui.news.NewsFragment">
 
     <include
         layout="@layout/empty_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        tools:listitem="@layout/row_news" />
+        android:layout_marginStart="@dimen/custom_spacing8dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginEnd="@dimen/custom_spacing8dp" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            tools:listitem="@layout/row_news" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </RelativeLayout>

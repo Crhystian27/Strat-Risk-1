@@ -38,7 +38,6 @@ public class OpportunityFragmentViewModel extends ViewModel {
     }
 
 
-
     public LiveData<List<News>> getOpportunityDB() {
         return this.opportunityLiveData;
     }

@@ -8,9 +8,11 @@
 
     <include
         layout="@layout/empty_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true" />
+        android:layout_marginStart="@dimen/custom_spacing8dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginEnd="@dimen/custom_spacing8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_risk"

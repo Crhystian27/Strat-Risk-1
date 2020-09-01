@@ -1,7 +1,6 @@
 package co.mba.strat_risk.data.repository;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.widget.RelativeLayout;
 
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -117,37 +114,39 @@ public class Repository {
 
 
     //Load news list
-    public MutableLiveData<NewsDTO> getNewsInternet(Context context, MutableLiveData<NewsDTO> ls) {
-        executor.execute(() -> compositeDisposable.add(apiService.getNews()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(newsDTO -> {
-                    ls.setValue(newsDTO);
-                    //TODO Siempre mostrar de database  y comparar las que fueron eliminadas
-
-                    addItems(newsDTO);
-                }, throwable -> {
-                    Log.e(TAG, "getCurrentsNews" + throwable.getMessage());
-                })));
-
-        return ls;
+    public void getNewsInternet() {
+        executor.execute(() ->
+                compositeDisposable.add(apiService.getNews()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(this::addItems, throwable -> Log.e(TAG, "getCurrentsNews" + throwable.getMessage()))));
     }
 
-    //STATUS LOCAL-(0), OPPORTUNITY-(1), INTERMEDIATE-(2), RISK-(3)
-    public LiveData<List<News>> getNewsDB(Integer status) {
-        return newsDao.loadNewsStatus(status);
-    }
-
+    //Compara la lista de elementos actualizados con los borrados para no mostrarlos.
     private void addItems(NewsDTO news) {
         List<News> newsDTO = news.getArticles();
-        for (int i = 0; i < newsDTO.size(); i++) {
-            News data = new News(newsDTO.get(i).getTitle(),
-                    newsDTO.get(i).getDescription(), newsDTO.get(i).getAuthor(),
-                    newsDTO.get(i).getUrl(), newsDTO.get(i).getUrlToImage(),
-                    newsDTO.get(i).getPublishedAt(), newsDTO.get(i).getContent(), Constants.LOCAL_STATUS);
+        List<News> newsRemove = newsDao.loadRemove(Constants.DELETE_STATUS);
+        if(!newsRemove.isEmpty()){
+               newsDTO.removeAll(newsRemove);
+        }
+        saveNewsDB(newsDTO);
+    }
+
+    private void saveNewsDB(List<News> ls){
+        for (int i = 0; i <ls.size() ; i++) {
+            News data = new News(ls.get(i).getTitle(),
+                    ls.get(i).getDescription(), ls.get(i).getAuthor(),
+                    ls.get(i).getUrl(), ls.get(i).getUrlToImage(),
+                    ls.get(i).getPublishedAt(), ls.get(i).getContent(), Constants.LOCAL_STATUS);
+
             newsDao.insertNews(data);
             Log.e(TAG, data.toString());
         }
+    }
+
+    //STATUS  --> LOCAL - (0), OPPORTUNITY - (1), INTERMEDIATE - (2), RISK - (3), REMOVE - (-1)
+    public LiveData<List<News>> getNewsDB(Integer status) {
+        return newsDao.loadNewsStatus(status);
     }
 
     public void addNews(Activity activity, News news, Integer newStatus, RelativeLayout layout, String message) {
@@ -159,28 +158,5 @@ public class Repository {
         newsDao.deleteNews(news.getId());
         SnackBarInformation.showSnackBar(activity, layout, message, "fonts/montserrat_regular_.ttf");
     }
-
-
-   /* private boolean getAirPlaneMode(Activity activity) {
-        if (InternetConnection.isAirplaneMode(activity) && !DialogInformation.isShowing) {
-            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_airplane_mode));
-            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_airplane_mode), 0, null);
-        }
-        return false;
-    }
-
-    private boolean getConnection(Activity activity) {
-        if (InternetConnection.isConnected(activity) == 0 && !DialogInformation.isShowing) {
-            Log.e(getClass().getSimpleName(), activity.getString(R.string.dialog_no_internet_connection));
-            DialogInformation.showDialog(activity, activity.getString(R.string.dialog_no_internet_connection), 0, null);
-        }
-        return false;
-    }*/
-
-
-    //TODO DELETES
-    //public void deleteNew(Integer id) {
-    //  executor.execute(() -> newsDao.deleteNews(id));
-    //}
 
 }

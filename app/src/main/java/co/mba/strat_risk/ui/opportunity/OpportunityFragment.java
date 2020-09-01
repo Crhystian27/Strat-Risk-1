@@ -9,16 +9,16 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
-import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
-import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
-import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -28,7 +28,7 @@ public class OpportunityFragment extends BaseFragment {
     ViewModelProvider.Factory factory;
 
     private RecyclerView recyclerView;
-    private RelativeLayout empty;
+    private LinearLayout empty;
     private RelativeLayout layout;
 
     @Override
@@ -41,18 +41,21 @@ public class OpportunityFragment extends BaseFragment {
         recyclerView = view.findViewById(R.id.recycler_opportunity);
         empty = view.findViewById(R.id.empty_relative);
         layout = view.findViewById(R.id.relative_opportunity);
+
+        ImageView imageView = view.findViewById(R.id.empty_icon);
+        TextView textView = view.findViewById(R.id.empty_text);
+        imageView.setImageResource(R.drawable.ic_oportunidad);
+        textView.setText(getString(R.string.empty_opportunity));
+
         unitUI();
     }
 
     private void unitUI() {
-        NewsFragmentViewModel newsViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsFragmentViewModel.class);
         OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(OpportunityFragmentViewModel.class);
-        InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(InterestingFragmentViewModel.class);
-        RiskFragmentViewModel riskViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(RiskFragmentViewModel.class);
         opportunityViewModel.fetchOpportunityDB(Constants.OPPORTUNITY_STATUS);
         opportunityViewModel.getOpportunityDB().observe(getViewLifecycleOwner(), news -> {
             ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.app_name) + news.size());
-            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, newsViewModel, opportunityViewModel, interestingViewModel, riskViewModel, layout);
+            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, this, factory, layout);
         });
     }
 }

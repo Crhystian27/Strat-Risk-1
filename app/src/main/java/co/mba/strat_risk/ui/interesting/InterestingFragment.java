@@ -2,7 +2,10 @@ package co.mba.strat_risk.ui.interesting;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +18,6 @@ import javax.inject.Inject;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.base.BaseFragment;
-import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
-import co.mba.strat_risk.ui.opportunity.OpportunityFragment;
-import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
-import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -29,7 +28,7 @@ public class InterestingFragment extends BaseFragment {
     ViewModelProvider.Factory factory;
 
     private RecyclerView recyclerView;
-    private RelativeLayout empty;
+    private LinearLayout empty;
     private RelativeLayout layout;
 
     @Override
@@ -42,20 +41,21 @@ public class InterestingFragment extends BaseFragment {
         recyclerView = view.findViewById(R.id.recycler_interesting);
         empty = view.findViewById(R.id.empty_relative);
         layout = view.findViewById(R.id.relative_intermediate);
+
+        ImageView imageView = view.findViewById(R.id.empty_icon);
+        TextView textView = view.findViewById(R.id.empty_text);
+        imageView.setImageResource(R.drawable.ic_neutral);
+        textView.setText(getString(R.string.empty_intermediate));
+
         unitUI();
 
     }
 
     private void unitUI() {
-        NewsFragmentViewModel newsViewModel = ViewModelProviders.of(this, factory).get(NewsFragmentViewModel.class);
-        OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(this, factory).get(OpportunityFragmentViewModel.class);
         InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(this, factory).get(InterestingFragmentViewModel.class);
-        RiskFragmentViewModel riskViewModel = ViewModelProviders.of(this, factory).get(RiskFragmentViewModel.class);
-
-
         interestingViewModel.fetchInterestingDB(Constants.INTERESTING_STATUS);
         interestingViewModel.getInterestingDB().observe(getViewLifecycleOwner(), news -> {
-            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.INTERESTING_STATUS, newsViewModel, opportunityViewModel, interestingViewModel, riskViewModel, layout);
+            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.INTERESTING_STATUS, this, factory, layout);
             ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.app_name) + news.size());
         });
     }

@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/empty_relative"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_empty"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/empty_icon"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_centerInParent="true"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="@dimen/custom_spacing4dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_rss"
+        android:src="@drawable/ic_oportunidad"
         tools:ignore="ContentDescription" />
 
     <TextView
-        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:id="@+id/empty_text"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/empty_icon"
-        android:layout_marginTop="@dimen/custom_spacing8dp"
+        android:layout_marginStart="@dimen/custom_spacing16dp"
+        android:layout_marginTop="-16dp"
+        android:layout_marginEnd="@dimen/custom_spacing16dp"
+        android:layout_marginBottom="@dimen/custom_spacing24dp"
+        android:fontFamily="@font/montserrat_regular_"
         android:gravity="center"
-        android:text="@string/empty_layout" />
-</RelativeLayout>
+        android:text="@string/empty_layout"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold" />
+</LinearLayout>

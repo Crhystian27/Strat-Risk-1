@@ -31,6 +31,12 @@
     <string name="btn_accept">Accept</string>
     <string name="btn_remove">Remove</string>
 
+    <string name="empty_news"><b><u>Indexed</u>\u0020news will be displayed here.</b></string>
+    <string name="empty_opportunity"><b>Selected news\u0020<u>Opportunity</u>\u0020will be displayed here when you add to this category.</b></string>
+    <string name="empty_intermediate"><b>Selected news \u0020<u>Intermediate</u>\u0020will be displayed here when you add to this category.</b></string>
+    <string name="empty_risk"><b>Selected news \u0020<u>Risk</u>\u0020will be displayed here when you add to this category.</b></string>
+
+
     <string name="btn_cancel">Cancel</string>
 
     <string name="row_title">Title</string>

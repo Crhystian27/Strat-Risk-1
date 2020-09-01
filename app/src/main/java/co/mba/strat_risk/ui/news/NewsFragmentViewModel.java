@@ -2,25 +2,19 @@ package co.mba.strat_risk.ui.news;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.widget.RelativeLayout;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
-import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
 
 public class NewsFragmentViewModel extends ViewModel {
 
-    private MutableLiveData<NewsDTO> newsDTOLiveData;
     private LiveData<List<News>> newsLiveData;
 
     private static final String TAG = "News_FV";
@@ -31,14 +25,8 @@ public class NewsFragmentViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<NewsDTO> fetchNewsInternet(Context context) {
-        if (this.newsDTOLiveData != null) {
-            Log.e(TAG, newsDTOLiveData.toString());
-        } else {
-            newsDTOLiveData = new MutableLiveData<>();
-            newsDTOLiveData = repository.getNewsInternet(context, newsDTOLiveData);
-        }
-        return newsDTOLiveData;
+    public void fetchNewsInternet() {
+        repository.getNewsInternet();
     }
 
     public void fetchNewsDB(Integer status) {
