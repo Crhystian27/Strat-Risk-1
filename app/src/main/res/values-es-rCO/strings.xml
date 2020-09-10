@@ -66,6 +66,7 @@
     <string name="string_username">Usuario</string>
     <string name="string_password">Constraseña</string>
     <string name="string_login">Iniciar Sesión</string>
+    <string name="string_login_error">Ha introducido un nombre de usuario o contraseña incorrectos.</string>
     <string name="string_forgot_password">\¿<u>Olvidó\u0020su\u0020contraseña</u>\?</string>
 
     <string name="string_forgot">Restaurar el acceso</string>

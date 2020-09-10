@@ -51,7 +51,7 @@ public class NewsFragment extends BaseFragment {
 
         ImageView imageView = view.findViewById(R.id.empty_icon);
         TextView textView = view.findViewById(R.id.empty_text);
-        imageView.setImageResource(R.drawable.ic_oportunidad);
+        imageView.setImageResource(R.drawable.ic_news);
         textView.setText(getString(R.string.empty_news));
 
         NewsFragmentViewModel newsViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(NewsFragmentViewModel.class);

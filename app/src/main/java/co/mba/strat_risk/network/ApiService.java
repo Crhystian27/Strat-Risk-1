@@ -7,6 +7,7 @@ import co.mba.strat_risk.data.dto.NewsDTO;
 import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -32,8 +33,8 @@ public interface ApiService {
     Observable<AccessTokenDTO> getToken(@Body Session session);
 
     @GET("api/user")
-    Observable<User> getUser(@Header("Authorization-Bearer") String bearer);
+    Observable<User> getUser(@Header("Bearer") String bearer);
 
-    @GET("http://newsapi.org/v2/top-headlines?country=co&apiKey=2433bb7187974bb890590e8593afda40")
-    Observable<NewsDTO> getNews();
+    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=008069030789876219486%3Atnpcbeq9xz0&exactTerms=Suzuki&gl=CO&lr=lang_es&key=AIzaSyABn8E8nkgQinjBj2XJVw8Lth03R0FRC3w")
+    Single<NewsDTO> getNews();
 }

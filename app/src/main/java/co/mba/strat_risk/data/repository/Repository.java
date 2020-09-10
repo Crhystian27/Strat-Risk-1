@@ -8,15 +8,18 @@ import android.widget.RelativeLayout;
 
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
-import co.mba.strat_risk.data.dto.NewsDTO;
+import co.mba.strat_risk.data.dto.ItemsDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
@@ -71,9 +74,10 @@ public class Repository {
                         getCurrentUser(activity, accessTokenDTO.getAccessToken().trim(), progressBar);
 
                     }, throwable -> {
-
-                        //DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
-                        Log.e(TAG, throwable.getMessage());
+                        if("HTTP 400 Bad Request".equals(throwable.getMessage())){
+                            DialogInformation.showDialog(activity, activity.getResources().getString(R.string.string_login_error), 0, null);
+                        }
+                        Log.e(TAG, "getAccessToken"+throwable.getMessage());
                         progressBar.setVisibility(View.GONE);
                     })));
         }
@@ -107,7 +111,7 @@ public class Repository {
 
                 }, throwable -> {
                     DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
-                    Log.e(TAG, throwable.getMessage());
+                    Log.e(TAG, "THROWABLE-> getCurrentUser"+throwable.getMessage());
                     progressBar.setVisibility(View.GONE);
                 })));
     }
@@ -119,28 +123,48 @@ public class Repository {
                 compositeDisposable.add(apiService.getNews()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(this::addItems, throwable -> Log.e(TAG, "getCurrentsNews" + throwable.getMessage()))));
+                        .subscribe(dto -> {
+                            Log.e(TAG, dto.getKind() + "\n");
+                            Log.e(TAG, dto.getItems().toString());
+                            List<ItemsDTO> items = dto.getItems();
+                            saveNewsDB(items);
+                        }, throwable ->
+                                Log.e(TAG, "getCurrentsNews " + throwable.getMessage()+ " "+ Arrays.toString(throwable.getStackTrace())))));
     }
 
     //Compara la lista de elementos actualizados con los borrados para no mostrarlos.
-    private void addItems(NewsDTO news) {
-        List<News> newsDTO = news.getArticles();
+    /*private void addItems(NewsDTO dto) {
+        List<ItemsDTO> itemsDTO = dto.getItems();
+        saveNewsDB(itemsDTO);
+    }*/
+
+    private void saveNewsDB(List<ItemsDTO> ls) {
+        String cse_Image;
         List<News> newsRemove = newsDao.loadRemove(Constants.DELETE_STATUS);
-        if(!newsRemove.isEmpty()){
-               newsDTO.removeAll(newsRemove);
-        }
-        saveNewsDB(newsDTO);
-    }
+        for (int i = 0; i < ls.size(); i++) {
 
-    private void saveNewsDB(List<News> ls){
-        for (int i = 0; i <ls.size() ; i++) {
-            News data = new News(ls.get(i).getTitle(),
-                    ls.get(i).getDescription(), ls.get(i).getAuthor(),
-                    ls.get(i).getUrl(), ls.get(i).getUrlToImage(),
-                    ls.get(i).getPublishedAt(), ls.get(i).getContent(), Constants.LOCAL_STATUS);
+            /*if (ls.get(i).getPagemap().getCse_image().isEmpty()) {
+                cse_Image = null;
+            } else {
+                cse_Image = ls.get(i).getPagemap().getCse_image().get(i).getSrc();
+            }*/
+            //Log.e(TAG, cse_Image + "\n");
+            News data = new News(ls.get(i).getKind(),
+                    ls.get(i).getTitle(), ls.get(i).getSnippet(), ls.get(i).getLink(), null,
+                    Constants.LOCAL_STATUS);
 
-            newsDao.insertNews(data);
-            Log.e(TAG, data.toString());
+            if (!newsRemove.isEmpty()) {
+                for (int j = 0; j < newsRemove.size(); j++) {
+                    News remove = newsRemove.get(i);
+                    if (!remove.equals(data)) {
+                        newsDao.insertNews(data);
+                        Log.e(TAG, data.toString());
+                    }
+                }
+            } else {
+                newsDao.insertNews(data);
+                Log.e(TAG, data.toString());
+            }
         }
     }
 
@@ -150,10 +174,9 @@ public class Repository {
     }
 
     public void addNews(Activity activity, News news, Integer newStatus, RelativeLayout layout, String message) {
-        News newsData = new News(news.getTitle(),
-                news.getDescription(), news.getAuthor(),
-                news.getUrl(), news.getUrlToImage(),
-                news.getPublishedAt(), news.getContent(), newStatus);
+        News newsData = new News(news.getKind(), news.getTitle(),
+                news.getSnippet(), news.getLink(), news.getSrc(),
+                newStatus);
         newsDao.insertNews(newsData);
         newsDao.deleteNews(news.getId());
         SnackBarInformation.showSnackBar(activity, layout, message, "fonts/montserrat_regular_.ttf");

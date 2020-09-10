@@ -89,8 +89,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
 
         String param1 = dtoList.get(position).getTitle();
-        String param2 = dtoList.get(position).getDescription();
-        String param0 = dtoList.get(position).getUrlToImage();
+        String param2 = dtoList.get(position).getSnippet();
+        //String param0 = dtoList.get(position).getUrlToImage();
+        String param0 = null;
         Drawable drawable = context.getDrawable(R.drawable.ic_rss);
         setImage(context, holder, drawable, param0);
         holder.param1.setText(param1);
@@ -166,7 +167,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             int position = getAdapterPosition();
             News dto = this.dtoList.get(position);
             //Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
-            DialogSelection.showDialog(activity, dto.getTitle(), dto.getDescription(), dto.getUrlToImage(), status, dto, fragment, factory, layout);
+            DialogSelection.showDialog(activity, dto.getTitle(), dto.getSnippet(), dto.getLink(), status, dto, fragment, factory, layout);
             return true;
         }
     }

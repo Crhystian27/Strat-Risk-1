@@ -6,8 +6,6 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import com.google.gson.annotations.SerializedName;
-
 @Entity(tableName = "news_table", indices = {@Index(value = "id", unique = true)})
 public final class News {
 
@@ -15,50 +13,39 @@ public final class News {
     @ColumnInfo(name = "id")
     private Integer id;
 
-    @SerializedName("title")
+    @ColumnInfo(name = "kind")
+    private String kind;
+
     @ColumnInfo(name = "title")
     private String title;
 
-    @SerializedName("description")
-    @ColumnInfo(name = "description")
-    private String description;
+    @ColumnInfo(name = "snippet")
+    private String snippet;
 
-    @SerializedName("author")
-    @ColumnInfo(name = "author")
-    private String author;
+    @ColumnInfo(name = "link")
+    private String link;
 
-    @SerializedName("url")
-    @ColumnInfo(name = "url")
-    private String url;
-
-    @SerializedName("urlToImage")
-    @ColumnInfo(name = "urlToImage")
-    private String urlToImage;
-
-    @SerializedName("publishedAt")
-    @ColumnInfo(name = "publishedAt")
-    private String publishedAt;
-
-    @SerializedName("content")
-    @ColumnInfo(name = "content")
-    private String content;
+    @ColumnInfo(name = "src")
+    private String src;
 
     // 3(risk) - 2(Interesting) - 1(opportunity) // 0 local
     @ColumnInfo(name = "status")
     private Integer status;
 
+    /*@SerializedName("pagemap")
+    @ColumnInfo(name = "pagemap")
+    private Pagemap pagemap;*/
+
     @Ignore
     public News() {
     }
 
-    public News(String title, String description, String author, String url, String urlToImage, String publishedAt, String content, Integer status) {
+    public News(String kind, String title, String snippet, String link, String src, Integer status) {
+        this.kind = kind;
         this.title = title;
-        this.description = description;
-        this.author = author;
-        this.url = url;
-        this.urlToImage = urlToImage;
-        this.publishedAt = publishedAt;
-        this.content = content;
+        this.snippet = snippet;
+        this.link = link;
+        this.src = src;
         this.status = status;
     }
 
@@ -70,6 +57,14 @@ public final class News {
         this.id = id;
     }
 
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -78,52 +73,28 @@ public final class News {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSnippet() {
+        return snippet;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSnippet(String snippet) {
+        this.snippet = snippet;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getLink() {
+        return link;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setLink(String link) {
+        this.link = link;
     }
 
-    public String getUrl() {
-        return url;
+    public String getSrc() {
+        return src;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(String publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setSrc(String src) {
+        this.src = src;
     }
 
     public Integer getStatus() {
@@ -133,19 +104,5 @@ public final class News {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-    @Override
-    public String toString() {
-        return "News{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", url='" + url + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", content='" + content + '\'' +
-                ", status=" + status +
-                '}';
-    }
 }
+

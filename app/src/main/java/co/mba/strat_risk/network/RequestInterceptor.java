@@ -2,12 +2,8 @@ package co.mba.strat_risk.network;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import co.mba.strat_risk.data.dto.AccessTokenDTO;
 import co.mba.strat_risk.util.AppPreferences;
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -21,15 +17,17 @@ public class RequestInterceptor implements Interceptor {
         Request request = chain.request();
 
         request = request.newBuilder()
-                .addHeader("Content-Type", "application/json")
+                //.addHeader("Content-Type", "application/json")
+                .method(request.method(), request.body())
                 .build();
 
-        AccessTokenDTO accessToken = AppPreferences.getInstance().getAccessTokenDTO();
+        /*AccessTokenDTO accessToken = AppPreferences.getInstance().getAccessTokenDTO();
         if (accessToken != null) {
             request = request.newBuilder()
                     .addHeader("Authorization", accessToken.getType() + " " + accessToken.getAccessToken())
+                    .method(request.method(), request.body())
                     .build();
-        }
+        }*/
 
         return chain.proceed(request);
     }

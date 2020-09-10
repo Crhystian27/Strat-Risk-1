@@ -16,6 +16,9 @@
         <domain includeSubdomains="true">192.168.0.4</domain>
         <domain includeSubdomains="true">newsapi.org</domain>
         <domain includeSubdomains="true">mba.globalsys.co</domain>
+        <domain includeSubdomains="true">customsearch.googleapis.com</domain>
+        <domain includeSubdomains="true">https://customsearch.googleapis.com/customsearch/</domain>
+        <domain includeSubdomains="true">https://customsearch.googleapis.com/customsearch/v1?cx=d8eb9f2e50f516c00&amp;key=AIzaSyCr1evETrT76dww85BTtWDj7rRU7qUWAhY&amp;exactTerms=suzuki&amp;gl=CO&amp;lr=lang_es</domain>
         <!--
         <domain includeSubdomains="true">api.yampi.co</domain>
         <domain includeSubdomains="true">192.168.0.13</domain>

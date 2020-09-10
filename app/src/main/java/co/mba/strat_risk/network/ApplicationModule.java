@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import co.mba.strat_risk.BuildConfig;
 import co.mba.strat_risk.data.SRDataBase;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
@@ -19,6 +20,7 @@ import co.mba.strat_risk.util.Constants;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -75,9 +77,10 @@ public class ApplicationModule {
     @Provides
     @Singleton
     OkHttpClient providesOkHttpClient(OkHttpClient.Builder okHttpClientBuilder) {
-
-        okHttpClientBuilder.addInterceptor(new ErrorInterceptor());
-        okHttpClientBuilder.addNetworkInterceptor(new LoggingInterceptor());
+        if(BuildConfig.DEBUG) {
+            okHttpClientBuilder.addInterceptor(new ErrorInterceptor());
+            okHttpClientBuilder.addNetworkInterceptor(new LoggingInterceptor());
+        }
         okHttpClientBuilder.addInterceptor(new RequestInterceptor());
         return okHttpClientBuilder.cache(null).build();
     }

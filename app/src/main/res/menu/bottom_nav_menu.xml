@@ -6,7 +6,8 @@
         android:id="@+id/navigation_news"
         android:orderInCategory="1"
         android:title="@string/title_news"
-        android:icon="@drawable/ic_neutral"
+        android:icon="@drawable/ic_news"
+        app:cnb_iconColor="@color/colorPrimaryLight"
         />
 
     <item
