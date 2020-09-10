@@ -1,6 +1,6 @@
 package co.mba.strat_risk.network;
 
-import com.bumptech.glide.Glide;
+
 import com.bumptech.glide.module.AppGlideModule;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,7 +31,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    AppGlideModule provideAppGlideModule(){
+    AppGlideModule provideAppGlideModule() {
         return provideAppGlideModule();
     }
 
@@ -77,11 +77,15 @@ public class ApplicationModule {
     @Provides
     @Singleton
     OkHttpClient providesOkHttpClient(OkHttpClient.Builder okHttpClientBuilder) {
-        if(BuildConfig.DEBUG) {
-            okHttpClientBuilder.addInterceptor(new ErrorInterceptor());
-            okHttpClientBuilder.addNetworkInterceptor(new LoggingInterceptor());
-        }
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.level(HttpLoggingInterceptor.Level.HEADERS);
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
+
+        okHttpClientBuilder.addInterceptor(new ErrorInterceptor());
+        okHttpClientBuilder.addNetworkInterceptor(new LoggingInterceptor());
         okHttpClientBuilder.addInterceptor(new RequestInterceptor());
+
         return okHttpClientBuilder.cache(null).build();
     }
 

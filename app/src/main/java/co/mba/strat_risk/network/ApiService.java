@@ -11,6 +11,7 @@ import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 
@@ -32,9 +33,13 @@ public interface ApiService {
     @POST("oauth/token")
     Observable<AccessTokenDTO> getToken(@Body Session session);
 
+    /*@Headers({
+            "Content-Type: application/json",
+            "Authorization: Your-App-Name"
+    })*/
     @GET("api/user")
     Observable<User> getUser(@Header("Bearer") String bearer);
 
-    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=008069030789876219486%3Atnpcbeq9xz0&exactTerms=Suzuki&gl=CO&lr=lang_es&key=AIzaSyABn8E8nkgQinjBj2XJVw8Lth03R0FRC3w")
+    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=002215266167357709810:korcta35klu&exactTerms=Suzuki&gl=CO&lr=lang_es&key=AIzaSyC5DfrydcgsCkAd2qLeYLoGUHwK2OOx0Hg")
     Single<NewsDTO> getNews();
 }

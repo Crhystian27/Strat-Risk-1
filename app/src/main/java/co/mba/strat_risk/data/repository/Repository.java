@@ -139,32 +139,31 @@ public class Repository {
     }*/
 
     private void saveNewsDB(List<ItemsDTO> ls) {
-        String cse_Image;
-        List<News> newsRemove = newsDao.loadRemove(Constants.DELETE_STATUS);
+        //List<News> newsRemove = newsDao.loadRemove(Constants.DELETE_STATUS);
         for (int i = 0; i < ls.size(); i++) {
 
-            /*if (ls.get(i).getPagemap().getCse_image().isEmpty()) {
-                cse_Image = null;
-            } else {
-                cse_Image = ls.get(i).getPagemap().getCse_image().get(i).getSrc();
-            }*/
-            //Log.e(TAG, cse_Image + "\n");
             News data = new News(ls.get(i).getKind(),
                     ls.get(i).getTitle(), ls.get(i).getSnippet(), ls.get(i).getLink(), null,
                     Constants.LOCAL_STATUS);
 
-            if (!newsRemove.isEmpty()) {
+            newsDao.insertNews(data);
+            Log.e(TAG, data.toString());
+
+
+            /*if (!newsRemove.isEmpty()) {
                 for (int j = 0; j < newsRemove.size(); j++) {
-                    News remove = newsRemove.get(i);
-                    if (!remove.equals(data)) {
+                    News remove = new News();
+                    remove.setLink(newsRemove.get(i).getLink());
+                    if (!remove.getLink().equals(data.getLink())) {
                         newsDao.insertNews(data);
                         Log.e(TAG, data.toString());
                     }
+                    j++;
                 }
             } else {
                 newsDao.insertNews(data);
                 Log.e(TAG, data.toString());
-            }
+            }*/
         }
     }
 

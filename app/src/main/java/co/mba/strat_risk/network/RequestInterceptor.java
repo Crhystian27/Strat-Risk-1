@@ -1,5 +1,7 @@
 package co.mba.strat_risk.network;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import co.mba.strat_risk.data.dto.AccessTokenDTO;
@@ -16,18 +18,23 @@ public class RequestInterceptor implements Interceptor {
 
         Request request = chain.request();
 
-        request = request.newBuilder()
-                //.addHeader("Content-Type", "application/json")
-                .method(request.method(), request.body())
-                .build();
+        Log.e("-->ver",request.url().host());
 
-        /*AccessTokenDTO accessToken = AppPreferences.getInstance().getAccessTokenDTO();
-        if (accessToken != null) {
+        if (!request.url().host().contains("customsearch.googleapis.com")) {
             request = request.newBuilder()
-                    .addHeader("Authorization", accessToken.getType() + " " + accessToken.getAccessToken())
+                    .addHeader("Content-Type", "application/json")
                     .method(request.method(), request.body())
                     .build();
-        }*/
+
+            AccessTokenDTO accessToken = AppPreferences.getInstance().getAccessTokenDTO();
+            if (accessToken != null) {
+                request = request.newBuilder()
+                        .addHeader("Authorization", accessToken.getType() + " " + accessToken.getAccessToken())
+                        .method(request.method(), request.body())
+                        .build();
+            }
+        }
+
 
         return chain.proceed(request);
     }
