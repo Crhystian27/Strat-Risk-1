@@ -36,6 +36,7 @@ import java.util.List;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.NewsAdapter;
 import co.mba.strat_risk.data.entity.News;
+
 import androidx.lifecycle.ViewModelProvider.Factory;
 
 public class Utilities {
@@ -83,11 +84,11 @@ public class Utilities {
     }
 
 
-    public static void setRecyclerView(Context context, Activity activity, LinearLayout empty, List<News> list, RecyclerView recyclerView, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
+    public static void setRecyclerView(Activity activity, Context context, LinearLayout empty, List<News> list, RecyclerView recyclerView, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        NewsAdapter adapter = new NewsAdapter(context, list, empty, status, activity, fragment, factory, layout);
+        NewsAdapter adapter = new NewsAdapter(activity, context, list, empty, status, fragment, factory, layout);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

@@ -56,7 +56,7 @@ public class OpportunityFragment extends BaseFragment {
         OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(OpportunityFragmentViewModel.class);
         opportunityViewModel.fetchOpportunityDB(Constants.OPPORTUNITY_STATUS);
         opportunityViewModel.getOpportunityDB().observe(getViewLifecycleOwner(), news -> {
-            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, this, factory, layout);
+            Utilities.setRecyclerView(getActivity(), getContext(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, this, factory, layout);
             String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");

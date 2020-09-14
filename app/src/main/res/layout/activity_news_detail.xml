@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ui.NewsDetailActivity">
 
     <FrameLayout
@@ -18,23 +19,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="@color/colorNavigation"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="8dp"
         app:fabCradleVerticalOffset="8dp" />
 
-    <!--
-    TODO:  FLOATING ACTION PARA SELECIONAR ESTADO DE LA NOTICIA.
-    -->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_detail"
+        android:id="@+id/fab_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_rss"
-        app:backgroundTint="@color/colorAccent_800"
+        android:src="@drawable/ic_remove"
+        android:tint="@color/colorPrimary"
+        app:maxImageSize="24dp"
+        app:backgroundTint="@color/colorWhite"
         app:layout_anchor="@id/bottom_app_bar_detail"
         app:layout_anchorGravity="center" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

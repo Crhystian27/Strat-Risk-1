@@ -55,7 +55,7 @@ public class RiskFragment extends BaseFragment {
         RiskFragmentViewModel riskViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(RiskFragmentViewModel.class);
         riskViewModel.fetchRiskDB(Constants.RISK_STATUS);
         riskViewModel.getRiskDB().observe(getViewLifecycleOwner(), news -> {
-            Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.RISK_STATUS, this, factory, layout);
+            Utilities.setRecyclerView(getActivity(), getContext(), empty, news, recyclerView, Constants.RISK_STATUS, this, factory, layout);
             String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");

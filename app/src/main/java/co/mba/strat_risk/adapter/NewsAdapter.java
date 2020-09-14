@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,7 +26,9 @@ import java.util.List;
 import co.mba.strat_risk.R;
 
 import co.mba.strat_risk.data.entity.News;
+
 import co.mba.strat_risk.ui.NewsDetailActivity;
+import co.mba.strat_risk.ui.detail.NewsDetailFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
@@ -46,23 +49,23 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private Fragment fragment;
     private Factory factory;
 
-    public NewsAdapter(Context context, List<? extends News> dtoList, LinearLayout empty, Integer status, Activity activity, Fragment fragment, Factory factory, RelativeLayout layout) {
+    public NewsAdapter(Activity activity, Context context, List<? extends News> dtoList, LinearLayout empty, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
         this.context = context;
         this.dtoList = dtoList;
         this.filteredList = dtoList;
         this.empty = empty;
         this.status = status;
-        this.activity = activity;
         this.layout = layout;
         this.fragment = fragment;
         this.factory = factory;
+        this.activity = activity;
     }
 
     @NonNull
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_news, parent, false);
-        return new ViewHolder(view, context, dtoList, status, activity, fragment, factory, layout);
+        return new ViewHolder(view, activity, context, dtoList, status, fragment, factory, layout);
     }
 
     @Override
@@ -136,15 +139,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         private Factory factory;
         private RelativeLayout layout;
 
-        public ViewHolder(@NonNull View itemView, Context context, List<? extends News> dtoList, Integer status, Activity activity, Fragment fragment, Factory factory, RelativeLayout layout) {
+        public ViewHolder(@NonNull View itemView, Activity activity, Context context, List<? extends News> dtoList, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
             super(itemView);
             this.status = status;
             this.context = context;
             this.dtoList = dtoList;
-            this.activity = activity;
             this.layout = layout;
             this.fragment = fragment;
             this.factory = factory;
+            this.activity = activity;
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
             param0 = itemView.findViewById(R.id.pic);
@@ -159,14 +162,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             Intent intent = new Intent(context, NewsDetailActivity.class);
             intent.putExtra(Constants.EXTRA_NEWS, new Gson().toJson(dto));
             context.startActivity(intent);
-
         }
 
         @Override
         public boolean onLongClick(View v) {
             int position = getAdapterPosition();
             News dto = this.dtoList.get(position);
-            //Toast.makeText(context, "LONG CLICK", Toast.LENGTH_LONG).show();
             DialogSelection.showDialog(activity, dto.getTitle(), dto.getSnippet(), dto.getLink(), status, dto, fragment, factory, layout);
             return true;
         }

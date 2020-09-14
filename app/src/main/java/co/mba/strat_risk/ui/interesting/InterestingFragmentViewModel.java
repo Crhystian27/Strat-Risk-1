@@ -34,6 +34,8 @@ public class InterestingFragmentViewModel extends ViewModel {
         interestingLiveData = repository.getNewsDB(status);
     }
 
+
+
     public void addNewsDB(Activity activity, News news, Integer newsStatus, RelativeLayout layout, String message) {
         repository.addNews(activity, news, newsStatus, layout, message);
     }

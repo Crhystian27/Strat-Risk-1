@@ -39,22 +39,23 @@ public class NewsDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null) {
+            Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment, Constants.TAG_NEWS_DETAIL);
+        }
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             dto_extra = extras.getString(Constants.EXTRA_NEWS);
         }
         dto = new Gson().fromJson(dto_extra, News.class);
-        initUI();
-    }
-
-
-    private void initUI() {
-        Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment, Constants.TAG_NEWS_DETAIL);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
+
+
+
 }

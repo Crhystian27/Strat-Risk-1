@@ -133,8 +133,8 @@ public class Repository {
     }
 
     private void saveNewsDB(List<ItemsDTO> ls) {
-        //List<News> newsDelete = newsDao.loadList(Constants.DELETE_STATUS);
         List<News> newsLocal = newsDao.loadAllList();
+
         for (int i = 0; i < ls.size(); i++) {
 
             News data = new News(ls.get(i).getKind(),
