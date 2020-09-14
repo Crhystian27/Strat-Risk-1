@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_content_dialog_alert"
     android:layout_width="match_parent"
@@ -76,40 +75,43 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            <ImageView
                 android:id="@+id/floatingOpportunity"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/custom_spacing78dp"
+                android:layout_height="@dimen/custom_spacing78dp"
                 android:layout_marginEnd="@dimen/custom_spacing16dp"
-                android:layout_weight="1"
+                android:background="@drawable/background_button_dialog_selection_1"
                 android:elevation="@dimen/custom_spacing16dp"
-                android:src="@drawable/ic_oportunidad"
-                app:backgroundTint="@color/colorOpportunity"
-                app:fabCustomSize="76dp"
-                app:rippleColor="@color/colorWhite" />
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:src="@drawable/ic_news"
+                tools:ignore="ContentDescription" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageView
                 android:id="@+id/floatingInteresting"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/custom_spacing16dp"
-                android:layout_marginEnd="@dimen/custom_spacing16dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_neutral"
-                app:backgroundTint="@color/colorInteresting"
-                app:fabCustomSize="76dp"
-                app:rippleColor="@color/colorWhite" />
+                android:layout_width="@dimen/custom_spacing78dp"
+                android:layout_height="@dimen/custom_spacing78dp"
+                android:layout_marginStart="@dimen/custom_spacing8dp"
+                android:layout_marginEnd="@dimen/custom_spacing8dp"
+                android:background="@drawable/background_button_dialog_selection_2"
+                android:elevation="@dimen/custom_spacing16dp"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:src="@drawable/ic_news"
+                tools:ignore="ContentDescription" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageView
+                android:padding="4dp"
                 android:id="@+id/floatingRisk"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/custom_spacing78dp"
+                android:layout_height="@dimen/custom_spacing78dp"
                 android:layout_marginStart="@dimen/custom_spacing16dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_amenaza"
-                app:backgroundTint="@color/colorRisk"
-                app:fabCustomSize="76dp"
-                app:rippleColor="@color/colorWhite" />
+                android:background="@drawable/background_button_dialog_selection_3"
+                android:elevation="@dimen/custom_spacing16dp"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_news"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,6 +147,7 @@
                 android:layout_marginStart="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_button_selection"
+                android:drawableStart="@drawable/ic_remove"
                 android:fontFamily="@font/montserrat_regular_"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
@@ -153,7 +156,6 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="@string/btn_remove"
-                android:drawableStart="@drawable/ic_remove"
                 android:textSize="@dimen/custom_text_size16sp" />
         </LinearLayout>
     </LinearLayout>
@@ -166,6 +168,8 @@
         android:layout_marginEnd="15dp">
 
         <ImageView
+
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:id="@+id/dialog_selection_img"
             android:layout_width="100dp"
             android:layout_height="100dp"

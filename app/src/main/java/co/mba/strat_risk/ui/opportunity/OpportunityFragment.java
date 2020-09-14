@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
@@ -54,8 +56,13 @@ public class OpportunityFragment extends BaseFragment {
         OpportunityFragmentViewModel opportunityViewModel = ViewModelProviders.of(getBaseActivity(), factory).get(OpportunityFragmentViewModel.class);
         opportunityViewModel.fetchOpportunityDB(Constants.OPPORTUNITY_STATUS);
         opportunityViewModel.getOpportunityDB().observe(getViewLifecycleOwner(), news -> {
-            ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.app_name) + news.size());
             Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, this, factory, layout);
+            String count = String.valueOf(news.size());
+            if (!count.isEmpty()) {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
+            } else {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
+            }
         });
     }
 }

@@ -74,10 +74,10 @@ public class Repository {
                         getCurrentUser(activity, accessTokenDTO.getAccessToken().trim(), progressBar);
 
                     }, throwable -> {
-                        if("HTTP 400 Bad Request".equals(throwable.getMessage())){
+                        if ("HTTP 400 Bad Request".equals(throwable.getMessage())) {
                             DialogInformation.showDialog(activity, activity.getResources().getString(R.string.string_login_error), 0, null);
                         }
-                        Log.e(TAG, "getAccessToken"+throwable.getMessage());
+                        Log.e(TAG, "getAccessToken" + throwable.getMessage());
                         progressBar.setVisibility(View.GONE);
                     })));
         }
@@ -111,7 +111,7 @@ public class Repository {
 
                 }, throwable -> {
                     DialogInformation.showDialog(activity, throwable.getMessage(), 0, null);
-                    Log.e(TAG, "THROWABLE-> getCurrentUser"+throwable.getMessage());
+                    Log.e(TAG, "THROWABLE-> getCurrentUser" + throwable.getMessage());
                     progressBar.setVisibility(View.GONE);
                 })));
     }
@@ -129,25 +129,35 @@ public class Repository {
                             List<ItemsDTO> items = dto.getItems();
                             saveNewsDB(items);
                         }, throwable ->
-                                Log.e(TAG, "getCurrentsNews " + throwable.getMessage()+ " "+ Arrays.toString(throwable.getStackTrace())))));
+                                Log.e(TAG, "getCurrentsNews " + throwable.getMessage() + " " + Arrays.toString(throwable.getStackTrace())))));
     }
 
-    //Compara la lista de elementos actualizados con los borrados para no mostrarlos.
-    /*private void addItems(NewsDTO dto) {
-        List<ItemsDTO> itemsDTO = dto.getItems();
-        saveNewsDB(itemsDTO);
-    }*/
-
     private void saveNewsDB(List<ItemsDTO> ls) {
-        //List<News> newsRemove = newsDao.loadRemove(Constants.DELETE_STATUS);
+        //List<News> newsDelete = newsDao.loadList(Constants.DELETE_STATUS);
+        List<News> newsLocal = newsDao.loadAllList();
         for (int i = 0; i < ls.size(); i++) {
 
             News data = new News(ls.get(i).getKind(),
                     ls.get(i).getTitle(), ls.get(i).getSnippet(), ls.get(i).getLink(), null,
                     Constants.LOCAL_STATUS);
 
-            newsDao.insertNews(data);
-            Log.e(TAG, data.toString());
+            //TODO Revisar
+            // AUMENTA LOS DATOS
+            if (newsLocal.isEmpty()) {
+                newsDao.insertNews(data);
+                Log.e(TAG, data.toString());
+            }else {
+                for (int j = 0; j < newsLocal.size(); j++) {
+                    News local = newsLocal.get(i);
+                    if (!data.getLink().contains(local.getLink())) {
+                        newsDao.insertNews(data);
+                        Log.e(TAG, data.toString());
+                    }
+                    j++;
+                }
+            }
+            //newsDao.insertNews(data);
+            //Log.e(TAG, data.toString());
 
 
             /*if (!newsRemove.isEmpty()) {
@@ -171,6 +181,7 @@ public class Repository {
     public LiveData<List<News>> getNewsDB(Integer status) {
         return newsDao.loadNewsStatus(status);
     }
+
 
     public void addNews(Activity activity, News news, Integer newStatus, RelativeLayout layout, String message) {
         News newsData = new News(news.getKind(), news.getTitle(),

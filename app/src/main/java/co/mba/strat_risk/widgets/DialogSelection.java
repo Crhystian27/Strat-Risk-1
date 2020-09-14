@@ -3,29 +3,28 @@ package co.mba.strat_risk.widgets;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.provider.SyncStateContract;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import androidx.lifecycle.ViewModelProvider.Factory;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.entity.News;
+import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
 import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
 import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
@@ -65,9 +64,9 @@ public class DialogSelection {
 
         TextView button_cancel = dialog.findViewById(R.id.txt_selection_cancel);
         TextView button_delete = dialog.findViewById(R.id.txt_selection_delete);
-        FloatingActionButton button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
-        FloatingActionButton button_interesting = dialog.findViewById(R.id.floatingInteresting);
-        FloatingActionButton button_risk = dialog.findViewById(R.id.floatingRisk);
+        ImageView button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
+        ImageView button_interesting = dialog.findViewById(R.id.floatingInteresting);
+        ImageView button_risk = dialog.findViewById(R.id.floatingRisk);
         ImageView view_image = dialog.findViewById(R.id.dialog_selection_img);
 
         Drawable drawable = activity.getDrawable(R.drawable.ic_rss);
@@ -84,6 +83,13 @@ public class DialogSelection {
                     .load(image)
                     .into(view_image);
         }
+
+        view_image.setOnClickListener(v -> {
+            Intent intent = new Intent(activity, NewsDetailActivity.class);
+            intent.putExtra(Constants.EXTRA_NEWS, new Gson().toJson(news));
+            activity.startActivity(intent);
+            dialog.dismiss();
+        });
 
         button_cancel.setOnClickListener(v -> {
             dialog.dismiss();

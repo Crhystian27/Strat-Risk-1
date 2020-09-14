@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             nv_email.setText(user.getEmail());
         });
 
-        chipNavigationBar.setOnItemSelectedListener((ChipNavigationBar.OnItemSelectedListener) id -> {
+        chipNavigationBar.setOnItemSelectedListener(id -> {
             switch (id) {
                 case R.id.navigation_news:
                     Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
@@ -126,7 +126,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     break;
             }
         });
-
     }
 
 

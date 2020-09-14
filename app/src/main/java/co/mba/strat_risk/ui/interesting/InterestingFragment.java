@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
@@ -56,7 +58,12 @@ public class InterestingFragment extends BaseFragment {
         interestingViewModel.fetchInterestingDB(Constants.INTERESTING_STATUS);
         interestingViewModel.getInterestingDB().observe(getViewLifecycleOwner(), news -> {
             Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.INTERESTING_STATUS, this, factory, layout);
-            ((BaseActivity) getBaseActivity()).getToolbar().setTitle(getResources().getString(R.string.app_name) + news.size());
+            String count = String.valueOf(news.size());
+            if (!count.isEmpty()) {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
+            } else {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
+            }
         });
     }
 }

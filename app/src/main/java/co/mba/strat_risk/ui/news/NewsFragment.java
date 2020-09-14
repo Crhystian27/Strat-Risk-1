@@ -25,7 +25,10 @@ import co.mba.strat_risk.base.BaseFragment;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
+
 import androidx.lifecycle.ViewModelProvider.Factory;
+
+import java.util.Objects;
 
 
 public class NewsFragment extends BaseFragment {
@@ -78,6 +81,13 @@ public class NewsFragment extends BaseFragment {
         newsViewModel.getNewsDB().observe(getViewLifecycleOwner(), news -> {
             Log.e(getClass().getSimpleName(), "Status Local " + Constants.LOCAL_STATUS);
             Utilities.setRecyclerView(getContext(), getActivity(), empty, news, recyclerView, Constants.LOCAL_STATUS, fragment, factory, layout);
+            String count = String.valueOf(news.size());
+            if (!count.isEmpty()) {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
+            } else {
+                ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
+            }
+
         });
     }
 }
