@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/coordinator_Remove"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="76dp"
+    android:layout_alignParentBottom="true"
     android:background="@color/colorPrimaryDark">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar_detail"
         style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="28dp"
+        android:layout_height="@dimen/custom_spacing32dp"
         android:layout_gravity="bottom"
+        android:layout_marginTop="28dp"
         app:backgroundTint="@color/colorNavigation"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="8dp"
+        app:fabCradleRoundedCornerRadius="16dp"
         app:fabCradleVerticalOffset="8dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="-28dp"
+        android:elevation="@dimen/custom_cornerRadius15dp"
         android:src="@drawable/ic_remove"
         android:tint="@color/colorPrimary"
         app:backgroundTint="@color/colorWhite"
+        app:fabSize="auto"
         app:layout_anchor="@id/bottom_app_bar_detail"
-        app:layout_anchorGravity="center"
         app:maxImageSize="24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

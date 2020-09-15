@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -19,8 +21,8 @@ public class NewsDetailFragment extends BaseFragment {
     @Inject
     ViewModelProvider.Factory factory;
     private NewsDetailFragmentViewModel viewModel;
-    private TextView textView;
-
+    private TextView textViewTitle, textViewBody;
+    private ImageView imgDetail,bottomRisk,bottomInteresting,bottomOpportunity;
 
 
     @Override
@@ -30,12 +32,17 @@ public class NewsDetailFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        textView = view.findViewById(R.id.prueba);
+
+        textViewTitle = view.findViewById(R.id.title_detail);
+        textViewBody = view.findViewById(R.id.body_detail);
+        imgDetail = view.findViewWithTag(R.id.imageDetail);
+        bottomInteresting = view.findViewById(R.id.detailInteresting);
+        bottomRisk = view.findViewById(R.id.detailRisk);
+        bottomOpportunity = view.findViewById(R.id.detailOpportunity);
+
+        //String title = getArguments().getString("");
+        //String body = getArguments().getString("");
 
 
-
-        //viewModel = ViewModelProviders.of(this, factory).get(DetailViewModel.class);
-
-        super.onViewCreated(view, savedInstanceState);
     }
 }

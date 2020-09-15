@@ -6,13 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.NewsDetailActivity">
 
-    <FrameLayout
-        android:id="@+id/news_detail_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="28dp" />
+    <include layout="@layout/detail_fragment" />
 
     <include layout="@layout/activity_news_detail" />
-
-
 </RelativeLayout>

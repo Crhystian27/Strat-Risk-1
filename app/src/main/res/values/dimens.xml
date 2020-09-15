@@ -18,4 +18,5 @@
     <dimen name="custom_text_size14sp">14sp</dimen>
     <dimen name="custom_spacing16dp">16dp</dimen>
     <dimen name="custom_spacing18sp">18sp</dimen>
+    <dimen name="custom_spacing48sp">48sp</dimen>
 </resources>
