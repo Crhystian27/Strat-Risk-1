@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/coordinator_Remove"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".ui.NewsDetailActivity">
-
-    <FrameLayout
-        android:id="@+id/news_detail_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize" />
+    android:background="@color/colorPrimaryDark">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar_detail"
         style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/colorNavigation"
         app:fabAlignmentMode="center"
@@ -30,9 +23,9 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_remove"
         android:tint="@color/colorPrimary"
-        app:maxImageSize="24dp"
         app:backgroundTint="@color/colorWhite"
         app:layout_anchor="@id/bottom_app_bar_detail"
-        app:layout_anchorGravity="center" />
+        app:layout_anchorGravity="center"
+        app:maxImageSize="24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
