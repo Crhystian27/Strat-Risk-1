@@ -124,10 +124,7 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.GONE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
-                button_opportunity.setOnClickListener(v -> {
-                    opportunityViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
-                    dialog.dismiss();
-                });
+
                 button_interesting.setOnClickListener(v -> {
                     opportunityViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();

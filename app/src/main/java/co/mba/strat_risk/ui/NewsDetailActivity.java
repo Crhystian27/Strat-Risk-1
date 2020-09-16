@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -31,6 +33,9 @@ public class NewsDetailActivity extends BaseActivity {
     News dto;
     String dto_extra;
 
+    private TextView textViewTitle, textViewBody;
+    private ImageView imgDetail, bottomRisk, bottomInteresting, bottomOpportunity;
+
     @Override
     protected int toolbarId() {
         return R.id.toolbar_detail;
@@ -46,6 +51,13 @@ public class NewsDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         //Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment, Constants.TAG_NEWS_DETAIL);
+
+        textViewTitle = findViewById(R.id.title_detail);
+        textViewBody = findViewById(R.id.body_detail);
+        imgDetail = findViewById(R.id.imageDetail);
+        bottomInteresting = findViewById(R.id.detailInteresting);
+        bottomRisk = findViewById(R.id.detailRisk);
+        bottomOpportunity = findViewById(R.id.detailOpportunity);
 
 
         viewModel = ViewModelProviders.of(NewsDetailActivity.this, factory).get(NewsDetailViewModel.class);

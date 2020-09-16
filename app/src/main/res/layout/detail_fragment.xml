@@ -81,6 +81,8 @@
         android:id="@+id/content_controlls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/custom_spacing24dp"
+        android:layout_marginEnd="@dimen/custom_spacing24dp"
         android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_anchor="@id/app_bar_layout_detail"
@@ -102,8 +104,7 @@
                 android:src="@drawable/ic_gris"
                 app:backgroundTint="@color/colorOpportunity"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
-                app:tint="" />
+                app:maxImageSize="36dp" />
 
         </LinearLayout>
 
@@ -123,8 +124,7 @@
                 android:src="@drawable/ic_gris"
                 app:backgroundTint="@color/colorInteresting"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
-                app:tint="" />
+                app:maxImageSize="36dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -143,8 +143,7 @@
                 android:src="@drawable/ic_gris"
                 app:backgroundTint="@color/colorRisk"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
-                app:tint="" />
+                app:maxImageSize="36dp" />
         </LinearLayout>
 
 
