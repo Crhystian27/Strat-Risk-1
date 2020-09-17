@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_content_dialog_alert"
     android:layout_width="match_parent"
@@ -67,6 +68,97 @@
         <!--
         //TODO CHANGE SELECTION WITH FLOATING ACTION BUTTONS
         -->
+
+
+        <LinearLayout
+            android:id="@+id/containerFloating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginTop="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:layout_marginBottom="@dimen/custom_spacing16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/dialogSelectionOpportunity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/custom_spacing16dp"
+                android:layout_marginEnd="@dimen/custom_spacing16dp"
+                android:background="@drawable/fab_border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingOpportunity"
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/custom_spacing16dp"
+                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                    app:backgroundTint="@color/colorOpportunity"
+                    app:fabSize="auto"
+                    app:maxImageSize="36dp"
+                    app:srcCompat="@drawable/ic_gris"
+                    app:tint="@color/colorWhite" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialogSelectionInteresting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/custom_spacing16dp"
+                android:layout_marginEnd="@dimen/custom_spacing16dp"
+                android:background="@drawable/fab_border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingInteresting"
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/custom_spacing16dp"
+                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                    app:backgroundTint="@color/colorInteresting"
+                    app:fabSize="auto"
+                    app:maxImageSize="36dp"
+                    app:srcCompat="@drawable/ic_gris"
+                    app:tint="@color/colorWhite" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dialogSelectionRisk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/custom_spacing16dp"
+                android:layout_marginEnd="@dimen/custom_spacing16dp"
+                android:background="@drawable/fab_border"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floatingRisk"
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/custom_spacing16dp"
+                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                    app:backgroundTint="@color/colorRisk"
+                    app:fabSize="auto"
+                    app:maxImageSize="36dp"
+                    app:srcCompat="@drawable/ic_gris"
+                    app:tint="@color/colorWhite" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--
         <LinearLayout
             android:id="@+id/content_controlls"
             android:layout_width="match_parent"
@@ -115,6 +207,8 @@
                 android:src="@drawable/ic_gris"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
+
+        -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,18 +261,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/side_nav_bar2"
         android:layout_marginEnd="15dp">
 
         <ImageView
 
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:id="@+id/dialog_selection_img"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_rss"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_gris"
             tools:ignore="ContentDescription" />
     </RelativeLayout>
 </RelativeLayout>

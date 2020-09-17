@@ -13,6 +13,8 @@
     <string name="title_interesting">Intermedio</string>
     <string name="title_risk">Riesgo</string>
 
+    <string name="string_link">Ir a la noticia.</string>
+
     <string name="snackBar_opportunity">Agregado a Oportunidad.</string>
     <string name="snackBar_interesting">Agregado a Intermedio.</string>
     <string name="snackBar_risk">Agregado a Riesgo.</string>
@@ -38,10 +40,10 @@
     <string name="empty_layout">Vacio</string>
 
 
-    <string name="empty_news"><b>Aquí se mostrarán las noticias\u0020<u>Indexadas</u></b></string>
-    <string name="empty_opportunity"><b>Aquí se mostrarán las noticias seleccionadas\u0020<u>Oportunidad</u>\u0020cuando agregue a esta categoría.</b></string>
-    <string name="empty_intermediate"><b>Aquí se mostrarán las noticias seleccionadas\u0020<u>Intermedio</u>\u0020cuando agregue a esta categoría.</b></string>
-    <string name="empty_risk"><b>Aquí se mostrarán las noticias seleccionadas\u0020<u>Riesgo</u>\u0020cuando agregue a esta categoría.</b></string>
+    <string name="empty_news">Aquí se mostrarán las noticias\u0020<u>Indexadas</u></string>
+    <string name="empty_opportunity"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Oportunidad</u>\u0020cuando la agregues a esta categoría.</b></string>
+    <string name="empty_intermediate"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Intermedio</u>\u0020cuando la agregues a esta categoría.</b></string>
+    <string name="empty_risk">Aquí se mostrarán las noticias guardadas en\u0020 <u>Riesgo</u> \u0020cuando la agregues a esta categoría.</string>
 
 
     <string name="string_name">Nombre</string>

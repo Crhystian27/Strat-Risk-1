@@ -3,12 +3,16 @@ package co.mba.strat_risk.ui;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
@@ -18,23 +22,22 @@ import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
 
 import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.ui.detail.NewsDetailFragment;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
+import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class NewsDetailActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory factory;
     NewsDetailViewModel viewModel;
-    FloatingActionButton buttonRemove;
     RelativeLayout layout;
+    LinearLayout layoutNews;
+    BottomAppBar bottomAppBar;
+
 
     News dto;
     String dto_extra;
-
-    private TextView textViewTitle, textViewBody;
-    private ImageView imgDetail, bottomRisk, bottomInteresting, bottomOpportunity;
 
     @Override
     protected int toolbarId() {
@@ -50,20 +53,29 @@ public class NewsDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Utilities.loadFragment(NewsDetailActivity.this, new NewsDetailFragment(), R.id.news_detail_fragment, Constants.TAG_NEWS_DETAIL);
+        setSupportActionBar(true, true);
 
-        textViewTitle = findViewById(R.id.title_detail);
-        textViewBody = findViewById(R.id.body_detail);
-        imgDetail = findViewById(R.id.imageDetail);
-        bottomInteresting = findViewById(R.id.detailInteresting);
-        bottomRisk = findViewById(R.id.detailRisk);
-        bottomOpportunity = findViewById(R.id.detailOpportunity);
+        TextView textViewTitle = findViewById(R.id.title_detail);
+        TextView textViewBody = findViewById(R.id.body_detail);
+        FloatingActionButton buttonRemove = findViewById(R.id.fab_remove);
+
+        //TODO SHOW IMAGE WITH GLIDE
+        ImageView imgDetail = findViewById(R.id.imageDetail);
+        LinearLayout bottomInteresting = findViewById(R.id.detailInteresting);
+        LinearLayout bottomRisk = findViewById(R.id.detailRisk);
+        LinearLayout bottomOpportunity = findViewById(R.id.detailOpportunity);
+
+        FloatingActionButton buttonO = findViewById(R.id.selectionOpportunity);
+        FloatingActionButton buttonI = findViewById(R.id.selectionInteresting);
+        FloatingActionButton buttonR = findViewById(R.id.selectionRisk);
 
 
         viewModel = ViewModelProviders.of(NewsDetailActivity.this, factory).get(NewsDetailViewModel.class);
 
         layout = findViewById(R.id.detail_Remove);
-        buttonRemove = findViewById(R.id.fab_remove);
+        layoutNews = findViewById(R.id.newsLink);
+        bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -71,7 +83,81 @@ public class NewsDetailActivity extends BaseActivity {
         }
         dto = new Gson().fromJson(dto_extra, News.class);
 
-        buttonRemove.setOnClickListener(view -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove)));
+        layoutNews.setOnClickListener(v -> {
+            SnackBarInformation.showSnackBar(this, layout, "Link", "fonts/montserrat_regular_.ttf");
+        });
+
+        switch (dto.getStatus()) {
+
+            case 0:
+
+                getToolbar().setTitle(getString(R.string.app_name));
+                bottomOpportunity.setVisibility(View.VISIBLE);
+                bottomInteresting.setVisibility(View.VISIBLE);
+                bottomRisk.setVisibility(View.VISIBLE);
+
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimaryLight)));
+
+                buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
+                buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
+                buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
+                buttonRemove.setOnClickListener(v -> {
+                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
+                    finish();
+                });
+                break;
+            case 1:
+
+                getToolbar().setTitle(getString(R.string.app_name));
+                bottomOpportunity.setVisibility(View.GONE);
+                bottomInteresting.setVisibility(View.VISIBLE);
+                bottomRisk.setVisibility(View.VISIBLE);
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorOpportunity)));
+
+                buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
+                buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
+                buttonRemove.setOnClickListener(v -> {
+                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
+                    finish();
+                });
+                break;
+            case 2:
+
+                getToolbar().setTitle(getString(R.string.app_name));
+                bottomOpportunity.setVisibility(View.VISIBLE);
+                bottomInteresting.setVisibility(View.GONE);
+                bottomRisk.setVisibility(View.VISIBLE);
+
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorInteresting)));
+
+                buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
+                buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
+                buttonRemove.setOnClickListener(v -> {
+                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
+                    finish();
+                });
+                break;
+            case 3:
+
+                getToolbar().setTitle(getString(R.string.app_name));
+                bottomOpportunity.setVisibility(View.VISIBLE);
+                bottomInteresting.setVisibility(View.VISIBLE);
+                bottomRisk.setVisibility(View.GONE);
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorRisk)));
+
+                buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
+                buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
+                buttonRemove.setOnClickListener(v -> {
+                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
+                    finish();
+                });
+                break;
+        }
+
+        textViewTitle.setText(dto.getTitle());
+        textViewBody.setText(dto.getSnippet());
+        textViewBody.setTextSize(20);
+
     }
 
     @Override
@@ -79,4 +165,10 @@ public class NewsDetailActivity extends BaseActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onBackPressed() {
+        Utilities.removeThisActivityFromRunningActivities(NewsDetailActivity.this.getClass());
+        finish();
+        super.onBackPressed();
+    }
 }

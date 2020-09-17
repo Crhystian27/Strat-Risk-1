@@ -12,7 +12,7 @@ public abstract class ActivityModule {
     @ContributesAndroidInjector(modules = {FragmentMainModule.class})
     abstract MainActivity contributeMainActivity();
 
-    @ContributesAndroidInjector(modules = {FragmentNewsDetailModule.class})
+    @ContributesAndroidInjector()
     abstract NewsDetailActivity contributeNewsDetailActivity();
 
     @ContributesAndroidInjector(modules = {FragmentLoginModule.class})

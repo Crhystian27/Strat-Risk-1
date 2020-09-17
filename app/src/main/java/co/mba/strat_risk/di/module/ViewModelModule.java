@@ -8,7 +8,6 @@ import co.mba.strat_risk.di.key.ViewModelKey;
 import co.mba.strat_risk.ui.LoginViewModel;
 import co.mba.strat_risk.ui.MainViewModel;
 import co.mba.strat_risk.ui.NewsDetailViewModel;
-import co.mba.strat_risk.ui.detail.NewsDetailFragmentViewModel;
 import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
 import co.mba.strat_risk.ui.login.ForgotFragmentViewModel;
 import co.mba.strat_risk.ui.login.LoginFragmentViewModel;
@@ -52,11 +51,6 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsDetailViewModel.class)
     abstract ViewModel bindNewsDetailViewModel(NewsDetailViewModel newsDetailViewModel);
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(NewsDetailFragmentViewModel.class)
-    abstract ViewModel bindNewsDetailFragmentViewModel(NewsDetailFragmentViewModel newsDetailFragmentViewModel);
 
     @Binds
     @IntoMap

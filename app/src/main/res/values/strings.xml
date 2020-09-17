@@ -15,6 +15,8 @@
     <string name="title_interesting">Intermediate</string>
     <string name="title_risk">Risk</string>
 
+    <string name="string_link">Go to the News.</string>
+
     <string name="snackBar_opportunity">Added to Opportunity.</string>
     <string name="snackBar_interesting">Added to Intermediate.</string>
     <string name="snackBar_risk">Added to Risk.</string>
@@ -31,10 +33,10 @@
     <string name="btn_accept">Accept</string>
     <string name="btn_remove">Remove</string>
 
-    <string name="empty_news"><b><u>Indexed</u>\u0020news will be displayed here.</b></string>
-    <string name="empty_opportunity"><b>Selected news\u0020<u>Opportunity</u>\u0020will be displayed here when you add to this category.</b></string>
-    <string name="empty_intermediate"><b>Selected news \u0020<u>Intermediate</u>\u0020will be displayed here when you add to this category.</b></string>
-    <string name="empty_risk"><b>Selected news \u0020<u>Risk</u>\u0020will be displayed here when you add to this category.</b></string>
+    <string name="empty_news"><u>Indexed</u>\u0020news will be displayed here.</string>
+    <string name="empty_opportunity">Here the news saved in\u0020<u>Opportunity</u>\u0020will be displayed when you add it to this category.</string>
+    <string name="empty_intermediate">Selected news \u0020<u>Intermediate</u>\u0020will be displayed when you add it to this category</string>
+    <string name="empty_risk">Selected news \u0020<u>Risk</u>\u0020will be displayed when you add it to this category</string>
 
 
     <string name="btn_cancel">Cancel</string>

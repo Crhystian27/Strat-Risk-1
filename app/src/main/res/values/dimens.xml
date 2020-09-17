@@ -6,6 +6,7 @@
     <dimen name="custom_spacing78dp">78dp</dimen>
     <dimen name="custom_height256dp">256dp</dimen>
     <dimen name="custom_image_size128dp">128dp</dimen>
+    <dimen name="custom_spacing192dp">192dp</dimen>
     <dimen name="custom_cornerRadius15dp">15dp</dimen>
     <dimen name="custom_cornerRadius30dp">30dp</dimen>
     <dimen name="custom_text_size16sp">16sp</dimen>

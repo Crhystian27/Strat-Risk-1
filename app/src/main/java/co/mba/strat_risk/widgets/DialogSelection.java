@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import androidx.lifecycle.ViewModelProvider.Factory;
@@ -40,6 +42,7 @@ public class DialogSelection {
 
 
     public static boolean isShowing = false;
+    public static Drawable drawable;
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("InflateParams")
@@ -64,22 +67,42 @@ public class DialogSelection {
 
         TextView button_cancel = dialog.findViewById(R.id.txt_selection_cancel);
         TextView button_delete = dialog.findViewById(R.id.txt_selection_delete);
-        ImageView button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
-        ImageView button_interesting = dialog.findViewById(R.id.floatingInteresting);
-        ImageView button_risk = dialog.findViewById(R.id.floatingRisk);
+
+        LinearLayout layoutO = dialog.findViewById(R.id.dialogSelectionOpportunity);
+        LinearLayout layoutI = dialog.findViewById(R.id.dialogSelectionInteresting);
+        LinearLayout layoutR = dialog.findViewById(R.id.dialogSelectionRisk);
+
+        FloatingActionButton button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
+        FloatingActionButton button_interesting = dialog.findViewById(R.id.floatingInteresting);
+        FloatingActionButton button_risk = dialog.findViewById(R.id.floatingRisk);
         ImageView view_image = dialog.findViewById(R.id.dialog_selection_img);
 
-        Drawable drawable = activity.getDrawable(R.drawable.ic_rss);
+
+
+        switch (status) {
+            case 0:
+                drawable = activity.getDrawable(R.drawable.ic_news);
+                break;
+            case 1:
+                drawable = activity.getDrawable(R.drawable.ic_oportunidad);
+                break;
+            case 2:
+                drawable = activity.getDrawable(R.drawable.ic_neutral);
+                break;
+            case 3:
+                drawable = activity.getDrawable(R.drawable.ic_amenaza);
+                break;
+        }
 
         if (image == null) {
             Utilities.getBitmap(activity, view_image);
             Glide.with(activity.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(drawable)
                     .into(view_image);
         } else {
             Glide.with(activity.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(image)
                     .into(view_image);
         }
@@ -101,6 +124,9 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutR.setVisibility(View.VISIBLE);
                 button_opportunity.setOnClickListener(v -> {
                     newsViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
@@ -124,6 +150,9 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.GONE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
+                layoutO.setVisibility(View.GONE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutR.setVisibility(View.VISIBLE);
 
                 button_interesting.setOnClickListener(v -> {
                     opportunityViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
@@ -144,6 +173,11 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.GONE);
                 button_risk.setVisibility(View.VISIBLE);
+
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.GONE);
+                layoutR.setVisibility(View.VISIBLE);
+
                 button_opportunity.setOnClickListener(v -> {
                     interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
@@ -167,6 +201,11 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.GONE);
+
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutR.setVisibility(View.GONE);
+
                 button_opportunity.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
