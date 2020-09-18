@@ -14,7 +14,7 @@
         android:layout_height="28dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="28dp"
-        app:backgroundTint="@color/colorNavigation"
+        app:backgroundTint="@color/colorPrimary"
         app:fabAlignmentMode="end"
         app:fabCradleMargin="8dp"
         app:fabCradleRoundedCornerRadius="16dp"

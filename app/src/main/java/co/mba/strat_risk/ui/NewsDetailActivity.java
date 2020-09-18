@@ -34,6 +34,7 @@ public class NewsDetailActivity extends BaseActivity {
     RelativeLayout layout;
     LinearLayout layoutNews;
     BottomAppBar bottomAppBar;
+    RelativeLayout relativeLayout;
 
 
     News dto;
@@ -75,6 +76,7 @@ public class NewsDetailActivity extends BaseActivity {
         layout = findViewById(R.id.detail_Remove);
         layoutNews = findViewById(R.id.newsLink);
         bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
+        relativeLayout = findViewById(R.id.containerDetail);
 
 
         Bundle extras = getIntent().getExtras();
@@ -96,7 +98,8 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimaryLight)));
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_news));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -112,7 +115,8 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.GONE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorOpportunity)));
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_opp));
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -128,7 +132,8 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.GONE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorInteresting)));
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_int));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -143,7 +148,8 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.GONE);
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorRisk)));
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_risk));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));

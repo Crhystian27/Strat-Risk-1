@@ -132,13 +132,13 @@ public class Repository {
                                 Log.e(TAG, "getCurrentsNews " + throwable.getMessage() + " " + Arrays.toString(throwable.getStackTrace())))));
     }
 
-    private void saveNewsDB(List<ItemsDTO> ls) {
+    private void saveNewsDB(List<ItemsDTO> items) {
         List<News> newsLocal = newsDao.loadAllList();
 
-        for (int i = 0; i < ls.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
 
-            News data = new News(ls.get(i).getKind(),
-                    ls.get(i).getTitle(), ls.get(i).getSnippet(), ls.get(i).getLink(), null,
+            News data = new News(items.get(i).getKind(),
+                    items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), null,
                     Constants.LOCAL_STATUS);
 
             //TODO Revisar
@@ -146,14 +146,17 @@ public class Repository {
             if (newsLocal.isEmpty()) {
                 newsDao.insertNews(data);
                 Log.e(TAG, data.toString());
-            }else {
+            } else {
                 for (int j = 0; j < newsLocal.size(); j++) {
-                    News local = newsLocal.get(i);
-                    if (!data.getLink().contains(local.getLink())) {
+                    News local = new News();
+                    local.setLink(newsLocal.get(i).getLink());
+                    if (data.getLink().equals(local.getLink())) {
+                        j++;
+                    } else {
                         newsDao.insertNews(data);
                         Log.e(TAG, data.toString());
                     }
-                    j++;
+
                 }
             }
             //newsDao.insertNews(data);

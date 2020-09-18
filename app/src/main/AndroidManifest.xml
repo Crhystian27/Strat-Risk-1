@@ -21,6 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
+        <activity android:name=".ui.SliderActivity"></activity>
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
@@ -41,4 +42,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
