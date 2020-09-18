@@ -19,6 +19,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/chipNavigationView" />
 
+
+    <!--TODO : SOLO DEJAR EL TEXTO -->
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/chipNavigationView"
         android:layout_width="match_parent"
@@ -27,9 +29,10 @@
         android:background="@color/colorNavigation"
         android:elevation="@dimen/custom_elevation16dp"
         android:padding="@dimen/custom_spacing6dp"
-        app:cnb_iconSize="42dp"
+        app:cnb_badgeColor="@color/colorWhite"
+        app:cnb_iconSize="0dp"
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:cnb_textAppearance="@style/CustomChipNavigationBar"
-        app:cnb_unselectedColor="@android:color/transparent" />
+        app:cnb_unselectedColor="@color/colorWhite" />
 
 </RelativeLayout>

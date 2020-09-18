@@ -10,7 +10,7 @@
 
     <string name="title_news">Noticias</string>
     <string name="title_opportunity">Oportunidad</string>
-    <string name="title_interesting">Intermedio</string>
+    <string name="title_interesting">Neutral</string>
     <string name="title_risk">Riesgo</string>
 
     <string name="string_link">Ir a la noticia.</string>

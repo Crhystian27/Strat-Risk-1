@@ -10,6 +10,8 @@
 
     <include layout="@layout/activity_news_detail" />
 
+
+    <!--
     <LinearLayout
         android:id="@+id/newsLink"
         android:layout_width="match_parent"
@@ -38,4 +40,6 @@
             android:textSize="@dimen/custom_text_size16sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    -->
 </RelativeLayout>

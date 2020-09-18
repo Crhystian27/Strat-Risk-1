@@ -7,7 +7,7 @@
     tools:context=".ui.SliderActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/sla__sld__slider"
+        android:id="@+id/sliderViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sla__tv__skip"
+        android:id="@+id/sliderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/sla__ci__indicator"
+        android:id="@+id/sliderCircleIndicator"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"

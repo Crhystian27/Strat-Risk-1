@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -168,7 +167,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public boolean onLongClick(View v) {
             int position = getAdapterPosition();
             News dto = this.dtoList.get(position);
-            DialogSelection.showDialog(activity, dto.getTitle(), dto.getSnippet(), dto.getLink(), status, dto, fragment, factory, layout);
+            DialogSelection.showDialog(activity, status, dto, fragment, factory, layout);
             return true;
         }
     }

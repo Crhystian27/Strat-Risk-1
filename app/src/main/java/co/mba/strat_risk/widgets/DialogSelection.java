@@ -41,12 +41,14 @@ import co.mba.strat_risk.util.Utilities;
 public class DialogSelection {
 
 
+    //TODO VERIFICAR LA POSICION AL AGREGAR
+
     public static boolean isShowing = false;
-    public static Drawable drawable;
+    //public static Drawable drawable;
 
     @SuppressWarnings("ConstantConditions")
     @SuppressLint("InflateParams")
-    public static void showDialog(Activity activity, String tittle, String message, String image, Integer status, News news, Fragment fragment, Factory factory, RelativeLayout layout) {
+    public static void showDialog(Activity activity, Integer status, News news, Fragment fragment, Factory factory, RelativeLayout layout) {
         final Dialog dialog = new Dialog(activity);
         View view = activity.getLayoutInflater().inflate(R.layout.item_dialog_selection, null);
         dialog.setContentView(view);
@@ -60,10 +62,10 @@ public class DialogSelection {
         InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(fragment, factory).get(InterestingFragmentViewModel.class);
         RiskFragmentViewModel riskViewModel = ViewModelProviders.of(fragment, factory).get(RiskFragmentViewModel.class);
 
-        TextView text_title = dialog.findViewById(R.id.txt_dialog_selection_title);
+        /* TextView text_title = dialog.findViewById(R.id.txt_dialog_selection_title);
         text_title.setText(tittle);
         TextView text_message = dialog.findViewById(R.id.txt_dialog_selection_body);
-        text_message.setText(message);
+        text_message.setText(message); */
 
         TextView button_cancel = dialog.findViewById(R.id.txt_selection_cancel);
         TextView button_delete = dialog.findViewById(R.id.txt_selection_delete);
@@ -72,14 +74,15 @@ public class DialogSelection {
         LinearLayout layoutI = dialog.findViewById(R.id.dialogSelectionInteresting);
         LinearLayout layoutR = dialog.findViewById(R.id.dialogSelectionRisk);
 
-        FloatingActionButton button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
-        FloatingActionButton button_interesting = dialog.findViewById(R.id.floatingInteresting);
-        FloatingActionButton button_risk = dialog.findViewById(R.id.floatingRisk);
-        ImageView view_image = dialog.findViewById(R.id.dialog_selection_img);
+        TextView button_opportunity = dialog.findViewById(R.id.floatingOpportunity);
+        TextView button_interesting = dialog.findViewById(R.id.floatingInteresting);
+        TextView button_risk = dialog.findViewById(R.id.floatingRisk);
+
+        //ImageView view_image = dialog.findViewById(R.id.dialog_selection_img);
 
 
 
-        switch (status) {
+        /*switch (status) {
             case 0:
                 drawable = activity.getDrawable(R.drawable.ic_news);
                 break;
@@ -92,9 +95,9 @@ public class DialogSelection {
             case 3:
                 drawable = activity.getDrawable(R.drawable.ic_amenaza);
                 break;
-        }
+        }*/
 
-        if (image == null) {
+        /*if (image == null) {
             Utilities.getBitmap(activity, view_image);
             Glide.with(activity.getApplicationContext())
                     .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
@@ -105,14 +108,14 @@ public class DialogSelection {
                     .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(image)
                     .into(view_image);
-        }
+        } */
 
-        view_image.setOnClickListener(v -> {
+        /*view_image.setOnClickListener(v -> {
             Intent intent = new Intent(activity, NewsDetailActivity.class);
             intent.putExtra(Constants.EXTRA_NEWS, new Gson().toJson(news));
             activity.startActivity(intent);
             dialog.dismiss();
-        });
+        });*/
 
         button_cancel.setOnClickListener(v -> {
             dialog.dismiss();
@@ -120,7 +123,7 @@ public class DialogSelection {
 
         switch (status) {
             case 0:
-                text_title.setTextColor(activity.getColor(R.color.colorPrimaryLight));
+
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
@@ -146,7 +149,7 @@ public class DialogSelection {
 
                 break;
             case 1:
-                text_title.setTextColor(activity.getColor(R.color.colorOpportunity));
+
                 button_opportunity.setVisibility(View.GONE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
@@ -169,7 +172,6 @@ public class DialogSelection {
                 break;
             case 2:
 
-                text_title.setTextColor(activity.getColor(R.color.colorInteresting));
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.GONE);
                 button_risk.setVisibility(View.VISIBLE);
@@ -197,7 +199,7 @@ public class DialogSelection {
 
                 break;
             case 3:
-                text_title.setTextColor(activity.getColor(R.color.colorRisk));
+
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.GONE);

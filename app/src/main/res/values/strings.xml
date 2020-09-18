@@ -12,13 +12,13 @@
 
     <string name="title_news">News</string>
     <string name="title_opportunity">Opportunity</string>
-    <string name="title_interesting">Intermediate</string>
+    <string name="title_interesting">Neutral</string>
     <string name="title_risk">Risk</string>
 
     <string name="string_link">Go to the News.</string>
 
     <string name="snackBar_opportunity">Added to Opportunity.</string>
-    <string name="snackBar_interesting">Added to Intermediate.</string>
+    <string name="snackBar_interesting">Added to Neutral.</string>
     <string name="snackBar_risk">Added to Risk.</string>
     <string name="snackBar_remove">Remove.</string>
 
@@ -35,7 +35,7 @@
 
     <string name="empty_news"><u>Indexed</u>\u0020news will be displayed here.</string>
     <string name="empty_opportunity">Here the news saved in\u0020<u>Opportunity</u>\u0020will be displayed when you add it to this category.</string>
-    <string name="empty_intermediate">Selected news \u0020<u>Intermediate</u>\u0020will be displayed when you add it to this category</string>
+    <string name="empty_intermediate">Selected news \u0020<u>Neutral</u>\u0020will be displayed when you add it to this category</string>
     <string name="empty_risk">Selected news \u0020<u>Risk</u>\u0020will be displayed when you add it to this category</string>
 
 

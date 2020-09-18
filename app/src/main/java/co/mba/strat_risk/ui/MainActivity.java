@@ -41,6 +41,12 @@ import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    //LOGO MBA GRIS PARA EL DIALOG
+    //Quitar trasnferencia a riego,
+
+    //Texto en la toolbar
+    
+
     @Inject
     ViewModelProvider.Factory factory;
     MainViewModel viewModel;

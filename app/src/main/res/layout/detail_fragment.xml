@@ -43,7 +43,7 @@
         <include
             layout="@layout/content_detail_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|enterAlways" />
     </androidx.core.widget.NestedScrollView>
 
@@ -77,11 +77,11 @@
                 android:layout_height="wrap_content"
                 android:elevation="@dimen/custom_spacing16dp"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                app:backgroundTint="@color/colorOpportunity"
+                app:backgroundTint="@color/colorWhite"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
+                app:maxImageSize="44dp"
                 app:srcCompat="@drawable/ic_gris"
-                app:tint="@color/colorWhite" />
+                app:tint="@color/colorOpportunity" />
 
         </LinearLayout>
 
@@ -102,11 +102,11 @@
                 android:layout_height="wrap_content"
                 android:elevation="@dimen/custom_spacing16dp"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                app:backgroundTint="@color/colorInteresting"
+                app:backgroundTint="@color/colorWhite"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
+                app:maxImageSize="44dp"
                 app:srcCompat="@drawable/ic_gris"
-                app:tint="@color/colorWhite" />
+                app:tint="@color/colorInteresting" />
         </LinearLayout>
 
         <LinearLayout
@@ -126,11 +126,11 @@
                 android:layout_height="wrap_content"
                 android:elevation="@dimen/custom_spacing16dp"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                app:backgroundTint="@color/colorRisk"
+                app:backgroundTint="@color/colorWhite"
                 app:fabSize="auto"
-                app:maxImageSize="36dp"
+                app:maxImageSize="44dp"
                 app:srcCompat="@drawable/ic_gris"
-                app:tint="@color/colorWhite" />
+                app:tint="@color/colorRisk" />
         </LinearLayout>
     </LinearLayout>
 

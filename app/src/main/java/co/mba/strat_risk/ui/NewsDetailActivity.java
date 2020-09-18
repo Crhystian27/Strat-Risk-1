@@ -56,8 +56,8 @@ public class NewsDetailActivity extends BaseActivity {
 
         setSupportActionBar(true, true);
 
-        TextView textViewTitle = findViewById(R.id.title_detail);
-        TextView textViewBody = findViewById(R.id.body_detail);
+        /*TextView textViewTitle = findViewById(R.id.title_detail);
+        TextView textViewBody = findViewById(R.id.body_detail);*/
         FloatingActionButton buttonRemove = findViewById(R.id.fab_remove);
 
         //TODO SHOW IMAGE WITH GLIDE
@@ -74,7 +74,7 @@ public class NewsDetailActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(NewsDetailActivity.this, factory).get(NewsDetailViewModel.class);
 
         layout = findViewById(R.id.detail_Remove);
-        layoutNews = findViewById(R.id.newsLink);
+        /*layoutNews = findViewById(R.id.newsLink);*/
         bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
         relativeLayout = findViewById(R.id.containerDetail);
 
@@ -99,7 +99,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomRisk.setVisibility(View.VISIBLE);
 
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_news));
+                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_news));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -112,11 +112,11 @@ public class NewsDetailActivity extends BaseActivity {
             case 1:
 
                 getToolbar().setTitle(getString(R.string.app_name));
-                bottomOpportunity.setVisibility(View.GONE);
+                bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_opp));
+                // relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_opp));
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -129,11 +129,11 @@ public class NewsDetailActivity extends BaseActivity {
 
                 getToolbar().setTitle(getString(R.string.app_name));
                 bottomOpportunity.setVisibility(View.VISIBLE);
-                bottomInteresting.setVisibility(View.GONE);
+                bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_int));
+                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_int));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -147,9 +147,9 @@ public class NewsDetailActivity extends BaseActivity {
                 getToolbar().setTitle(getString(R.string.app_name));
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
-                bottomRisk.setVisibility(View.GONE);
+                bottomRisk.setVisibility(View.VISIBLE);
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_risk));
+                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_risk));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -160,9 +160,9 @@ public class NewsDetailActivity extends BaseActivity {
                 break;
         }
 
-        textViewTitle.setText(dto.getTitle());
+        /*textViewTitle.setText(dto.getTitle());
         textViewBody.setText(dto.getSnippet());
-        textViewBody.setTextSize(20);
+        textViewBody.setTextSize(20);*/
 
     }
 
