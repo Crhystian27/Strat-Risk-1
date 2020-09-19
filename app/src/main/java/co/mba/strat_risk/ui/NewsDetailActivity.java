@@ -4,14 +4,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -24,7 +26,6 @@ import co.mba.strat_risk.base.BaseActivity;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
-import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class NewsDetailActivity extends BaseActivity {
 
@@ -32,11 +33,11 @@ public class NewsDetailActivity extends BaseActivity {
     ViewModelProvider.Factory factory;
     NewsDetailViewModel viewModel;
     RelativeLayout layout;
-    LinearLayout layoutNews;
     BottomAppBar bottomAppBar;
     RelativeLayout relativeLayout;
 
 
+    Drawable drawable;
     News dto;
     String dto_extra;
 
@@ -85,9 +86,9 @@ public class NewsDetailActivity extends BaseActivity {
         }
         dto = new Gson().fromJson(dto_extra, News.class);
 
-        layoutNews.setOnClickListener(v -> {
+        /*layoutNews.setOnClickListener(v -> {
             SnackBarInformation.showSnackBar(this, layout, "Link", "fonts/montserrat_regular_.ttf");
-        });
+        });*/
 
         switch (dto.getStatus()) {
 
@@ -99,7 +100,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomRisk.setVisibility(View.VISIBLE);
 
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_news));
+
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -116,7 +117,6 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                // relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_opp));
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -133,7 +133,6 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomRisk.setVisibility(View.VISIBLE);
 
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_int));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -149,7 +148,6 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
                 bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-                //relativeLayout.setBackground(getDrawable(R.drawable.side_nav_bar_risk));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -160,9 +158,19 @@ public class NewsDetailActivity extends BaseActivity {
                 break;
         }
 
-        /*textViewTitle.setText(dto.getTitle());
-        textViewBody.setText(dto.getSnippet());
-        textViewBody.setTextSize(20);*/
+        drawable = getDrawable(R.drawable.ic_gris);
+
+        if (dto.getSrc() == null) {
+            Glide.with(getApplicationContext())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
+                    .load(drawable)
+                    .into(imgDetail);
+        } else {
+            Glide.with(getApplicationContext())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
+                    .load(dto.getSrc())
+                    .into(imgDetail);
+        }
 
     }
 

@@ -15,8 +15,8 @@ public class Constants {
 
     public static final Integer DELETE_STATUS = -1;
     public static final Integer OPPORTUNITY_STATUS = 1;
-    public static final Integer INTERESTING_STATUS = 2;
-    public static final Integer RISK_STATUS = 3;
+    public static final Integer RISK_STATUS = 2;
+    public static final Integer INTERESTING_STATUS = 3;
     public static final Integer LOCAL_STATUS = 0;
 
     public static final String ACCESS_TOKEN = "access_token";

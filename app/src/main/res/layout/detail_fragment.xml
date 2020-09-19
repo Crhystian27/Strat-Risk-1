@@ -19,16 +19,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_spacing192dp"
         android:layout_marginTop="?attr/actionBarSize"
-        android:background="@drawable/side_nav_bar_news"
+        android:background="@drawable/side_nav_bar_background_detail"
         app:layout_anchorGravity="">
 
         <ImageView
             android:id="@+id/imageDetail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/custom_spacing128dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginEnd="16dp"
             android:fitsSystemWindows="true"
-            android:src="@drawable/ic_gris"
             tools:ignore="ContentDescription" />
     </RelativeLayout>
 
@@ -47,9 +48,6 @@
             app:layout_scrollFlags="scroll|enterAlways" />
     </androidx.core.widget.NestedScrollView>
 
-    <!--
-    //TODO ADD BORDER WITH IN BUTTONS
-    -->
 
     <LinearLayout
         android:id="@+id/containerFloating"
@@ -82,31 +80,6 @@
                 app:maxImageSize="44dp"
                 app:srcCompat="@drawable/ic_gris"
                 app:tint="@color/colorOpportunity" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/detailInteresting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/custom_spacing24dp"
-            android:background="@drawable/fab_border"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="2dp">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/selectionInteresting"
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="@dimen/custom_spacing16dp"
-                android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                app:backgroundTint="@color/colorWhite"
-                app:fabSize="auto"
-                app:maxImageSize="44dp"
-                app:srcCompat="@drawable/ic_gris"
-                app:tint="@color/colorInteresting" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,6 +104,30 @@
                 app:maxImageSize="44dp"
                 app:srcCompat="@drawable/ic_gris"
                 app:tint="@color/colorRisk" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/detailInteresting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/custom_spacing24dp"
+            android:background="@drawable/fab_border"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/selectionInteresting"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/custom_spacing16dp"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                app:backgroundTint="@color/colorWhite"
+                app:fabSize="auto"
+                app:maxImageSize="44dp"
+                app:srcCompat="@drawable/ic_gris"
+                app:tint="@color/colorInteresting" />
         </LinearLayout>
     </LinearLayout>
 

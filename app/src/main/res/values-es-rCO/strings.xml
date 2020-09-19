@@ -53,7 +53,9 @@
 
 
     <string name="nv_string_title_menu">Menu</string>
+    <!--
     <string name="nv_string_safe">¿Existe Transferencia a Seguro?</string>
+    -->
     <string name="nv_string_question">Contacto</string>
     <string name="nv_string_title_options">Opciones</string>
     <string name="nv_string_log_in_out">Cerrar Sesión</string>

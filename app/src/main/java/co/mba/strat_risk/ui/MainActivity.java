@@ -41,11 +41,10 @@ import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //LOGO MBA GRIS PARA EL DIALOG
-    //Quitar trasnferencia a riego,
 
     //Texto en la toolbar
-    
+    //TODO ADD Bottom toolbar
+
 
     @Inject
     ViewModelProvider.Factory factory;
@@ -98,22 +97,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         ImageView nv_image = viewDrawer.findViewById(R.id.nv_image);
         TextView nv_name = viewDrawer.findViewById(R.id.nv_name);
-        TextView nv_email = viewDrawer.findViewById(R.id.nv_email);
+
+        Drawable drawable = getDrawable(R.drawable.ic_gris);
 
         Glide.with(MainActivity.this)
-                .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_notifications_black_24dp).error(R.drawable.ic_notifications_black_24dp))
-                .load(R.drawable.ic_notifications_black_24dp)
+                .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
+                .load(drawable)
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        nv_image.setBackground(getDrawable(R.drawable.background_icon_navigationview));
+                        nv_image.setBackground(getDrawable(R.drawable.side_nav_drawer));
                     }
                 });
 
         viewModel.getCurrentUser();
         viewModel.getUser().observe(this, user -> {
             nv_name.setText(user.getName());
-            nv_email.setText(user.getEmail());
         });
 
         chipNavigationBar.setOnItemSelectedListener(id -> {
@@ -176,19 +175,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         switch (item.getItemId()) {
-            case R.id.item_safe:
-
-                Toast.makeText(this, "safe", Toast.LENGTH_SHORT).show();
-                item.setChecked(true);
-                drawerLayout.closeDrawer(GravityCompat.START);
-
-                return true;
-
             case R.id.item_question:
 
                 Toast.makeText(this, "question", Toast.LENGTH_SHORT).show();
 
-
+                //TODO LANZAR ACTIVITY LLAMAR
                 item.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -196,9 +187,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.item_log_in_out:
 
                 Toast.makeText(this, "log in out", Toast.LENGTH_SHORT).show();
-
                 item.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
+
+                finish();
+
                 return true;
 
             default:

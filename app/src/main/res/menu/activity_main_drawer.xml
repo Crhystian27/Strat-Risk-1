@@ -8,11 +8,6 @@
             <menu>
                 <group android:checkableBehavior="single">
                     <item
-                        android:id="@+id/item_safe"
-                        android:icon="@drawable/ic_safe"
-                        android:title="@string/nv_string_safe" />
-
-                    <item
                         android:id="@+id/item_question"
                         android:icon="@drawable/ic_question"
                         android:title="@string/nv_string_question" />

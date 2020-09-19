@@ -49,21 +49,20 @@ public class DialogInformation {
         TextView text_message = dialog.findViewById(R.id.txt_dialog_message_title);
         RadioGroup radioGroup = dialog.findViewById(R.id.dialog_radio_group);
         ImageView img = dialog.findViewById(R.id.dialog_img);
-        Drawable drawable = activity.getDrawable(R.drawable.ic_rss);
+        Drawable drawable = activity.getDrawable(R.drawable.ic_gris);
 
         RadioButton radio1 = dialog.findViewById(R.id.dialog_radio_button1);
         RadioButton radio2 = dialog.findViewById(R.id.dialog_radio_button2);
 
-        Utilities.getBitmap(activity, img);
 
         Glide.with(activity.getApplicationContext())
-                .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                 .load(drawable)
                 .into(img);
 
         switch (status) {
             case 0:
-                dialog.getWindow().setLayout((39 * width) / 40, (4 * height) / 5);
+
 
                 text_message.setVerticalScrollBarEnabled(false);
                 radioGroup.setVisibility(View.GONE);
@@ -72,7 +71,7 @@ public class DialogInformation {
                 text_cancel.setVisibility(View.INVISIBLE);
                 break;
             case 1:
-                dialog.getWindow().setLayout((39 * width) / 40, (4 * height) / 5);
+
 
                 text_message.setVerticalScrollBarEnabled(true);
                 text_message.setLines(16);
@@ -98,9 +97,9 @@ public class DialogInformation {
                     }
                 });
                 break;
+
         }
 
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         text_cancel.setOnClickListener(v -> {
             isShowing = false;
@@ -116,6 +115,13 @@ public class DialogInformation {
             dialog.dismiss();
         });
         isShowing = true;
+
+        if (status.equals(1)) {
+            dialog.getWindow().setLayout((36 * width) / 40, ViewGroup.LayoutParams.WRAP_CONTENT);
+        } else {
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
         dialog.show();
     }
 }

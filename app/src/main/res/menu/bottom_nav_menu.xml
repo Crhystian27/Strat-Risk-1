@@ -13,13 +13,13 @@
 
     <item
         android:id="@+id/navigation_risk"
-        android:orderInCategory="4"
+        android:orderInCategory="3"
         android:title="@string/title_risk"
        />
 
     <item
         android:id="@+id/navigation_interesting"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="@string/title_interesting" />
 
 

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -230,7 +231,7 @@ public class DialogSelection {
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
-        dialog.getWindow().setLayout((36 * width) / 40, (4 * height) / 5);
+        dialog.getWindow().setLayout((36 * width) / 40, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         isShowing = true;
         dialog.show();
