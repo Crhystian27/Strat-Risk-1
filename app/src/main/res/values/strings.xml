@@ -38,6 +38,7 @@
     <string name="empty_intermediate">Selected news \u0020<u>Neutral</u>\u0020will be displayed when you add it to this category</string>
     <string name="empty_risk">Selected news \u0020<u>Risk</u>\u0020will be displayed when you add it to this category</string>
 
+    <string name="string_slide_desc_1">The news app that allows you to keep up to date with the news in your sector and partially manage your strategic risks.</string>
 
     <string name="btn_cancel">Cancel</string>
 

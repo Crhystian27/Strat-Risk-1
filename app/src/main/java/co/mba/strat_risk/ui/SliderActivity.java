@@ -46,6 +46,7 @@ public class SliderActivity extends BaseActivity {
     private void initUI() {
         hideSystemUI();
 
+
         //slider.setAdapter(new );
 
 

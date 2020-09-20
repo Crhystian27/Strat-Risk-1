@@ -45,6 +45,8 @@
     <string name="empty_intermediate"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Intermedio</u>\u0020cuando la agregues a esta categoría.</b></string>
     <string name="empty_risk">Aquí se mostrarán las noticias guardadas en\u0020 <u>Riesgo</u> \u0020cuando la agregues a esta categoría.</string>
 
+    <string name="string_slide_desc_1">La app de noticias que te permite estar al día con las novedades de tu sector y gestionar en parte tu riesgos estratégico.</string>
+
 
     <string name="string_name">Nombre</string>
     <string name="string_email">Correo</string>
