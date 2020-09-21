@@ -61,12 +61,23 @@
     </style>
 
 
-    <style name="CustomChipNavigationBar" parent="@style/TextAppearance.MaterialComponents.Caption">
+    <style name="CustomTextAppearance.Active" parent="@style/TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimaryLight</item>
         <item name="android:fontFamily">@font/montserrat_regular_</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title
+        </item>
+    </style>
+
+    <style name="CustomTextAppearance.Inactive" parent="@style/TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:fontFamily">@font/montserrat_regular_</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle
         </item>
     </style>
 

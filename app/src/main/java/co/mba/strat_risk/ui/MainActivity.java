@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -41,15 +42,10 @@ import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    //Texto en la toolbar
-    //TODO ADD Bottom toolbar
-
-
     @Inject
     ViewModelProvider.Factory factory;
     MainViewModel viewModel;
-    ChipNavigationBar chipNavigationBar;
+   // ChipNavigationBar chipNavigationBar;
 
     DrawerLayout drawerLayout;
     View viewDrawer;
@@ -77,10 +73,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(false, true);
         viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainViewModel.class);
 
-        chipNavigationBar = findViewById(R.id.chipNavigationView);
+        /*chipNavigationBar = findViewById(R.id.chipNavigationView);*/
+
+        BottomNavigationView navigationView1 = findViewById(R.id.main_navigation);
+        navigationView1.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
         if (savedInstanceState == null) {
-            chipNavigationBar.setItemSelected(R.id.navigation_news, true);
+            //chipNavigationBar.setItemSelected(R.id.navigation_news, true);
             Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
         }
 
@@ -115,7 +114,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             nv_name.setText(user.getName());
         });
 
-        chipNavigationBar.setOnItemSelectedListener(id -> {
+        /*chipNavigationBar.setOnItemSelectedListener(id -> {
             switch (id) {
                 case R.id.navigation_news:
                     Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
@@ -130,13 +129,32 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
                     break;
             }
-        });
+        });*/
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+            = item -> {
+        switch (item.getItemId()) {
+            case R.id.navigation_news:
+                Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                return true;
+            case R.id.navigation_opportunity:
+                Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                return true;
+            case R.id.navigation_interesting:
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                return true;
+            case R.id.navigation_risk:
+                Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                return true;
+        }
+        return false;
+    };
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        //getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -189,6 +207,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Toast.makeText(this, "log in out", Toast.LENGTH_SHORT).show();
                 item.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
+
+                //Borrar las preferencias
 
                 finish();
 

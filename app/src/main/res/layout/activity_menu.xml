@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".ui.MenuActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/toolbar_menu"
+        layout="@layout/toolbar_material"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+
+    <!--
+     TODO Change Background in icons
+     -->
+    <ImageView
+        android:id="@+id/menuNews"
+        android:layout_width="@dimen/custom_spacing128dp"
+        android:layout_height="@dimen/custom_spacing128dp"
+        android:layout_below="@id/toolbar_menu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/custom_spacing128dp"
+        android:background="@drawable/side_nav_bar_background_detail"
+        android:elevation="@dimen/custom_elevation16dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_gris" />
+
+    <TextView
+        android:id="@+id/textMenuNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuNews"
+        android:layout_marginTop="@dimen/custom_spacing8dp"
+        android:fontFamily="@font/montserrat_regular_"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/custom_spacing18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textMenuDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menuDetail"
+        android:layout_marginTop="@dimen/custom_spacing8dp"
+        android:fontFamily="@font/montserrat_regular_"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/custom_spacing18sp"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/menuDetail"
+        android:layout_width="@dimen/custom_spacing128dp"
+        android:layout_height="@dimen/custom_spacing128dp"
+        android:layout_below="@id/menuNews"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/custom_spacing128dp"
+        android:background="@drawable/side_nav_bar_background_detail"
+        android:elevation="@dimen/custom_elevation16dp"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_gris" />
+
+</RelativeLayout>

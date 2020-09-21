@@ -18,7 +18,7 @@
     <string name="string_slider_button">Empezar</string>
 
     <string name="snackBar_opportunity">Agregado a Oportunidad.</string>
-    <string name="snackBar_interesting">Agregado a Intermedio.</string>
+    <string name="snackBar_interesting">Agregado a Neutral.</string>
     <string name="snackBar_risk">Agregado a Riesgo.</string>
     <string name="snackBar_remove">Eliminar.</string>
 
@@ -44,7 +44,7 @@
 
     <string name="empty_news">Aquí se mostrarán las noticias\u0020<u>Indexadas</u></string>
     <string name="empty_opportunity"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Oportunidad</u>\u0020cuando la agregues a esta categoría.</b></string>
-    <string name="empty_intermediate"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Intermedio</u>\u0020cuando la agregues a esta categoría.</b></string>
+    <string name="empty_intermediate"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Neutral</u>\u0020cuando la agregues a esta categoría.</b></string>
     <string name="empty_risk">Aquí se mostrarán las noticias guardadas en\u0020 <u>Riesgo</u> \u0020cuando la agregues a esta categoría.</string>
 
     <string name="string_slide_desc_1">La app de noticias que te permite estar al día con las novedades de tu sector y gestionar en parte tu riesgos estratégico.</string>

@@ -17,10 +17,24 @@
         android:id="@+id/nav_host_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/chipNavigationView" />
+        android:layout_below="@id/main_navigation" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/main_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@id/toolbar_main"
+        android:paddingBottom="@dimen/custom_spacing16dp"
+        app:backgroundTint="@color/colorNavigation"
+        app:itemRippleColor="@color/colorWhite"
+        app:itemTextAppearanceActive="@style/CustomTextAppearance.Active"
+        app:itemTextAppearanceInactive="@style/CustomTextAppearance.Inactive"
+        app:menu="@menu/bottom_nav_menu" />
 
 
     <!--TODO : SOLO DEJAR EL TEXTO -->
+    <!--
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/chipNavigationView"
         android:layout_width="match_parent"
@@ -34,5 +48,49 @@
         app:cnb_menuResource="@menu/bottom_nav_menu"
         app:cnb_textAppearance="@style/CustomChipNavigationBar"
         app:cnb_unselectedColor="@color/colorWhite" />
+    -->
+
+
+    <!--
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorNavigation"
+            app:tabIndicatorColor="@color/colorWhite"
+            app:tabTextAppearance="@style/TabLayout"
+            app:tabTextColor="@color/colorWhite">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="@string/title_news" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_opportunity" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_risk" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_interesting" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+    -->
+
 
 </RelativeLayout>
