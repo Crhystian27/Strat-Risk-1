@@ -3,11 +3,14 @@ package co.mba.strat_risk.di.module;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import javax.inject.Inject;
+
 import co.mba.strat_risk.di.key.ViewModelKey;
 
 import co.mba.strat_risk.ui.LoginViewModel;
 import co.mba.strat_risk.ui.MainViewModel;
 import co.mba.strat_risk.ui.NewsDetailViewModel;
+import co.mba.strat_risk.ui.SliderViewModel;
 import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
 import co.mba.strat_risk.ui.login.ForgotFragmentViewModel;
 import co.mba.strat_risk.ui.login.LoginFragmentViewModel;
@@ -31,6 +34,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(InterestingFragmentViewModel.class)
     abstract ViewModel bindInterestingViewModel(InterestingFragmentViewModel interestingFragmentViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SliderViewModel.class)
+    abstract ViewModel bindSliderViewModel(SliderViewModel sliderViewModel);
 
     @Binds
     @IntoMap

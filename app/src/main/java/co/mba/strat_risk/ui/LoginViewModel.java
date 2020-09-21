@@ -22,7 +22,7 @@ public class LoginViewModel extends ViewModel {
         if (AppPreferences.getInstance().getUser() != null) {
             Intent intent = new Intent(activity, aClass);
             activity.startActivity(intent);
-            Log.e(TAG, "");
+            Log.e(TAG, activity.getClass().getSimpleName() + " ->" + aClass.getSimpleName());
             activity.finish();
 
         }

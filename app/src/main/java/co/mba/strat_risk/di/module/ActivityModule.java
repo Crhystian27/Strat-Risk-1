@@ -3,6 +3,8 @@ package co.mba.strat_risk.di.module;
 import co.mba.strat_risk.ui.LoginActivity;
 import co.mba.strat_risk.ui.MainActivity;
 import co.mba.strat_risk.ui.NewsDetailActivity;
+import co.mba.strat_risk.ui.SliderActivity;
+import co.mba.strat_risk.ui.StartActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -17,5 +19,11 @@ public abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = {FragmentLoginModule.class})
     abstract LoginActivity contributeLoginActivity();
+
+    @ContributesAndroidInjector()
+    abstract SliderActivity contributeSliderActivity();
+
+    @ContributesAndroidInjector()
+    abstract StartActivity contributeStartActivity();
 
 }

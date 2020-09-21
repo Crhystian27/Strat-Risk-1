@@ -29,7 +29,8 @@ public class RequestInterceptor implements Interceptor {
             AccessTokenDTO accessToken = AppPreferences.getInstance().getAccessTokenDTO();
             if (accessToken != null) {
                 request = request.newBuilder()
-                        .addHeader("Authorization", accessToken.getType() + " " + accessToken.getAccessToken())
+                        .addHeader("Authorization", accessToken.getType().trim() + " " + accessToken.getAccessToken().trim())
+                        .addHeader("Accept", "application/json")
                         .method(request.method(), request.body())
                         .build();
             }

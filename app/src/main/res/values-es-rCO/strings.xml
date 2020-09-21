@@ -15,6 +15,8 @@
 
     <string name="string_link">Ir a la noticia.</string>
 
+    <string name="string_slider_button">Empezar</string>
+
     <string name="snackBar_opportunity">Agregado a Oportunidad.</string>
     <string name="snackBar_interesting">Agregado a Intermedio.</string>
     <string name="snackBar_risk">Agregado a Riesgo.</string>
@@ -70,7 +72,7 @@
     <string name="string_restore">Restablecer</string>
 
     <string name="string_username">Usuario</string>
-    <string name="string_password">Constraseña</string>
+    <string name="string_password">Contraseña</string>
     <string name="string_login">Iniciar Sesión</string>
     <string name="string_login_error">Ha introducido un nombre de usuario o contraseña incorrectos.</string>
     <string name="string_forgot_password">\¿<u>Olvidó\u0020su\u0020contraseña</u>\?</string>
