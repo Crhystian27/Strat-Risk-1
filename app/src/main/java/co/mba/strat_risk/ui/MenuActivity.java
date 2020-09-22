@@ -1,21 +1,23 @@
 package co.mba.strat_risk.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
 
+
 public class MenuActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory factory;
 
+    MenuViewModel viewModel;
     ImageView imageMenuNews, imageMenuDetail;
 
 
@@ -33,22 +35,17 @@ public class MenuActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setSupportActionBar(false, true);
+
+        viewModel = ViewModelProviders.of(MenuActivity.this, factory).get(MenuViewModel.class);
+
         imageMenuNews = findViewById(R.id.menuNews);
         imageMenuDetail = findViewById(R.id.menuDetail);
 
-        imageMenuNews.setOnClickListener(v -> {
-
-            Intent intent = new Intent(MenuActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
+        imageMenuNews.setOnClickListener(v -> viewModel.initMenu(MenuActivity.this, MainActivity.class));
 
         imageMenuDetail.setOnClickListener(v -> {
-            //TODO crear undialogo.
+            //DialogInformation.showDialog(MenuActivity.this, "Muy Pronto", 0, null);
         });
-
-        //Load in database
-
-
     }
 
 

@@ -56,7 +56,7 @@ public class SliderActivity extends BaseActivity {
         linearStart.setOnClickListener(v -> {
 
             if (AppPreferences.getInstance().getUser() != null) {
-                viewModel.initSlider(SliderActivity.this, MainActivity.class);
+                viewModel.initSlider(SliderActivity.this, MenuActivity.class);
             } else {
                 viewModel.initSlider(SliderActivity.this, LoginActivity.class);
             }

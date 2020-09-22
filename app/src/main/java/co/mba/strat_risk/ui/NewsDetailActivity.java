@@ -37,7 +37,7 @@ public class NewsDetailActivity extends BaseActivity {
     RelativeLayout relativeLayout;
 
 
-    Drawable drawable;
+    //Drawable drawable;
     News dto;
     String dto_extra;
 
@@ -63,6 +63,7 @@ public class NewsDetailActivity extends BaseActivity {
 
         //TODO SHOW IMAGE WITH GLIDE
         ImageView imgDetail = findViewById(R.id.imageDetail);
+        imgDetail.setImageResource(R.drawable.ic_mba_gris);
         LinearLayout bottomInteresting = findViewById(R.id.detailInteresting);
         LinearLayout bottomRisk = findViewById(R.id.detailRisk);
         LinearLayout bottomOpportunity = findViewById(R.id.detailOpportunity);
@@ -91,7 +92,6 @@ public class NewsDetailActivity extends BaseActivity {
         });*/
 
         switch (dto.getStatus()) {
-
             case 0:
 
                 getToolbar().setTitle(getString(R.string.app_name));
@@ -158,7 +158,7 @@ public class NewsDetailActivity extends BaseActivity {
                 break;
         }
 
-        drawable = getDrawable(R.drawable.ic_gris);
+        /*drawable = getDrawable(R.drawable.ic_mba_gris);
 
         if (dto.getSrc() == null) {
             Glide.with(getApplicationContext())
@@ -170,7 +170,7 @@ public class NewsDetailActivity extends BaseActivity {
                     .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
                     .load(dto.getSrc())
                     .into(imgDetail);
-        }
+        }*/
 
     }
 

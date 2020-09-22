@@ -9,6 +9,7 @@ import co.mba.strat_risk.di.key.ViewModelKey;
 
 import co.mba.strat_risk.ui.LoginViewModel;
 import co.mba.strat_risk.ui.MainViewModel;
+import co.mba.strat_risk.ui.MenuViewModel;
 import co.mba.strat_risk.ui.NewsDetailViewModel;
 import co.mba.strat_risk.ui.SliderViewModel;
 import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
@@ -39,6 +40,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SliderViewModel.class)
     abstract ViewModel bindSliderViewModel(SliderViewModel sliderViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MenuViewModel.class)
+    abstract ViewModel bindMenuViewModel(MenuViewModel MenuViewModel);
 
     @Binds
     @IntoMap

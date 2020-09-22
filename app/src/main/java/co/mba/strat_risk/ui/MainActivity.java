@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 .into(new SimpleTarget<Drawable>() {
                     @Override
                     public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                        nv_image.setBackground(getDrawable(R.drawable.side_nav_drawer));
+                        //nv_image.setBackground(getDrawable(R.drawable.side_nav_drawer));
                     }
                 });
 

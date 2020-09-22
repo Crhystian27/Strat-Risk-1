@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/custom_spacing78dp"
+            android:layout_marginStart="102dp"
             android:orientation="vertical">
 
             <TextView
@@ -123,11 +123,12 @@
            android:tint="@color/colorPrimaryDark"
            -->
         <ImageView
+            android:background="@drawable/side_nav_bar_background_row_image"
             android:id="@+id/pic"
-            android:layout_width="72dp"
+            android:layout_width="96dp"
             android:layout_height="72dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_rss"
+            android:src="@drawable/ic_gris"
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>

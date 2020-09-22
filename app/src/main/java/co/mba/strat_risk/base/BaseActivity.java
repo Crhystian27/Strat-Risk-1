@@ -97,7 +97,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         Utilities.addThisActivityToRunningActivityies(getClass());
     }
 
-    @Override
+    /*@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (toolbar.getMenu().findItem(INFORMATION_ID) == null) {
             toolbar.getMenu().add(0, INFORMATION_ID, Menu.CATEGORY_ALTERNATIVE, getString(R.string.base_info)).setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
@@ -106,9 +106,9 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
             toolbar.getMenu().add(0, FAQ_ID, Menu.CATEGORY_ALTERNATIVE, getString(R.string.base_faq)).setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
         }
         return super.onPrepareOptionsMenu(menu);
-    }
+    }*/
 
-    private boolean pressMenuItem = false;
+    /*private boolean pressMenuItem = false;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -130,7 +130,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

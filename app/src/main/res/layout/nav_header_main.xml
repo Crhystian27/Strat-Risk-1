@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/custom_spacing4dp"
         android:layout_marginBottom="@dimen/custom_spacing4dp"
         android:orientation="vertical">
 
@@ -29,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/custom_spacing16dp"
-            android:fontFamily="@font/montserrat_bold_"
+            android:fontFamily="@font/montserrat_regular_"
             android:gravity="center"
             android:text="@string/string_name"
             android:textColor="@android:color/white"

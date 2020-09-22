@@ -17,18 +17,17 @@
     <RelativeLayout
         android:id="@+id/containerDetail"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_spacing192dp"
+        android:layout_height="@dimen/custom_spacing128dp"
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@drawable/side_nav_bar_background_detail"
-        app:layout_anchorGravity="">
+        >
 
         <ImageView
             android:id="@+id/imageDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/custom_spacing16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/custom_elevation16dp"
             android:fitsSystemWindows="true"
             tools:ignore="ContentDescription" />
     </RelativeLayout>

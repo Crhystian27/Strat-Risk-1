@@ -74,7 +74,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         //TODO DIAGRAMA DE FLUJO PARA LOS SEGUROS. -AUTOMATIZAR
 
-        switch (status) {
+        /*switch (status) {
             case 0:
                 holder.param1.setTextColor(context.getColor(R.color.colorPrimaryLight));
                 break;
@@ -87,14 +87,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             case 3:
                 holder.param1.setTextColor(context.getColor(R.color.colorRisk));
                 break;
-        }
+        }*/
 
+        holder.param1.setTextColor(context.getColor(R.color.colorPrimaryLight));
 
         String param1 = dtoList.get(position).getTitle();
         String param2 = dtoList.get(position).getSnippet();
         //String param0 = dtoList.get(position).getUrlToImage();
         String param0 = null;
-        Drawable drawable = context.getDrawable(R.drawable.ic_rss);
+        Drawable drawable = context.getDrawable(R.drawable.ic_gris);
         setImage(context, holder, drawable, param0);
         holder.param1.setText(param1);
         holder.param2.setText(param2);
@@ -105,12 +106,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         if (param0 == null) {
             Utilities.getBitmap(context, holder.param0);
             Glide.with(context.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(drawable)
                     .into(holder.param0);
         } else {
             Glide.with(context.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(R.drawable.ic_rss).error(R.drawable.ic_rss).circleCrop())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(param0)
                     .into(holder.param0);
         }
