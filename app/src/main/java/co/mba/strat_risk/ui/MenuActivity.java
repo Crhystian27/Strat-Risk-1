@@ -36,6 +36,7 @@ public class MenuActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setSupportActionBar(false, true);
 
+
         viewModel = ViewModelProviders.of(MenuActivity.this, factory).get(MenuViewModel.class);
 
         imageMenuNews = findViewById(R.id.menuNews);

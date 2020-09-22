@@ -13,30 +13,36 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
-    <FrameLayout
-        android:id="@+id/nav_host_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/main_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_navigation"
         style="@style/Widget.MaterialComponents.BottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:paddingBottom="12dp"
+        android:layout_marginTop="-12dp"
+        android:layout_height="68dp"
         android:layout_below="@id/toolbar_main"
-        android:background="@color/colorNavigation"
-        android:paddingBottom="@dimen/custom_spacing16dp"
-        app:itemRippleColor="@color/colorWhite"
-        app:itemTextAppearanceActive="@style/CustomTextAppearance.Active"
-        app:itemTextAppearanceInactive="@style/CustomTextAppearance.Inactive"
+        app:backgroundTint="@color/colorNavigation"
+        app:itemRippleColor="@color/colorPrimaryLight"
+        app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
+        app:itemTextAppearanceInactive="@style/BottomNavigationView"
+        app:itemTextColor="@drawable/nav_item_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
+
+    <FrameLayout
+
+        android:id="@+id/nav_host_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_navigation" />
 
 
     <!--TODO : SOLO DEJAR EL TEXTO -->
+
     <!--
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:id="@+id/chipNavigationView"
+        android:id="@+id/main_navigation"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_below="@id/toolbar_main"

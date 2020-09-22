@@ -4,28 +4,31 @@
 
     <item
         android:id="@+id/navigation_news"
-        app:showAsAction="always"
+        android:enabled="true"
         android:orderInCategory="1"
-        android:title="@string/title_news" />
+        android:title="@string/title_news"
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/navigation_opportunity"
+        android:enabled="true"
         android:orderInCategory="2"
-        app:showAsAction="always"
-        android:title="@string/title_opportunity" />
+        android:title="@string/title_opportunity"
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/navigation_risk"
+        android:enabled="true"
         android:orderInCategory="3"
-        app:showAsAction="always"
         android:title="@string/title_risk"
-       />
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/navigation_interesting"
+        android:enabled="true"
         android:orderInCategory="4"
-        app:showAsAction="always"
-        android:title="@string/title_interesting" />
+        android:title="@string/title_interesting"
+        app:showAsAction="withText" />
 
 
 </menu>

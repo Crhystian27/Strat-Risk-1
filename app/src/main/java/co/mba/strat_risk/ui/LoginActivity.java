@@ -44,7 +44,7 @@ public class LoginActivity extends BaseActivity {
         layout = findViewById(R.id.login_relative);
         viewModel = ViewModelProviders.of(LoginActivity.this, factory).get(LoginViewModel.class);
 
-        if (viewModel.initLogin(LoginActivity.this, MainActivity.class)) {
+        if (viewModel.initLogin(LoginActivity.this, MenuActivity.class)) {
             initUI();
             //Next Activity si existe un usuario... si no muestra el login
             Log.e(getClass().getSimpleName(), "No user");

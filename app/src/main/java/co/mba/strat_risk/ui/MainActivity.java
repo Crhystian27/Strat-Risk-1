@@ -3,6 +3,7 @@ package co.mba.strat_risk.ui;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -45,12 +48,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Inject
     ViewModelProvider.Factory factory;
     MainViewModel viewModel;
-   // ChipNavigationBar chipNavigationBar;
+    // ChipNavigationBar chipNavigationBar;
 
     DrawerLayout drawerLayout;
     View viewDrawer;
 
-    RelativeLayout layout;
+    private RelativeLayout layout;
+    private BottomNavigationView bottomNavigationView;
+    private View notificationBadge;
     private boolean recentlyBackPressed = false;
     private Runnable exitRunnable = () -> recentlyBackPressed = false;
     private Handler exitHandler = new Handler();
@@ -75,8 +80,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         /*chipNavigationBar = findViewById(R.id.chipNavigationView);*/
 
-        BottomNavigationView navigationView1 = findViewById(R.id.main_navigation);
-        navigationView1.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        bottomNavigationView = findViewById(R.id.main_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
         if (savedInstanceState == null) {
             //chipNavigationBar.setItemSelected(R.id.navigation_news, true);
@@ -94,7 +99,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         viewDrawer = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ImageView nv_image = viewDrawer.findViewById(R.id.nv_image);
+        //badgeView(Constants.LOCAL_STATUS);
+
+        //ImageView nv_image = viewDrawer.findViewById(R.id.nv_image);
         TextView nv_name = viewDrawer.findViewById(R.id.nv_name);
 
         Drawable drawable = getDrawable(R.drawable.ic_gris);
@@ -136,20 +143,37 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             = item -> {
         switch (item.getItemId()) {
             case R.id.navigation_news:
+                //notificationBadge.setVisibility(View.GONE);
+                //badgeView(Constants.LOCAL_STATUS);
                 Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
                 return true;
             case R.id.navigation_opportunity:
+                //notificationBadge.setVisibility(View.GONE);
+                //badgeView(Constants.OPPORTUNITY_STATUS);
                 Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
                 return true;
-            case R.id.navigation_interesting:
-                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-                return true;
             case R.id.navigation_risk:
+                //notificationBadge.setVisibility(View.GONE);
+                //badgeView(Constants.RISK_STATUS);
                 Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
                 return true;
+            case R.id.navigation_interesting:
+                //notificationBadge.setVisibility(View.GONE);
+                //badgeView(Constants.INTERESTING_STATUS);
+                Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
+                return true;
+
         }
         return false;
     };
+
+    /*private void badgeView(Integer index) {
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(index);
+
+        notificationBadge = LayoutInflater.from(this).inflate(R.layout.notification_badge, menuView, false);
+        itemView.addView(notificationBadge);
+    }*/
 
 
     @Override

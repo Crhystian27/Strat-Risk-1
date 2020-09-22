@@ -57,13 +57,13 @@ public class InterestingFragment extends BaseFragment {
         InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(this, factory).get(InterestingFragmentViewModel.class);
         interestingViewModel.fetchInterestingDB(Constants.INTERESTING_STATUS);
         interestingViewModel.getInterestingDB().observe(getViewLifecycleOwner(), news -> {
-            Utilities.setRecyclerView(getActivity(),getContext(), empty, news, recyclerView, Constants.INTERESTING_STATUS, this, factory, layout);
-            String count = String.valueOf(news.size());
+            Utilities.setRecyclerView(getActivity(), getContext(), empty, news, recyclerView, Constants.INTERESTING_STATUS, this, factory, layout);
+            /*String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
             } else {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
-            }
+            }*/
         });
     }
 }

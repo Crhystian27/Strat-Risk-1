@@ -56,12 +56,12 @@ public class RiskFragment extends BaseFragment {
         riskViewModel.fetchRiskDB(Constants.RISK_STATUS);
         riskViewModel.getRiskDB().observe(getViewLifecycleOwner(), news -> {
             Utilities.setRecyclerView(getActivity(), getContext(), empty, news, recyclerView, Constants.RISK_STATUS, this, factory, layout);
-            String count = String.valueOf(news.size());
+            /*String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
             } else {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
-            }
+            }*/
 
         });
     }

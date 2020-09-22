@@ -57,12 +57,12 @@ public class OpportunityFragment extends BaseFragment {
         opportunityViewModel.fetchOpportunityDB(Constants.OPPORTUNITY_STATUS);
         opportunityViewModel.getOpportunityDB().observe(getViewLifecycleOwner(), news -> {
             Utilities.setRecyclerView(getActivity(), getContext(), empty, news, recyclerView, Constants.OPPORTUNITY_STATUS, this, factory, layout);
-            String count = String.valueOf(news.size());
+            /*String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
             } else {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
-            }
+            }*/
         });
     }
 }

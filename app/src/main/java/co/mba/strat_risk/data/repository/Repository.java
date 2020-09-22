@@ -26,6 +26,7 @@ import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
 import co.mba.strat_risk.ui.MainActivity;
+import co.mba.strat_risk.ui.MenuActivity;
 import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
@@ -102,7 +103,7 @@ public class Repository {
                     AppPreferences.getInstance().setUser(user);
                     userDao.insertUser(user);
 
-                    Intent intent = new Intent(activity, MainActivity.class);
+                    Intent intent = new Intent(activity, MenuActivity.class);
                     activity.startActivity(intent);
                     Log.e(TAG, user.toString());
                     progressBar.setVisibility(View.GONE);

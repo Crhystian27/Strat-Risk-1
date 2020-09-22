@@ -81,12 +81,12 @@ public class NewsFragment extends BaseFragment {
         newsViewModel.getNewsDB().observe(getViewLifecycleOwner(), news -> {
             Log.e(getClass().getSimpleName(), "Status Local " + Constants.LOCAL_STATUS);
             Utilities.setRecyclerView(getActivity(),getContext(), empty, news, recyclerView, Constants.LOCAL_STATUS, fragment, factory, layout);
-            String count = String.valueOf(news.size());
+            /*String count = String.valueOf(news.size());
             if (!count.isEmpty()) {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + count + " }");
             } else {
                 ((BaseActivity) Objects.requireNonNull(getActivity())).getToolbar().setTitle(getResources().getString(R.string.app_name) + " { " + "0" + " }");
-            }
+            }*/
 
         });
     }
