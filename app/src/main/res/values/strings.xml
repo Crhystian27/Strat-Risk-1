@@ -36,6 +36,8 @@
     <string name="btn_accept">Accept</string>
     <string name="btn_remove">Remove</string>
 
+    <string name="string_analysis">News analysis</string>
+
     <string name="empty_news"><u>Indexed</u>\u0020news will be displayed here.</string>
     <string name="empty_opportunity">Here the news saved in\u0020<u>Opportunity</u>\u0020will be displayed when you add it to this category.</string>
     <string name="empty_intermediate">Selected news \u0020<u>Neutral</u>\u0020will be displayed when you add it to this category</string>

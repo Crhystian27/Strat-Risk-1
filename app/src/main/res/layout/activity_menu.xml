@@ -12,10 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
-
-    <!--
-     TODO Change Background in icons
-     -->
     <ImageView
         android:id="@+id/menuNews"
         android:layout_width="@dimen/custom_spacing128dp"
@@ -23,11 +19,11 @@
         android:layout_below="@id/toolbar_menu"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/custom_spacing128dp"
-        android:background="@drawable/side_nav_bar_background_detail"
+        android:background="@drawable/side_nav_bar_background_menu"
         android:elevation="@dimen/custom_elevation16dp"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_gris" />
+        android:src="@drawable/ic_noticias" />
 
     <TextView
         android:id="@+id/textMenuNews"
@@ -37,7 +33,7 @@
         android:layout_marginTop="@dimen/custom_spacing8dp"
         android:fontFamily="@font/montserrat_regular_"
         android:gravity="center"
-        android:text="@string/app_name"
+        android:text="@string/title_news"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/custom_spacing18sp"
         android:textStyle="bold" />
@@ -50,8 +46,8 @@
         android:layout_marginTop="@dimen/custom_spacing8dp"
         android:fontFamily="@font/montserrat_regular_"
         android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="@color/colorWhite"
+        android:text="@string/string_analysis"
+        android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/custom_spacing18sp"
         android:textStyle="bold" />
 
@@ -63,10 +59,10 @@
         android:layout_below="@id/menuNews"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/custom_spacing128dp"
-        android:background="@drawable/side_nav_bar_background_detail"
+        android:background="@drawable/side_nav_bar_background_menu"
         android:elevation="@dimen/custom_elevation16dp"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_gris" />
+        android:src="@drawable/ic_analisis" />
 
 </RelativeLayout>

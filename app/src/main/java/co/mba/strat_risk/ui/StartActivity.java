@@ -13,8 +13,6 @@ import co.mba.strat_risk.base.BaseActivity;
 
 public class StartActivity extends BaseActivity {
 
-    //Corregir en contraseña text y neutral en fragment
-
     @Override
     protected int layoutRes() {
         return R.layout.activity_start;
