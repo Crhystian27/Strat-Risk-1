@@ -8,6 +8,12 @@
 
     <string name="dialog_matcher_email_address">Ingresa un correo electrónico</string>
 
+
+    <string name="string_pfd">Al usar la aplicación STRAT–RISK–MBA propiedad de MBA Y CÍA AGENCIA DE SEGUROS LTDA, empresa…</string>
+
+    <string name="string_more">Leer más</string>
+
+
     <string name="title_news">Noticias</string>
     <string name="title_opportunity">Oportunidad</string>
     <string name="title_interesting">Neutral</string>

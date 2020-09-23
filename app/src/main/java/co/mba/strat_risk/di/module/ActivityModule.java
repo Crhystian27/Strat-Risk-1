@@ -6,6 +6,7 @@ import co.mba.strat_risk.ui.MenuActivity;
 import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.ui.SliderActivity;
 import co.mba.strat_risk.ui.StartActivity;
+import co.mba.strat_risk.ui.TermsActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -29,5 +30,8 @@ public abstract class ActivityModule {
 
     @ContributesAndroidInjector()
     abstract MenuActivity contributeMenuActivity();
+
+    @ContributesAndroidInjector()
+    abstract TermsActivity contributeTermsActivity();
 
 }

@@ -5,10 +5,12 @@
 
     <string name="app_subtitle">MBA Riesgos</string>
 
-
     <string name="press_again_to_exit">Press again to exit</string>
 
     <string name="dialog_matcher_email_address">Enter an email</string>
+
+    <string name="string_pfd">Al usar la aplicación STRAT–RISK–MBA propiedad de MBA Y CÍA AGENCIA DE SEGUROS LTDA, empresa…</string>
+    <string name="string_more">Read more</string>
 
     <string name="title_news">News</string>
     <string name="title_opportunity">Opportunity</string>

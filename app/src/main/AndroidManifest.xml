@@ -21,7 +21,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-        <activity android:name=".ui.MenuActivity"></activity>
+        <activity android:name=".ui.TermsActivity"></activity>
+        <activity android:name=".ui.MenuActivity" />
         <activity
             android:name=".ui.SliderActivity"
             android:screenOrientation="portrait"

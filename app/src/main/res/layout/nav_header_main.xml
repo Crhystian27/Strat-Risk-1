@@ -19,8 +19,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/custom_spacing4dp"
+        android:layout_below="@id/nv_image"
+        android:layout_marginTop="-16dp"
         android:orientation="vertical">
 
         <TextView

@@ -7,6 +7,7 @@
     android:elevation="10dp"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:id="@+id/content_type"
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             android:id="@+id/dialog_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/custom_spacing8dp"
+            android:layout_marginTop="-16dp"
             android:layout_marginBottom="@dimen/custom_spacing16dp"
             android:orientation="horizontal">
 
@@ -45,11 +46,12 @@
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
                 android:paddingTop="16dp"
-                android:text="@string/dialog_policy_private"
+                android:text="@string/dialog_policy_service"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/custom_text_size14sp"
+                android:textSize="@dimen/custom_text_size18sp"
                 android:textStyle="bold" />
 
+            <!--
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button2"
                 android:layout_width="0dp"
@@ -69,8 +71,8 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/custom_text_size14sp"
                 android:textStyle="bold" />
+            -->
         </RadioGroup>
-
 
         <TextView
             android:id="@+id/txt_dialog_message_title"
@@ -79,11 +81,28 @@
             android:layout_marginStart="@dimen/custom_spacing16dp"
             android:layout_marginTop="@dimen/custom_spacing8dp"
             android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:fontFamily="@font/montserrat_regular_"
             android:gravity="start"
             android:hint="@string/dialog_alert_dialog"
-            android:textColor="@color/colorWhite"
+            android:textColor="@android:color/black"
             android:textColorHint="@color/colorWhite"
             android:textSize="@dimen/custom_spacing18sp" />
+
+
+        <TextView
+            android:id="@+id/more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/custom_spacing16dp"
+            android:layout_marginTop="-32dp"
+            android:layout_marginEnd="@dimen/custom_spacing16dp"
+            android:fontFamily="@font/montserrat_regular_"
+            android:gravity="end"
+            android:paddingTop="@dimen/custom_spacing32dp"
+            android:text="@string/string_more"
+            android:textColor="@color/colorPrimaryLight"
+            android:textSize="@dimen/custom_spacing18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/content_controlls"

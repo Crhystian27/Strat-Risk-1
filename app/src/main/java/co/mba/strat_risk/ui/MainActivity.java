@@ -54,8 +54,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     View viewDrawer;
 
     private RelativeLayout layout;
-    private BottomNavigationView bottomNavigationView;
-    private View notificationBadge;
+    //private View notificationBadge;
     private boolean recentlyBackPressed = false;
     private Runnable exitRunnable = () -> recentlyBackPressed = false;
     private Handler exitHandler = new Handler();
@@ -80,7 +79,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         /*chipNavigationBar = findViewById(R.id.chipNavigationView);*/
 
-        bottomNavigationView = findViewById(R.id.main_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.main_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
         if (savedInstanceState == null) {

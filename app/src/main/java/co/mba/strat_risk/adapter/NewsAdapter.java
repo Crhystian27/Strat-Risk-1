@@ -104,7 +104,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private void setImage(Context context, NewsAdapter.ViewHolder holder, Drawable drawable, String param0) {
         if (param0 == null) {
-            Utilities.getBitmap(context, holder.param0);
+            //Utilities.getBitmap(context, holder.param0);
             Glide.with(context.getApplicationContext())
                     .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                     .load(drawable)

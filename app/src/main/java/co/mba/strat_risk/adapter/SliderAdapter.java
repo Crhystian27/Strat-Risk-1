@@ -24,7 +24,7 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     public String[] slide_title = {
-            "Diferencia las señales del ruido con Strat-Risk-MBA",
+            "Diferencia las señales del ruido con Strat - Risk - MBA",
     };
 
     public String[] slide_subTitle = {
