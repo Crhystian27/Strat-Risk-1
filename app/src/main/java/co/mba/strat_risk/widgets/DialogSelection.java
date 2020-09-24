@@ -174,34 +174,6 @@ public class DialogSelection {
             case 2:
 
                 button_opportunity.setVisibility(View.VISIBLE);
-                button_interesting.setVisibility(View.GONE);
-                button_risk.setVisibility(View.VISIBLE);
-
-                layoutO.setVisibility(View.VISIBLE);
-                layoutI.setVisibility(View.GONE);
-                layoutR.setVisibility(View.VISIBLE);
-
-                button_opportunity.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
-                    dialog.dismiss();
-                });
-                button_interesting.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
-                    dialog.dismiss();
-                });
-                button_risk.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
-                    dialog.dismiss();
-                });
-                button_delete.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
-                    dialog.dismiss();
-                });
-
-                break;
-            case 3:
-
-                button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.GONE);
 
@@ -217,14 +189,45 @@ public class DialogSelection {
                     riskViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
                 });
-                button_risk.setOnClickListener(v -> {
+
+                /*button_risk.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
-                });
+                });*/
                 button_delete.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
+
+                break;
+            case 3:
+
+                button_opportunity.setVisibility(View.VISIBLE);
+                button_interesting.setVisibility(View.GONE);
+                button_risk.setVisibility(View.VISIBLE);
+
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.GONE);
+                layoutR.setVisibility(View.VISIBLE);
+
+                button_opportunity.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    dialog.dismiss();
+                });
+               /* button_interesting.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    dialog.dismiss();
+                });*/
+                button_risk.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    dialog.dismiss();
+                });
+                button_delete.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    dialog.dismiss();
+                });
+
+
                 break;
         }
 

@@ -3,11 +3,14 @@ package co.mba.strat_risk.ui;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +30,7 @@ import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class NewsDetailActivity extends BaseActivity {
 
     @Inject
@@ -36,10 +40,10 @@ public class NewsDetailActivity extends BaseActivity {
     BottomAppBar bottomAppBar;
     RelativeLayout relativeLayout;
 
-
     //Drawable drawable;
     News dto;
     String dto_extra;
+    WebView webView;
 
     @Override
     protected int toolbarId() {
@@ -59,7 +63,7 @@ public class NewsDetailActivity extends BaseActivity {
 
         /*TextView textViewTitle = findViewById(R.id.title_detail);
         TextView textViewBody = findViewById(R.id.body_detail);*/
-        FloatingActionButton buttonRemove = findViewById(R.id.fab_remove);
+        //FloatingActionButton buttonRemove = findViewById(R.id.fab_remove);
 
         //TODO SHOW IMAGE WITH GLIDE
         ImageView imgDetail = findViewById(R.id.imageDetail);
@@ -79,13 +83,17 @@ public class NewsDetailActivity extends BaseActivity {
         /*layoutNews = findViewById(R.id.newsLink);*/
         bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
         relativeLayout = findViewById(R.id.containerDetail);
-
+        webView = findViewById(R.id.webView);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             dto_extra = extras.getString(Constants.EXTRA_NEWS);
         }
         dto = new Gson().fromJson(dto_extra, News.class);
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.loadUrl(dto.getLink());
 
         /*layoutNews.setOnClickListener(v -> {
             SnackBarInformation.showSnackBar(this, layout, "Link", "fonts/montserrat_regular_.ttf");
@@ -105,10 +113,10 @@ public class NewsDetailActivity extends BaseActivity {
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                buttonRemove.setOnClickListener(v -> {
+                /*buttonRemove.setOnClickListener(v -> {
                     viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
                     finish();
-                });
+                });*/
                 break;
             case 1:
 
@@ -120,12 +128,29 @@ public class NewsDetailActivity extends BaseActivity {
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                buttonRemove.setOnClickListener(v -> {
+                /*buttonRemove.setOnClickListener(v -> {
                     viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
                     finish();
-                });
+                });*/
                 break;
             case 2:
+
+                getToolbar().setTitle(getString(R.string.app_name));
+                bottomOpportunity.setVisibility(View.VISIBLE);
+                bottomInteresting.setVisibility(View.VISIBLE);
+                bottomRisk.setVisibility(View.VISIBLE);
+                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+
+                buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
+                buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
+                /*buttonRemove.setOnClickListener(v -> {
+                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
+                    finish();
+                });*/
+
+
+                break;
+            case 3:
 
                 getToolbar().setTitle(getString(R.string.app_name));
                 bottomOpportunity.setVisibility(View.VISIBLE);
@@ -136,25 +161,12 @@ public class NewsDetailActivity extends BaseActivity {
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                buttonRemove.setOnClickListener(v -> {
+                /*buttonRemove.setOnClickListener(v -> {
                     viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
                     finish();
-                });
-                break;
-            case 3:
+                });*/
 
-                getToolbar().setTitle(getString(R.string.app_name));
-                bottomOpportunity.setVisibility(View.VISIBLE);
-                bottomInteresting.setVisibility(View.VISIBLE);
-                bottomRisk.setVisibility(View.VISIBLE);
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
-                buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
-                buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
-                buttonRemove.setOnClickListener(v -> {
-                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
-                    finish();
-                });
                 break;
         }
 
@@ -185,4 +197,23 @@ public class NewsDetailActivity extends BaseActivity {
         finish();
         super.onBackPressed();
     }
+
+    /*
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+     */
 }

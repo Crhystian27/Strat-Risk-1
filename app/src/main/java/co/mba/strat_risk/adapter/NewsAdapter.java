@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,9 +95,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         String param1 = dtoList.get(position).getTitle();
         String param2 = dtoList.get(position).getSnippet();
         //String param0 = dtoList.get(position).getUrlToImage();
-        String param0 = null;
+        String param0 = dtoList.get(position).getSrc();
+        Log.e("IMG", param0+"");
         Drawable drawable = context.getDrawable(R.drawable.ic_gris);
-        setImage(context, holder, drawable, param0);
+        setImage(context, holder, drawable, null);
         holder.param1.setText(param1);
         holder.param2.setText(param2);
 

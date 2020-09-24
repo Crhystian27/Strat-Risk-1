@@ -2,13 +2,16 @@ package co.mba.strat_risk.data.repository;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.core.util.LogWriter;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -127,6 +130,7 @@ public class Repository {
                         .subscribe(dto -> {
                             Log.e(TAG, dto.getKind() + "\n");
                             Log.e(TAG, dto.getItems().toString());
+                            Log.e(TAG, dto.toString());
                             List<ItemsDTO> items = dto.getItems();
                             saveNewsDB(items);
                         }, throwable ->
@@ -137,6 +141,14 @@ public class Repository {
         List<News> newsLocal = newsDao.loadAllList();
 
         for (int i = 0; i < items.size(); i++) {
+
+            ItemsDTO.Pagemap img = items.get(i).getPagemap();
+            Log.e(TAG, img.toString() + "->");
+
+            List<ItemsDTO.CseImage> ls = img.getCse_image();
+            for (int j = 0; j < 1; j++) {
+                Log.e(TAG, ls.get(j).getSrc() + "->");
+            }
 
             News data = new News(items.get(i).getKind(),
                     items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), null,

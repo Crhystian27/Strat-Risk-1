@@ -8,7 +8,9 @@
 
     <include layout="@layout/detail_fragment" />
 
+    <!--
     <include layout="@layout/activity_news_detail" />
+    -->
 
 
     <!--

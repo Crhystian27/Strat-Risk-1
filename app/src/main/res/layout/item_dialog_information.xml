@@ -84,7 +84,7 @@
             android:fontFamily="@font/montserrat_regular_"
             android:gravity="start"
             android:hint="@string/dialog_alert_dialog"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
             android:textSize="@dimen/custom_spacing18sp" />
 

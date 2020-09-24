@@ -1,9 +1,11 @@
 package co.mba.strat_risk.data.dto;
 
-import androidx.room.Ignore;
-
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public final class ItemsDTO {
 
@@ -20,10 +22,44 @@ public final class ItemsDTO {
     private String link;
 
     @SerializedName("pagemap")
-    private PageMapDTO pagemap;
+    private Pagemap pagemap;
+
+    public static final class CseImage {
+
+        @SerializedName("src")
+        public String src;
+
+        public String getSrc() {
+            return src;
+        }
+
+        @Override
+        public String toString() {
+            return "CseImage{" +
+                    "src='" + src + '\'' +
+                    '}';
+        }
+    }
+
+    public static final class Pagemap {
+
+        @SerializedName("cse_image")
+        public List<CseImage> cse_image;
+
+        public List<CseImage> getCse_image() {
+            return cse_image;
+        }
+
+        @Override
+        public String toString() {
+            return "Pagemap{" +
+                    "cse_image=" + cse_image +
+                    '}';
+        }
+    }
 
 
-    public ItemsDTO(String kind, String title, String snippet, String link, PageMapDTO pagemap) {
+    public ItemsDTO(String kind, String title, String snippet, String link, Pagemap pagemap) {
         this.kind = kind;
         this.title = title;
         this.snippet = snippet;
@@ -63,13 +99,14 @@ public final class ItemsDTO {
         this.link = link;
     }
 
-    public PageMapDTO getPagemap() {
+    public Pagemap getPagemap() {
         return pagemap;
     }
 
-    public void setPagemap(PageMapDTO pagemap) {
+    public void setPagemap(Pagemap pagemap) {
         this.pagemap = pagemap;
     }
+
 
     @Override
     public String toString() {
@@ -82,3 +119,5 @@ public final class ItemsDTO {
                 '}';
     }
 }
+
+
