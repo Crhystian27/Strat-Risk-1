@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProviders;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -81,7 +78,7 @@ public class NewsDetailActivity extends BaseActivity {
 
         layout = findViewById(R.id.detail_Remove);
         /*layoutNews = findViewById(R.id.newsLink);*/
-        bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
+        //bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
         relativeLayout = findViewById(R.id.containerDetail);
         webView = findViewById(R.id.webView);
 
@@ -107,7 +104,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
@@ -124,7 +121,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
@@ -139,7 +136,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
@@ -157,7 +154,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
-                bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
+                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));

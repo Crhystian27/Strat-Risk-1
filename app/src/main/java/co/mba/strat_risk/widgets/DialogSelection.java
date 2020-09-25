@@ -63,10 +63,6 @@ public class DialogSelection {
         InterestingFragmentViewModel interestingViewModel = ViewModelProviders.of(fragment, factory).get(InterestingFragmentViewModel.class);
         RiskFragmentViewModel riskViewModel = ViewModelProviders.of(fragment, factory).get(RiskFragmentViewModel.class);
 
-        /* TextView text_title = dialog.findViewById(R.id.txt_dialog_selection_title);
-        text_title.setText(tittle);
-        TextView text_message = dialog.findViewById(R.id.txt_dialog_selection_body);
-        text_message.setText(message); */
 
         TextView button_cancel = dialog.findViewById(R.id.txt_selection_cancel);
         TextView button_delete = dialog.findViewById(R.id.txt_selection_delete);

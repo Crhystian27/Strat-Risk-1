@@ -96,9 +96,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         String param2 = dtoList.get(position).getSnippet();
         //String param0 = dtoList.get(position).getUrlToImage();
         String param0 = dtoList.get(position).getSrc();
-        Log.e("IMG", param0+"");
+        Log.e("IMG", param0 + "");
         Drawable drawable = context.getDrawable(R.drawable.ic_gris);
-        setImage(context, holder, drawable, null);
+
+        setImage(context, holder, drawable, param0);
         holder.param1.setText(param1);
         holder.param2.setText(param2);
 
@@ -108,13 +109,22 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         if (param0 == null) {
             //Utilities.getBitmap(context, holder.param0);
             Glide.with(context.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
                     .load(drawable)
                     .into(holder.param0);
         } else {
+
+            String[] parts = param0.split(":");
+            String part1 = parts[1];
+            Log.e("part", part1);
+            String[] subParts = part1.split("'");
+            String subPart1 = subParts[0];
+            Log.e("SubPart", subPart1);
+            String paramImg = "https:" + subPart1;
+            Log.e("paramImg", paramImg + "-->");
             Glide.with(context.getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
-                    .load(param0)
+                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
+                    .load(paramImg)
                     .into(holder.param0);
         }
     }

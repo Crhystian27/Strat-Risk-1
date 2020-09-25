@@ -40,6 +40,6 @@ public interface ApiService {
     @GET("api/user")
     Observable<User> getUser(@Header("Bearer") String bearer);
 
-    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=002215266167357709810:korcta35klu&exactTerms=Suzuki&gl=CO&lr=lang_es&key=AIzaSyC5DfrydcgsCkAd2qLeYLoGUHwK2OOx0Hg")
+    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=002215266167357709810:korcta35klu&exactTerms=Suzuki&filter=1&gl=CO&lr=lang_es&start=1&key=AIzaSyC5DfrydcgsCkAd2qLeYLoGUHwK2OOx0Hg")
     Single<NewsDTO> getNews();
 }

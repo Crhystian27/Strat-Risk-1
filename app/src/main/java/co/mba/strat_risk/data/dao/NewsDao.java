@@ -25,9 +25,8 @@ public interface NewsDao {
     @Query("SELECT * FROM news_table where status =:status")
     List<News> loadList(Integer status);
 
-    @Query("SELECT * FROM news_table")
-    List<News> loadAllList();
-
+    @Query("SELECT * FROM news_table where link =:link")
+    boolean compareTo(String link);
 
     //Delete
     @Query("DELETE FROM news_table where id = :idNews")

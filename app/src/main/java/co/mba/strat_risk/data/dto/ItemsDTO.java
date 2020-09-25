@@ -24,13 +24,21 @@ public final class ItemsDTO {
     @SerializedName("pagemap")
     private Pagemap pagemap;
 
+
     public static final class CseImage {
 
         @SerializedName("src")
         public String src;
 
+        public CseImage() {
+        }
+
         public String getSrc() {
             return src;
+        }
+
+        public void setSrc(String src) {
+            this.src = src;
         }
 
         @Override
@@ -46,8 +54,15 @@ public final class ItemsDTO {
         @SerializedName("cse_image")
         public List<CseImage> cse_image;
 
+        public Pagemap() {
+        }
+
         public List<CseImage> getCse_image() {
             return cse_image;
+        }
+
+        public void setCse_image(List<CseImage> cse_image) {
+            this.cse_image = cse_image;
         }
 
         @Override

@@ -137,59 +137,28 @@ public class Repository {
                                 Log.e(TAG, "getCurrentsNews " + throwable.getMessage() + " " + Arrays.toString(throwable.getStackTrace())))));
     }
 
-    private void saveNewsDB(List<ItemsDTO> items) {
-        List<News> newsLocal = newsDao.loadAllList();
 
+    private void saveNewsDB(List<ItemsDTO> items) {
         for (int i = 0; i < items.size(); i++) {
 
-            ItemsDTO.Pagemap img = items.get(i).getPagemap();
-            Log.e(TAG, img.toString() + "->");
+            if (items.get(i).getPagemap().cse_image != null) {
+                News data = new News(items.get(i).getKind(),
+                        items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), items.get(i).getPagemap().toString(),
+                        Constants.LOCAL_STATUS);
 
-            List<ItemsDTO.CseImage> ls = img.getCse_image();
-            for (int j = 0; j < 1; j++) {
-                Log.e(TAG, ls.get(j).getSrc() + "->");
-            }
+                if (!newsDao.compareTo(items.get(i).getLink())) {
+                    newsDao.insertNews(data);
+                }
 
-            News data = new News(items.get(i).getKind(),
-                    items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), null,
-                    Constants.LOCAL_STATUS);
-
-            //TODO Revisar
-            // AUMENTA LOS DATOS
-            if (newsLocal.isEmpty()) {
-                newsDao.insertNews(data);
-                Log.e(TAG, data.toString());
             } else {
-                for (int j = 0; j < newsLocal.size(); j++) {
-                    News local = new News();
-                    local.setLink(newsLocal.get(i).getLink());
-                    if (data.getLink().equals(local.getLink())) {
-                        j++;
-                    } else {
-                        newsDao.insertNews(data);
-                        Log.e(TAG, data.toString());
-                    }
+                News data = new News(items.get(i).getKind(),
+                        items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), null,
+                        Constants.LOCAL_STATUS);
 
+                if (!newsDao.compareTo(items.get(i).getLink())) {
+                    newsDao.insertNews(data);
                 }
             }
-            //newsDao.insertNews(data);
-            //Log.e(TAG, data.toString());
-
-
-            /*if (!newsRemove.isEmpty()) {
-                for (int j = 0; j < newsRemove.size(); j++) {
-                    News remove = new News();
-                    remove.setLink(newsRemove.get(i).getLink());
-                    if (!remove.getLink().equals(data.getLink())) {
-                        newsDao.insertNews(data);
-                        Log.e(TAG, data.toString());
-                    }
-                    j++;
-                }
-            } else {
-                newsDao.insertNews(data);
-                Log.e(TAG, data.toString());
-            }*/
         }
     }
 
