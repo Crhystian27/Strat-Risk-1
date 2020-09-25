@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -88,8 +87,10 @@ public class NewsDetailActivity extends BaseActivity {
         }
         dto = new Gson().fromJson(dto_extra, News.class);
 
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new Browser());
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.loadUrl(dto.getLink());
 
         /*layoutNews.setOnClickListener(v -> {
@@ -119,6 +120,7 @@ public class NewsDetailActivity extends BaseActivity {
 
                 getToolbar().setTitle(getString(R.string.app_name));
                 bottomOpportunity.setVisibility(View.VISIBLE);
+                bottomOpportunity.setEnabled(false);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
                 //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
@@ -136,6 +138,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
+                bottomRisk.setEnabled(false);
                 //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
@@ -153,6 +156,7 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
+                bottomInteresting.setEnabled(false);
 
                 //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
@@ -181,6 +185,16 @@ public class NewsDetailActivity extends BaseActivity {
                     .into(imgDetail);
         }*/
 
+    }
+
+    private static class Browser extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            view.clearCache(true);
+            return true;
+        }
     }
 
     @Override

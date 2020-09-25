@@ -169,34 +169,6 @@ public class DialogSelection {
                 break;
             case 2:
 
-                button_opportunity.setVisibility(View.VISIBLE);
-                button_interesting.setVisibility(View.VISIBLE);
-                button_risk.setVisibility(View.GONE);
-
-                layoutO.setVisibility(View.VISIBLE);
-                layoutI.setVisibility(View.VISIBLE);
-                layoutR.setVisibility(View.GONE);
-
-                button_opportunity.setOnClickListener(v -> {
-                    riskViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
-                    dialog.dismiss();
-                });
-                button_interesting.setOnClickListener(v -> {
-                    riskViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
-                    dialog.dismiss();
-                });
-
-                /*button_risk.setOnClickListener(v -> {
-                    riskViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
-                    dialog.dismiss();
-                });*/
-                button_delete.setOnClickListener(v -> {
-                    riskViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
-                    dialog.dismiss();
-                });
-
-                break;
-            case 3:
 
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.GONE);
@@ -220,6 +192,35 @@ public class DialogSelection {
                 });
                 button_delete.setOnClickListener(v -> {
                     interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    dialog.dismiss();
+                });
+
+                break;
+            case 3:
+
+                button_opportunity.setVisibility(View.VISIBLE);
+                button_interesting.setVisibility(View.VISIBLE);
+                button_risk.setVisibility(View.GONE);
+
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutR.setVisibility(View.GONE);
+
+                button_opportunity.setOnClickListener(v -> {
+                    riskViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    dialog.dismiss();
+                });
+                button_interesting.setOnClickListener(v -> {
+                    riskViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    dialog.dismiss();
+                });
+
+                /*button_risk.setOnClickListener(v -> {
+                    riskViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    dialog.dismiss();
+                });*/
+                button_delete.setOnClickListener(v -> {
+                    riskViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
 
