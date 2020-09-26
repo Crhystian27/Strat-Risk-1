@@ -1,13 +1,12 @@
 package co.mba.strat_risk.ui;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +23,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import javax.inject.Inject;
 
@@ -233,7 +229,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
                 //Borrar las preferencias
 
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                Utilities.removeThisActivityFromRunningActivities(MainActivity.class);
                 finish();
+
 
                 return true;
 

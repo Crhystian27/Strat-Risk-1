@@ -25,7 +25,7 @@ public interface NewsDao {
     @Query("SELECT * FROM news_table where status =:status")
     List<News> loadList(Integer status);
 
-    @Query("SELECT * FROM news_table where link =:link")
+    @Query("SELECT * FROM news_table where link =:link limit 20")
     boolean compareTo(String link);
 
     //Delete

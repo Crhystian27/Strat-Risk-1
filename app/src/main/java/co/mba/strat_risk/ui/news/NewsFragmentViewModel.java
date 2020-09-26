@@ -29,6 +29,8 @@ public class NewsFragmentViewModel extends ViewModel {
         repository.getNewsInternet();
     }
 
+
+    //TODO load news in menu activity
     public void fetchNewsDB(Integer status) {
         if (this.newsLiveData != null) {
             Log.e(TAG, newsLiveData.toString());

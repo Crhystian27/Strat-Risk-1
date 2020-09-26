@@ -2,16 +2,13 @@ package co.mba.strat_risk.data.repository;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import androidx.core.util.LogWriter;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -28,7 +25,6 @@ import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
 import co.mba.strat_risk.network.ApiService;
 import co.mba.strat_risk.network.InternetConnection;
-import co.mba.strat_risk.ui.MainActivity;
 import co.mba.strat_risk.ui.MenuActivity;
 import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
@@ -128,36 +124,23 @@ public class Repository {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(dto -> {
-                            Log.e(TAG, dto.getKind() + "\n");
-                            Log.e(TAG, dto.getItems().toString());
                             Log.e(TAG, dto.toString());
                             List<ItemsDTO> items = dto.getItems();
                             saveNewsDB(items);
                         }, throwable ->
-                                Log.e(TAG, "getCurrentsNews " + throwable.getMessage() + " " + Arrays.toString(throwable.getStackTrace())))));
+                                Log.e(TAG, "Server Error" + throwable.getMessage() + " " + Arrays.toString(throwable.getStackTrace())))));
     }
 
 
     private void saveNewsDB(List<ItemsDTO> items) {
         for (int i = 0; i < items.size(); i++) {
 
-            if (items.get(i).getPagemap().cse_image != null) {
-                News data = new News(items.get(i).getKind(),
-                        items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), items.get(i).getPagemap().toString(),
-                        Constants.LOCAL_STATUS);
+            News data = new News(items.get(i).getKind(),
+                    items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), items.get(i).getPagemap().cse_image != null ? items.get(i).getPagemap().getCse_image().toString() : null,
+                    Constants.LOCAL_STATUS);
 
-                if (!newsDao.compareTo(items.get(i).getLink())) {
-                    newsDao.insertNews(data);
-                }
-
-            } else {
-                News data = new News(items.get(i).getKind(),
-                        items.get(i).getTitle(), items.get(i).getSnippet(), items.get(i).getLink(), null,
-                        Constants.LOCAL_STATUS);
-
-                if (!newsDao.compareTo(items.get(i).getLink())) {
-                    newsDao.insertNews(data);
-                }
+            if (!newsDao.compareTo(items.get(i).getLink())) {
+                newsDao.insertNews(data);
             }
         }
     }
