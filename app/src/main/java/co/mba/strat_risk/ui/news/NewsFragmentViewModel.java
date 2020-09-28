@@ -9,9 +9,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+
 import javax.inject.Inject;
+
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.repository.Repository;
+import co.mba.strat_risk.util.AppPreferences;
 
 public class NewsFragmentViewModel extends ViewModel {
 
@@ -26,7 +29,11 @@ public class NewsFragmentViewModel extends ViewModel {
     }
 
     public void fetchNewsInternet() {
-        repository.getNewsInternet();
+        String key = AppPreferences.getInstance().getUser().getKey();
+        String cx = AppPreferences.getInstance().getUser().getSource();
+        String search = AppPreferences.getInstance().getUser().getSearch();
+        //TODO Verificar con bd
+        repository.getNewsInternet("lang_es", "CO", "1", key, cx, search);
     }
 
     public void fetchNewsDB(Integer status) {

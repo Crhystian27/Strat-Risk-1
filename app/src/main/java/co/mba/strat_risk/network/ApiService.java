@@ -13,6 +13,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 public interface ApiService {
@@ -40,6 +42,11 @@ public interface ApiService {
     @GET("api/user")
     Observable<User> getUser(@Header("Bearer") String bearer);
 
-    @GET("https://customsearch.googleapis.com/customsearch/v1?cx=002215266167357709810:korcta35klu&exactTerms=Suzuki&filter=1&gl=CO&lr=lang_es&start=1&key=AIzaSyC5DfrydcgsCkAd2qLeYLoGUHwK2OOx0Hg")
-    Single<NewsDTO> getNews();
+    @GET("https://customsearch.googleapis.com/customsearch/v1?filter=1")
+    Single<NewsDTO> getNews(@Query("lr") String lr,
+                            @Query("gl") String gl,
+                            @Query("start") String start,
+                            @Query("key") String key,
+                            @Query("cx") String cx,
+                            @Query("exactTerms") String search);
 }

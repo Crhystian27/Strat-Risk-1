@@ -129,9 +129,9 @@ public class Repository {
 
 
     //Load news list
-    public void getNewsInternet() {
+    public void getNewsInternet(String lr, String gl, String start, String key, String cx, String search) {
         executor.execute(() ->
-                compositeDisposable.add(apiService.getNews()
+                compositeDisposable.add(apiService.getNews(lr, gl, start, key, cx, search)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(dto -> {
