@@ -14,8 +14,6 @@ import co.mba.strat_risk.data.entity.User;
         version = 1,
         exportSchema = false)
 
-//TODO implement converter
-//@TypeConverters({DateConverter.class})
 public abstract class SRDataBase extends RoomDatabase {
 
     // -- Dao --

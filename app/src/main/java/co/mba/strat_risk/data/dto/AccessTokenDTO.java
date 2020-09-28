@@ -13,6 +13,13 @@ public final  class AccessTokenDTO {
     @SerializedName("refresh_token")
     private String refreshToken;
 
+    public AccessTokenDTO(String type, String expires, String accessToken, String refreshToken) {
+        this.type = type;
+        this.expires = expires;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+    }
+
     public String getType() {
         return type;
     }
@@ -44,7 +51,6 @@ public final  class AccessTokenDTO {
     public void setRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
-
 
     @Override
     public String toString() {

@@ -69,10 +69,6 @@
 
         -->
 
-        <!--
-        //TODO CHANGE SELECTION WITH FLOATING ACTION BUTTONS
-        -->
-
 
         <LinearLayout
             android:id="@+id/dialogSelectionOpportunity"
@@ -103,7 +99,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dialogSelectionInteresting"
+            android:id="@+id/dialogSelectionRisk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/custom_spacing16dp"
@@ -113,7 +109,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/floatingInteresting"
+                android:id="@+id/floatingRisk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_button_accent2"
@@ -131,7 +127,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/dialogSelectionRisk"
+            android:id="@+id/dialogSelectionInteresting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/custom_spacing16dp"
@@ -141,7 +137,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/floatingRisk"
+                android:id="@+id/floatingInteresting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_button_accent2"
@@ -332,7 +328,6 @@
                 android:id="@+id/txt_selection_delete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/custom_spacing8dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_button_selection"
                 android:drawableStart="@drawable/ic_remove"
@@ -357,7 +352,6 @@
         android:background="@drawable/side_nav_bar2">
 
         <ImageView
-
             android:id="@+id/dialog_selection_img"
             android:layout_width="100dp"
             android:layout_height="100dp"

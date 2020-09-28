@@ -33,10 +33,8 @@ public class NewsDetailActivity extends BaseActivity {
     ViewModelProvider.Factory factory;
     NewsDetailViewModel viewModel;
     RelativeLayout layout;
-    BottomAppBar bottomAppBar;
     RelativeLayout relativeLayout;
 
-    //Drawable drawable;
     News dto;
     String dto_extra;
     WebView webView;
@@ -57,11 +55,7 @@ public class NewsDetailActivity extends BaseActivity {
 
         setSupportActionBar(true, true);
 
-        /*TextView textViewTitle = findViewById(R.id.title_detail);
-        TextView textViewBody = findViewById(R.id.body_detail);*/
-        //FloatingActionButton buttonRemove = findViewById(R.id.fab_remove);
 
-        //TODO SHOW IMAGE WITH GLIDE
         ImageView imgDetail = findViewById(R.id.imageDetail);
         imgDetail.setImageResource(R.drawable.ic_mba_gris);
         LinearLayout bottomInteresting = findViewById(R.id.detailInteresting);
@@ -76,8 +70,6 @@ public class NewsDetailActivity extends BaseActivity {
         viewModel = ViewModelProviders.of(NewsDetailActivity.this, factory).get(NewsDetailViewModel.class);
 
         layout = findViewById(R.id.detail_Remove);
-        /*layoutNews = findViewById(R.id.newsLink);*/
-        //bottomAppBar = findViewById(R.id.bottom_app_bar_detail);
         relativeLayout = findViewById(R.id.containerDetail);
         webView = findViewById(R.id.webView);
 
@@ -105,32 +97,21 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
 
-                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
-
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                /*buttonRemove.setOnClickListener(v -> {
-                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
-                    finish();
-                });*/
+
                 break;
             case 1:
 
                 getToolbar().setTitle(getString(R.string.app_name));
                 bottomOpportunity.setVisibility(View.VISIBLE);
-                bottomOpportunity.setEnabled(false);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
-                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                /*buttonRemove.setOnClickListener(v -> {
-                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
-                    finish();
-                });*/
                 break;
             case 2:
 
@@ -138,15 +119,9 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomOpportunity.setVisibility(View.VISIBLE);
                 bottomInteresting.setVisibility(View.VISIBLE);
                 bottomRisk.setVisibility(View.VISIBLE);
-                bottomRisk.setEnabled(false);
-                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
-                /*buttonRemove.setOnClickListener(v -> {
-                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
-                    finish();
-                });*/
 
 
                 break;
@@ -158,32 +133,13 @@ public class NewsDetailActivity extends BaseActivity {
                 bottomRisk.setVisibility(View.VISIBLE);
                 bottomInteresting.setEnabled(false);
 
-                //bottomAppBar.setBackgroundTint(ColorStateList.valueOf(getColor(R.color.colorPrimary)));
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-                /*buttonRemove.setOnClickListener(v -> {
-                    viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.DELETE_STATUS, layout, getString(R.string.snackBar_remove));
-                    finish();
-                });*/
 
 
                 break;
         }
-
-        /*drawable = getDrawable(R.drawable.ic_mba_gris);
-
-        if (dto.getSrc() == null) {
-            Glide.with(getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
-                    .load(drawable)
-                    .into(imgDetail);
-        } else {
-            Glide.with(getApplicationContext())
-                    .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable))
-                    .load(dto.getSrc())
-                    .into(imgDetail);
-        }*/
 
     }
 
@@ -208,23 +164,4 @@ public class NewsDetailActivity extends BaseActivity {
         finish();
         super.onBackPressed();
     }
-
-    /*
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                    } else {
-                        finish();
-                    }
-                    return true;
-            }
-
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-     */
 }

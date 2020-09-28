@@ -38,7 +38,6 @@
         android:layout_below="@id/main_navigation" />
 
 
-    <!--TODO : SOLO DEJAR EL TEXTO -->
 
     <!--
     <com.ismaeldivita.chipnavigation.ChipNavigationBar

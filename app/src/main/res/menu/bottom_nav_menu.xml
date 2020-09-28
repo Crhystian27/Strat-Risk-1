@@ -29,6 +29,4 @@
         android:orderInCategory="4"
         android:title="@string/title_interesting"
         app:showAsAction="withText" />
-
-
 </menu>

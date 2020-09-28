@@ -9,6 +9,6 @@
         android:left="20dp"
         android:right="20dp"
         android:top="5dp" />
-    <corners android:radius="10dp" />
+    <corners android:radius="30dp" />
     <solid android:color="@color/textHint" />
 </shape>

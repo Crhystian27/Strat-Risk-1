@@ -9,6 +9,9 @@ import android.widget.RelativeLayout;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
 
+
+import com.google.gson.Gson;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -19,7 +22,9 @@ import javax.inject.Singleton;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
+
 import co.mba.strat_risk.data.dto.ItemsDTO;
+import co.mba.strat_risk.data.dto.UserDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
@@ -69,6 +74,7 @@ public class Repository {
                         AppPreferences.getInstance().setAccessTokenDTO(accessTokenDTO);
                         Log.e(TAG, accessTokenDTO.toString());
                         Log.e(TAG, accessTokenDTO.getAccessToken());
+                        newsDao.deleteAllNews();
                         progressBar.setVisibility(View.GONE);
 
                         getCurrentUser(activity, accessTokenDTO.getAccessToken().trim(), progressBar);
@@ -87,6 +93,10 @@ public class Repository {
         return userDao.loadUser(id);
     }
 
+    public boolean existUserDB() {
+        return userDao.existUser();
+    }
+
     public void sendEmailRequest(Activity activity, String email, ContentLoadingProgressBar progress) {
         progress.setVisibility(View.GONE);
         Utilities.OpenSendEmail(activity, email);
@@ -99,6 +109,7 @@ public class Repository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(user -> {
 
+                    //userDao.deleteUser();
                     AppPreferences.getInstance().setUser(user);
                     userDao.insertUser(user);
 
@@ -158,6 +169,19 @@ public class Repository {
         newsDao.insertNews(newsData);
         newsDao.deleteNews(news.getId());
         SnackBarInformation.showSnackBar(activity, layout, message, "fonts/montserrat_regular_.ttf");
+    }
+
+    public void logOut(Activity activity, Class aClass) {
+
+        AppPreferences.getInstance().setUser(null);
+        AppPreferences.getInstance().setAccessTokenDTO(null);
+
+        Intent intent = new Intent(activity, aClass);
+        intent.putExtra(Constants.TAG_EXTRA, activity.getClass().getSimpleName());
+        activity.startActivity(intent);
+        newsDao.deleteAllNews();
+        userDao.deleteUser();
+
     }
 
 }

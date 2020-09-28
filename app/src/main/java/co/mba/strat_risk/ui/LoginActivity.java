@@ -1,14 +1,9 @@
 package co.mba.strat_risk.ui;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
-import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
@@ -19,14 +14,14 @@ import co.mba.strat_risk.widgets.SnackBarInformation;
 
 public class LoginActivity extends BaseActivity {
 
-    @Inject
-    ViewModelProvider.Factory factory;
-    LoginViewModel viewModel;
     RelativeLayout layout;
+
 
     private boolean recentlyBackPressed = false;
     private Runnable exitRunnable = () -> recentlyBackPressed = false;
     private Handler exitHandler = new Handler();
+
+    private static final String TAG = "Login_A";
 
     @Override
     protected int layoutRes() {
@@ -42,13 +37,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         layout = findViewById(R.id.login_relative);
-        viewModel = ViewModelProviders.of(LoginActivity.this, factory).get(LoginViewModel.class);
-
-        if (viewModel.initLogin(LoginActivity.this, MenuActivity.class)) {
-            initUI();
-            //Next Activity si existe un usuario... si no muestra el login
-            Log.e(getClass().getSimpleName(), "No user");
-        }
+        initUI();
     }
 
     private void initUI() {

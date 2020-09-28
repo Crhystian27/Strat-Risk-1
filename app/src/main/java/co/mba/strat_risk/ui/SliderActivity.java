@@ -16,14 +16,13 @@ import javax.inject.Inject;
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.adapter.SliderAdapter;
 import co.mba.strat_risk.base.BaseActivity;
-import co.mba.strat_risk.util.AppPreferences;
+
 
 public class SliderActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory factory;
 
-    //TODO ADD recourses from internet
     private SliderViewModel viewModel;
     private RelativeLayout layout;
 
@@ -55,13 +54,12 @@ public class SliderActivity extends BaseActivity {
         viewPager.addOnPageChangeListener(changeListener);
         linearStart.setOnClickListener(v -> {
 
-            if (AppPreferences.getInstance().getUser() != null) {
+            if (viewModel.isExistData()) {
                 viewModel.initSlider(SliderActivity.this, MenuActivity.class);
             } else {
                 viewModel.initSlider(SliderActivity.this, LoginActivity.class);
             }
         });
-
     }
 
     private void addIndicator(Integer position) {

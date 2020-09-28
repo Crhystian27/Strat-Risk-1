@@ -3,14 +3,12 @@ package co.mba.strat_risk.widgets;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,31 +16,21 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-
 import androidx.lifecycle.ViewModelProvider.Factory;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.data.entity.News;
-import co.mba.strat_risk.ui.NewsDetailActivity;
 import co.mba.strat_risk.ui.interesting.InterestingFragmentViewModel;
 import co.mba.strat_risk.ui.news.NewsFragmentViewModel;
 import co.mba.strat_risk.ui.opportunity.OpportunityFragmentViewModel;
 import co.mba.strat_risk.ui.risk.RiskFragmentViewModel;
 import co.mba.strat_risk.util.Constants;
-import co.mba.strat_risk.util.Utilities;
 
 /**
  * @Author Cristian David Soto
  */
 
 public class DialogSelection {
-
-
-    //TODO VERIFICAR LA POSICION AL AGREGAR
 
     public static boolean isShowing = false;
     //public static Drawable drawable;
@@ -76,8 +64,6 @@ public class DialogSelection {
         TextView button_risk = dialog.findViewById(R.id.floatingRisk);
 
         //ImageView view_image = dialog.findViewById(R.id.dialog_selection_img);
-
-
 
         /*switch (status) {
             case 0:
@@ -150,6 +136,7 @@ public class DialogSelection {
                 button_opportunity.setVisibility(View.GONE);
                 button_interesting.setVisibility(View.VISIBLE);
                 button_risk.setVisibility(View.VISIBLE);
+
                 layoutO.setVisibility(View.GONE);
                 layoutI.setVisibility(View.VISIBLE);
                 layoutR.setVisibility(View.VISIBLE);
@@ -169,6 +156,33 @@ public class DialogSelection {
                 break;
             case 2:
 
+                button_opportunity.setVisibility(View.VISIBLE);
+                button_interesting.setVisibility(View.VISIBLE);
+                button_risk.setVisibility(View.GONE);
+
+                layoutO.setVisibility(View.VISIBLE);
+                layoutI.setVisibility(View.VISIBLE);
+                layoutR.setVisibility(View.GONE);
+
+                button_opportunity.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
+                    dialog.dismiss();
+                });
+               button_interesting.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
+                    dialog.dismiss();
+                });
+                /*button_risk.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
+                    dialog.dismiss();
+                });*/
+                button_delete.setOnClickListener(v -> {
+                    interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
+                    dialog.dismiss();
+                });
+
+                break;
+            case 3:
 
                 button_opportunity.setVisibility(View.VISIBLE);
                 button_interesting.setVisibility(View.GONE);
@@ -179,58 +193,28 @@ public class DialogSelection {
                 layoutR.setVisibility(View.VISIBLE);
 
                 button_opportunity.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
-                    dialog.dismiss();
-                });
-               /* button_interesting.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
-                    dialog.dismiss();
-                });*/
-                button_risk.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
-                    dialog.dismiss();
-                });
-                button_delete.setOnClickListener(v -> {
-                    interestingViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
-                    dialog.dismiss();
-                });
-
-                break;
-            case 3:
-
-                button_opportunity.setVisibility(View.VISIBLE);
-                button_interesting.setVisibility(View.VISIBLE);
-                button_risk.setVisibility(View.GONE);
-
-                layoutO.setVisibility(View.VISIBLE);
-                layoutI.setVisibility(View.VISIBLE);
-                layoutR.setVisibility(View.GONE);
-
-                button_opportunity.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.OPPORTUNITY_STATUS, layout, activity.getString(R.string.snackBar_opportunity));
                     dialog.dismiss();
                 });
-                button_interesting.setOnClickListener(v -> {
+                /*button_interesting.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.INTERESTING_STATUS, layout, activity.getString(R.string.snackBar_interesting));
                     dialog.dismiss();
-                });
+                });*/
 
-                /*button_risk.setOnClickListener(v -> {
+                button_risk.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.RISK_STATUS, layout, activity.getString(R.string.snackBar_risk));
                     dialog.dismiss();
-                });*/
+                });
                 button_delete.setOnClickListener(v -> {
                     riskViewModel.addNewsDB(activity, news, Constants.DELETE_STATUS, layout, activity.getString(R.string.snackBar_remove));
                     dialog.dismiss();
                 });
-
-
                 break;
         }
 
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
+        //int height = metrics.heightPixels;
         dialog.getWindow().setLayout((36 * width) / 40, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         isShowing = true;

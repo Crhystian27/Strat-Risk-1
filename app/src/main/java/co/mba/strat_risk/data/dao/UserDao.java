@@ -15,8 +15,11 @@ public interface UserDao {
     @Query("SELECT * FROM user_table  where id =:id")
     LiveData<User> loadUser(Integer id);
 
-    @Query("DELETE FROM user_table where id =:id")
-    void deleteUser(Integer id);
+    @Query("DELETE FROM user_table")
+    void deleteUser();
+
+    @Query("SELECT * FROM user_table")
+    boolean existUser();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertUser(User userDTO);

@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import co.mba.strat_risk.di.key.ViewModelKey;
 
-import co.mba.strat_risk.ui.LoginViewModel;
+
 import co.mba.strat_risk.ui.MainViewModel;
 import co.mba.strat_risk.ui.MenuViewModel;
 import co.mba.strat_risk.ui.NewsDetailViewModel;
@@ -65,11 +65,6 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsDetailViewModel.class)
     abstract ViewModel bindNewsDetailViewModel(NewsDetailViewModel newsDetailViewModel);
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LoginViewModel.class)
-    abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
 
     @Binds
     @IntoMap

@@ -28,7 +28,6 @@
             android:layout_marginBottom="@dimen/custom_spacing16dp"
             android:orientation="horizontal">
 
-            <!-- TODO CHANGE POSITION BUTTON-->
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/dialog_radio_button1"

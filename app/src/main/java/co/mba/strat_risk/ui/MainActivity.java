@@ -1,6 +1,5 @@
 package co.mba.strat_risk.ui;
 
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +33,7 @@ import co.mba.strat_risk.ui.interesting.InterestingFragment;
 import co.mba.strat_risk.ui.news.NewsFragment;
 import co.mba.strat_risk.ui.opportunity.OpportunityFragment;
 import co.mba.strat_risk.ui.risk.RiskFragment;
+import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.SnackBarInformation;
@@ -111,10 +111,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     }
                 });
 
-        viewModel.getCurrentUser();
-        viewModel.getUser().observe(this, user -> {
-            nv_name.setText(user.getName());
-        });
+        nv_name.setText(AppPreferences.getInstance().getUser().getName());
+
 
         /*chipNavigationBar.setOnItemSelectedListener(id -> {
             switch (id) {
@@ -161,14 +159,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
         return false;
     };
-
-    /*private void badgeView(Integer index) {
-        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(index);
-
-        notificationBadge = LayoutInflater.from(this).inflate(R.layout.notification_badge, menuView, false);
-        itemView.addView(notificationBadge);
-    }*/
 
 
     @Override
@@ -227,13 +217,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 item.setChecked(true);
                 drawerLayout.closeDrawer(GravityCompat.START);
 
-                //Borrar las preferencias
-
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                Utilities.removeThisActivityFromRunningActivities(MainActivity.class);
-                finish();
-
+                viewModel.setLogInOut(MainActivity.this, SliderActivity.class);
 
                 return true;
 

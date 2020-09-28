@@ -18,7 +18,6 @@ public class DbModule {
     private static final String DATA_BASE_NAME = "SRV01.db";
 
 
-    //TODO add migration or open?
     @Provides
     @Singleton
     SRDataBase provideDatabase(Application application) {
@@ -32,5 +31,4 @@ public class DbModule {
                 }).build();
     }
 
-    //TODO IMPLEMENT PROVIDES AND SINGLETON
 }

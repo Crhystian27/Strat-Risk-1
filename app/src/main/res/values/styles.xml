@@ -19,11 +19,6 @@
         <item name="android:fontFamily">@font/montserrat_regular_</item>
         <item name="android:textStyle">bold</item>
 
-        <!-- TODO CAMBIAR COLOR AL SELECCIONAR
-
-        <item name="background">@drawable/background_button_accent_normal2</item>
-        -->
-
     </style>
 
 
