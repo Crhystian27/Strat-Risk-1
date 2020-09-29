@@ -82,6 +82,7 @@
     <string name="string_password">Password</string>
     <string name="string_login">Log In</string>
     <string name="string_login_error">You have entered an incorrect username or password</string>
+    <string name="string_server_status">Server status is down.</string>
 
     <string name="string_forgot_password"><u>Forgot\u0020your\u0020password</u>\?</string>
 

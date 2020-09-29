@@ -10,8 +10,6 @@ import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.LiveData;
 
 
-import com.google.gson.Gson;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -24,7 +22,6 @@ import co.mba.strat_risk.data.dao.NewsDao;
 import co.mba.strat_risk.data.dao.UserDao;
 
 import co.mba.strat_risk.data.dto.ItemsDTO;
-import co.mba.strat_risk.data.dto.UserDTO;
 import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.data.entity.User;
 import co.mba.strat_risk.data.model.Session;
@@ -82,6 +79,9 @@ public class Repository {
                     }, throwable -> {
                         if ("HTTP 400 Bad Request".equals(throwable.getMessage())) {
                             DialogInformation.showDialog(activity, activity.getResources().getString(R.string.string_login_error), 0, null);
+                        }
+                        if("HTTP 404 Not Found".equals(throwable.getMessage())){
+                            DialogInformation.showDialog(activity,activity.getResources().getString(R.string.string_server_status),0,null);
                         }
                         Log.e(TAG, "getAccessToken" + throwable.getMessage());
                         progressBar.setVisibility(View.GONE);

@@ -56,7 +56,6 @@ public class DialogInformation {
 
         RadioButton radio1 = dialog.findViewById(R.id.dialog_radio_button1);
 
-
         Glide.with(activity.getApplicationContext())
                 .applyDefaultRequestOptions(RequestOptions.placeholderOf(drawable).error(drawable).circleCrop())
                 .load(drawable)
@@ -69,6 +68,7 @@ public class DialogInformation {
                 text_message.setVerticalScrollBarEnabled(false);
                 radioGroup.setVisibility(View.GONE);
                 text_message.setLines(2);
+                text_more.setVisibility(View.GONE);
                 text_message.setText(message);
                 text_cancel.setVisibility(View.INVISIBLE);
 
@@ -78,6 +78,7 @@ public class DialogInformation {
                 text_message.setVisibility(View.VISIBLE);
                 text_message.setText(activity.getString(R.string.string_pfd));
                 text_message.setGravity(Gravity.CENTER);
+                text_more.setVisibility(View.VISIBLE);
                 text_message.setTextSize(16);
                 text_more.setTextSize(16);
                 text_message.setVerticalScrollBarEnabled(true);
