@@ -31,7 +31,7 @@
 
     <string name="string_server_status">El estado del servidor es inactivo.</string>
 
-    <string name="string_analysis">News analysis</string>
+    <string name="string_analysis">Análisis de noticias\nMuy pronto</string>
 
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">No hay clientes de correo electrónico instalados.</string>
     <string name="btn_contact">Contacto</string>

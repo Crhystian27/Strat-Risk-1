@@ -194,7 +194,11 @@ public class Repository {
         News newsData = new News(news.getKind(), news.getTitle(),
                 news.getSnippet(), news.getLink(), news.getSrc(),
                 newStatus);
-        DialogRepository(newsData, news.getId(), activity, activity.getString(R.string.string_dialog_remove), 0);
+        newsDao.insertNews(newsData);
+        newsDao.deleteNews(news.getId());
+        activity.finish();
+        //SnackBarInformation.showSnackBar(activity, layout, message, "fonts/montserrat_regular_.ttf");
+        //DialogRepository(newsData, news.getId(), activity, activity.getString(R.string.string_dialog_remove), 0);
 
     }
 

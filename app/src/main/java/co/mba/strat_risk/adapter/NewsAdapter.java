@@ -30,7 +30,6 @@ import co.mba.strat_risk.data.entity.News;
 import co.mba.strat_risk.ui.NewsDetailActivity;
 
 import co.mba.strat_risk.util.Constants;
-import co.mba.strat_risk.util.Utilities;
 
 import androidx.lifecycle.ViewModelProvider.Factory;
 
