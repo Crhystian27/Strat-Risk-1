@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import co.mba.strat_risk.R;
 import co.mba.strat_risk.base.BaseActivity;
+import co.mba.strat_risk.widgets.DialogInformation;
 
 
 public class MenuActivity extends BaseActivity {
@@ -45,7 +46,7 @@ public class MenuActivity extends BaseActivity {
         imageMenuNews.setOnClickListener(v -> viewModel.initMenu(MenuActivity.this, MainActivity.class));
 
         imageMenuDetail.setOnClickListener(v -> {
-            //DialogInformation.showDialog(MenuActivity.this, "Muy Pronto", 0, null);
+            DialogInformation.showDialog(MenuActivity.this, "Muy Pronto", 0, null);
         });
     }
 

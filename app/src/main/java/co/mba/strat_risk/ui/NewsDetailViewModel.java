@@ -25,4 +25,8 @@ public class NewsDetailViewModel extends ViewModel {
     public void addNewsDB(Activity activity, News news, Integer newsStatus, RelativeLayout layout, String message) {
         repository.addNews(activity, news, newsStatus, layout, message);
     }
+
+    public void removeNews(Activity activity, News news, Integer newsStatus){
+        repository.removeNews(activity, news, newsStatus);
+    }
 }

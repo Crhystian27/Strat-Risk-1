@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="76dp"
     android:layout_alignParentBottom="true"
-    android:background="@color/colorPrimaryDark">
+    >
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar_detail"
@@ -27,7 +27,7 @@
         android:layout_marginBottom="-28dp"
         android:elevation="@dimen/custom_cornerRadius15dp"
         android:src="@drawable/ic_remove"
-        app:tint="@color/colorPrimaryLight"
+        app:tint="@color/colorPrimaryDark"
         app:backgroundTint="@color/colorWhite"
         app:fabSize="auto"
         app:layout_anchor="@id/bottom_app_bar_detail"

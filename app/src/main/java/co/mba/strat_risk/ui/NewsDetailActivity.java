@@ -55,7 +55,6 @@ public class NewsDetailActivity extends BaseActivity {
 
         setSupportActionBar(true, true);
 
-
         ImageView imgDetail = findViewById(R.id.imageDetail);
         imgDetail.setImageResource(R.drawable.ic_mba_gris);
         LinearLayout bottomInteresting = findViewById(R.id.detailInteresting);
@@ -65,7 +64,7 @@ public class NewsDetailActivity extends BaseActivity {
         FloatingActionButton buttonO = findViewById(R.id.selectionOpportunity);
         FloatingActionButton buttonI = findViewById(R.id.selectionInteresting);
         FloatingActionButton buttonR = findViewById(R.id.selectionRisk);
-
+        FloatingActionButton remove = findViewById(R.id.fab_remove);
 
         viewModel = ViewModelProviders.of(NewsDetailActivity.this, factory).get(NewsDetailViewModel.class);
 
@@ -101,6 +100,7 @@ public class NewsDetailActivity extends BaseActivity {
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
+                remove.setOnClickListener(v -> viewModel.removeNews(NewsDetailActivity.this, dto, Constants.DELETE_STATUS));
 
                 break;
             case 1:
@@ -112,6 +112,8 @@ public class NewsDetailActivity extends BaseActivity {
 
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
+                remove.setOnClickListener(v -> viewModel.removeNews(NewsDetailActivity.this, dto, Constants.DELETE_STATUS));
+
                 break;
             case 2:
 
@@ -122,6 +124,7 @@ public class NewsDetailActivity extends BaseActivity {
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonI.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.INTERESTING_STATUS, layout, getString(R.string.snackBar_interesting)));
+                remove.setOnClickListener(v -> viewModel.removeNews(NewsDetailActivity.this, dto, Constants.DELETE_STATUS));
 
 
                 break;
@@ -136,7 +139,7 @@ public class NewsDetailActivity extends BaseActivity {
 
                 buttonO.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.OPPORTUNITY_STATUS, layout, getString(R.string.snackBar_opportunity)));
                 buttonR.setOnClickListener(v -> viewModel.addNewsDB(NewsDetailActivity.this, dto, Constants.RISK_STATUS, layout, getString(R.string.snackBar_risk)));
-
+                remove.setOnClickListener(v -> viewModel.removeNews(NewsDetailActivity.this, dto, Constants.DELETE_STATUS));
 
                 break;
         }

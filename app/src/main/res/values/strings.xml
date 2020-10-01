@@ -26,6 +26,7 @@
     <string name="snackBar_interesting">Added to Neutral.</string>
     <string name="snackBar_risk">Added to Risk.</string>
     <string name="snackBar_remove">Remove.</string>
+    <string name="snackBar_remove2">News Remove.</string>
 
 
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">There are no email clients installed.</string>
@@ -108,5 +109,6 @@
 
     <string name="string_policy_private">Text here!! 1111</string>
     <string name="string_policy_service">Text here!! 2222</string>
+    <string name="string_dialog_remove">Do you want remove this news?</string>
 
 </resources>
