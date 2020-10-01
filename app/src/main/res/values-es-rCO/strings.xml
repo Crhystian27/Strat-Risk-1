@@ -12,12 +12,11 @@
     <string name="string_pfd">Al usar la aplicación STRAT–RISK–MBA propiedad de MBA Y CÍA AGENCIA DE SEGUROS LTDA, empresa…</string>
 
     <string name="string_more">Leer más</string>
-
-
-    <string name="title_news">Noticias</string>
-    <string name="title_opportunity">Oportunidad</string>
-    <string name="title_interesting">Neutral</string>
-    <string name="title_risk">Riesgo</string>
+    
+    <string name="title_news">NOTICIAS</string>
+    <string name="title_opportunity">OPORTUNIDAD</string>
+    <string name="title_interesting">NEUTRAL</string>
+    <string name="title_risk">AMENAZA</string>
 
     <string name="string_link">Ir a la noticia.</string>
 
@@ -25,13 +24,13 @@
 
     <string name="snackBar_opportunity">Agregado a Oportunidad.</string>
     <string name="snackBar_interesting">Agregado a Neutral.</string>
-    <string name="snackBar_risk">Agregado a Riesgo.</string>
+    <string name="snackBar_risk">Agregado a Amenaza.</string>
     <string name="snackBar_remove">Eliminar.</string>
     <string name="snackBar_remove2">Noticia Eliminada.</string>
 
     <string name="string_server_status">El estado del servidor es inactivo.</string>
 
-    <string name="string_analysis">Análisis de noticias\nMuy pronto</string>
+    <string name="string_analysis">Análisis de noticias\nPróximamente</string>
 
     <string name="msj_there_are_no_email_clients_installed." tools:ignore="ExtraTranslation">No hay clientes de correo electrónico instalados.</string>
     <string name="btn_contact">Contacto</string>
@@ -56,7 +55,7 @@
     <string name="empty_news">Aquí se mostrarán las noticias\u0020<u>Indexadas</u></string>
     <string name="empty_opportunity"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Oportunidad</u>\u0020cuando la agregues a esta categoría.</b></string>
     <string name="empty_intermediate"><b>Aquí se mostrarán las noticias guardadas en\u0020<u>Neutral</u>\u0020cuando la agregues a esta categoría.</b></string>
-    <string name="empty_risk">Aquí se mostrarán las noticias guardadas en\u0020 <u>Riesgo</u> \u0020cuando la agregues a esta categoría.</string>
+    <string name="empty_risk">Aquí se mostrarán las noticias guardadas en\u0020 <u>Amenaza</u> \u0020cuando la agregues a esta categoría.</string>
 
     <string name="string_slide_desc_1">La app de noticias que te permite estar al día con las novedades de tu sector y gestionar en parte tu riesgos estratégico.</string>
 

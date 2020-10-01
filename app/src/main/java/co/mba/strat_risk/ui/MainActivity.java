@@ -112,24 +112,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 });
 
         nv_name.setText(AppPreferences.getInstance().getUser().getName());
-
-
-        /*chipNavigationBar.setOnItemSelectedListener(id -> {
-            switch (id) {
-                case R.id.navigation_news:
-                    Utilities.loadFragment(MainActivity.this, new NewsFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-                    break;
-                case R.id.navigation_opportunity:
-                    Utilities.loadFragment(MainActivity.this, new OpportunityFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-                    break;
-                case R.id.navigation_interesting:
-                    Utilities.loadFragment(MainActivity.this, new InterestingFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-                    break;
-                case R.id.navigation_risk:
-                    Utilities.loadFragment(MainActivity.this, new RiskFragment(), R.id.nav_host_fragment, Constants.TAG_MAIN);
-                    break;
-            }
-        });*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
