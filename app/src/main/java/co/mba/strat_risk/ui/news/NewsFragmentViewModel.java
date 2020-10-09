@@ -36,7 +36,7 @@ public class NewsFragmentViewModel extends ViewModel {
         String[]  partCx= cx.split("=");
         String partCx2 = partCx[1];
         String search = AppPreferences.getInstance().getUser().getSearch();
-        repository.getNewsInternet("lang_es", "CO", "1", partKey2, partCx2, "suzuki");
+        repository.getNewsInternet("lang_es", "CO", "1", partKey2, partCx2, "exacterm=suzuki");
     }
 
     public void fetchNewsDB(Integer status) {

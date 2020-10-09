@@ -108,8 +108,8 @@ public class Utilities {
     public static void OpenSendEmail(Activity activity, String email) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setData(Uri.parse("mailto:"));
-        Log.e(String.valueOf(activity.getClass()), " " + Arrays.toString(Constants.EXTRA_EMAIL));
-        i.putExtra(Intent.EXTRA_EMAIL, new String[]{Arrays.toString(Constants.EXTRA_EMAIL)});
+        Log.e(String.valueOf(activity.getClass()), " " + Constants.EXTRA_EMAIL);
+        i.putExtra(Intent.EXTRA_EMAIL, new String[]{Constants.EXTRA_EMAIL});
         i.putExtra(Intent.EXTRA_SUBJECT, activity.getResources().getString(R.string.extra_subject));
         i.putExtra(Intent.EXTRA_TEXT, email);
         try {
