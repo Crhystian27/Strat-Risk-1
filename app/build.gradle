@@ -120,4 +120,5 @@ dependencies {
     testImplementation "androidx.room:room-testing:2.3.0-alpha02"
     // optional - Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:2.0.0"
+
 }

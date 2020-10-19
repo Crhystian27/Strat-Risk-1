@@ -4,7 +4,7 @@ public class Constants {
 
     public static final String GRANT_TYPE = "password";
     public static final int CLIENT_ID = 2;
-    public static final String CLIENT_SECRET = "wAUkM5QxxNwLbPKFIjvUl6mFUyBCf2Qc4k5FClqw";
+    public static final String CLIENT_SECRET = "vVCmaactHxFbLK9CBoKz2s8wn5fa87175upniWhV";
 
 
     public static final String TAG_LOGIN = "Tag_Login";

@@ -3,6 +3,7 @@ package co.mba.strat_risk.ui;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import co.mba.strat_risk.util.AppPreferences;
 import co.mba.strat_risk.util.Constants;
 import co.mba.strat_risk.util.Utilities;
 import co.mba.strat_risk.widgets.SnackBarInformation;
+import io.reactivex.plugins.RxJavaPlugins;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,6 +71,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RxJavaPlugins.setErrorHandler(throwable -> {
+            Log.e("Value -> ",throwable.getMessage().toString());});
 
         setSupportActionBar(false, true);
         viewModel = ViewModelProviders.of(MainActivity.this, factory).get(MainViewModel.class);

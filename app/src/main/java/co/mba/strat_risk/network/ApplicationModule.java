@@ -96,9 +96,8 @@ public class ApplicationModule {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //.baseUrl("https://jsonplaceholder.typicode.com/")
-                //.baseUrl("https://mbariesgos.com/strat-risk/api_users/public/")
-                .baseUrl("http://mba.globalsys.co")
+
+                .baseUrl("http://159.89.87.144")
                 .build();
     }
 

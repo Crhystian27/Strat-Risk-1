@@ -30,13 +30,27 @@ public class NewsFragmentViewModel extends ViewModel {
 
     public void fetchNewsInternet() {
         String key = AppPreferences.getInstance().getUser().getKey();
-        String[]  partKey= key.split("=");
+        String[] partKey = key.split("=");
         String partKey2 = partKey[1];
         String cx = AppPreferences.getInstance().getUser().getSource();
-        String[]  partCx= cx.split("=");
+        String[] partCx = cx.split("=");
         String partCx2 = partCx[1];
         String search = AppPreferences.getInstance().getUser().getSearch();
-        repository.getNewsInternet("lang_es", "CO", "1", partKey2, partCx2, "exacterm=suzuki");
+        String[] partSearch = search.split("&");
+        String q = partSearch[1];
+        String[] partQ = q.split("=");
+        String valueQ = partQ[1];
+        String gl = partSearch[2];
+        String[] partGL = gl.split("=");
+        String valueGL = partGL[1];
+        String lr = partSearch[3];
+        String[] partLR = lr.split("=");
+        String valueLR = partLR[1];
+
+        Log.e(TAG, valueQ + " - " + valueGL + " - " + valueLR);
+        Log.e(TAG,partCx2+" - "+partKey2);
+
+        repository.getNewsInternet(valueLR.trim(), valueGL.trim(), "1", partKey2, partCx2, valueQ);
     }
 
     public void fetchNewsDB(Integer status) {

@@ -1,6 +1,8 @@
 package co.mba.strat_risk.data.dto;
 
 
+import androidx.room.Ignore;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -33,4 +35,5 @@ public final class NewsDTO {
                 ", items=" + items +
                 '}';
     }
+
 }

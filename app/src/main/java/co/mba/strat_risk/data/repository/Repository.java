@@ -145,7 +145,6 @@ public class Repository {
                 })));
     }
 
-
     //Load news list
     public void getNewsInternet(String lr, String gl, String start, String key, String cx, String search) {
         executor.execute(() ->

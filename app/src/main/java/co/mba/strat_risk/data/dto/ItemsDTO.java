@@ -3,7 +3,6 @@ package co.mba.strat_risk.data.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

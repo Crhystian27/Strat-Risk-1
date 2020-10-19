@@ -40,7 +40,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private Context context;
     private List<? extends News> dtoList;
-    private List<? extends News> filteredList;
     private Integer status;
     private LinearLayout empty;
     private Activity activity;
@@ -51,7 +50,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public NewsAdapter(Activity activity, Context context, List<? extends News> dtoList, LinearLayout empty, Integer status, Fragment fragment, Factory factory, RelativeLayout layout) {
         this.context = context;
         this.dtoList = dtoList;
-        this.filteredList = dtoList;
         this.empty = empty;
         this.status = status;
         this.layout = layout;
